@@ -6,14 +6,15 @@
 <title>饶一凡 · 简历</title>
 <style>
   :root {
-    --bg: #fafaf9;
+    --bg: #f7f5f0;
+    --paper: #faf9f6;
     --sidebar-bg: #121212;
     --text: #2c2c2c;
     --muted: #787878;
     --accent: #c6a15b;
     --accent-glow: rgba(198,161,91,.25);
-    --border: #e8e5e0;
-    --tag-bg: #f3f0eb;
+    --border: #e6e2da;
+    --tag-bg: #f3f0e9;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,25 +22,78 @@
   body {
     font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
     background: var(--bg);
+    background-image:
+      /* subtle paper grain */
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.003) 2px, rgba(0,0,0,.003) 4px),
+      /* warm vignette at bottom */
+      radial-gradient(ellipse at 50% 100%, rgba(198,161,91,.04) 0%, transparent 70%),
+      /* warm vignette at top */
+      radial-gradient(ellipse at 50% 0%, rgba(180,150,100,.03) 0%, transparent 60%);
     color: var(--text);
     -webkit-font-smoothing: antialiased;
     position: relative;
+    min-height: 100vh;
   }
 
-  /* ── Ambient ── */
+  /* ── Dot grid (tech feel) ── */
   body::before {
     content: '';
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: radial-gradient(circle, #d4d0c8 .5px, transparent .5px);
-    background-size: 28px 28px;
-    opacity: .45;
+    background-image:
+      radial-gradient(circle, #d4cfc5 .5px, transparent .5px);
+    background-size: 32px 32px;
+    opacity: .35;
   }
+
+  /* ── Film perforation strip (left side of main) ── */
+  .film-strip {
+    position: fixed; top: 0; left: 280px; bottom: 0;
+    width: 14px; pointer-events: none; z-index: 1;
+    background:
+      radial-gradient(circle at 50% 12px, transparent 3.2px, #d8d4ca 3.4px, #d8d4ca 4.2px, transparent 4.4px),
+      radial-gradient(circle at 50% 12px, transparent 3.2px, #d8d4ca 3.4px, #d8d4ca 4.2px, transparent 4.4px),
+      radial-gradient(circle at 50% 12px, transparent 3.2px, #d8d4ca 3.4px, #d8d4ca 4.2px, transparent 4.4px);
+    background-size: 14px 24px;
+    background-repeat: repeat-y;
+    opacity: .5;
+  }
+
+  /* ── Ambient orbs ── */
   .ambient-orb {
-    position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
-    filter: blur(80px); opacity: .06;
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    filter: blur(100px); opacity: .05;
   }
-  .ambient-orb.a { width: 300px; height: 300px; background: #c6a15b; top: -60px; right: -40px; }
-  .ambient-orb.b { width: 240px; height: 240px; background: #a0a0a0; bottom: -60px; left: 30%; }
+  .ambient-orb.a { width: 340px; height: 340px; background: #c6a15b; top: -80px; right: -60px; }
+  .ambient-orb.b { width: 260px; height: 260px; background: #b0a898; bottom: -80px; left: 25%; }
+
+  /* ── Lingnan architectural watermark (subtle SVG) ── */
+  .lingnan-watermark {
+    position: fixed; pointer-events: none; z-index: 0;
+    bottom: 60px; right: 60px;
+    width: 200px; height: 180px;
+    opacity: .025;
+    background:
+      /* 镬耳屋 silhouette */
+      linear-gradient(175deg, transparent 30%, #4a4a4a 30%, #4a4a4a 32%, transparent 32%),
+      linear-gradient(5deg, transparent 30%, #4a4a4a 30%, #4a4a4a 32%, transparent 32%),
+      linear-gradient(180deg, transparent 28%, #4a4a4a 28%, #4a4a4a 40%, transparent 40%),
+      linear-gradient(180deg, transparent 55%, #4a4a4a 55%, #4a4a4a 100%, transparent 100%);
+    border-radius: 4px;
+  }
+
+  /* ── Waveform line decor ── */
+  .waveform-decor {
+    position: fixed; pointer-events: none; z-index: 0;
+    bottom: 120px; left: 320px;
+    width: 180px; height: 30px;
+    opacity: .04;
+    background: repeating-linear-gradient(90deg,
+      transparent 0px, #4a4a4a 0px, #4a4a4a 1px, transparent 1px, transparent 4px,
+      transparent 4px, #4a4a4a 4px, #4a4a4a 2px, transparent 2px, transparent 6px,
+      transparent 6px, #4a4a4a 6px, #4a4a4a 3px, transparent 3px, transparent 9px,
+      transparent 9px, #4a4a4a 9px, #4a4a4a 1px, transparent 1px, transparent 12px);
+    mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+  }
 
   /* ── Mobile Top Bar ── */
   .topbar {
@@ -51,8 +105,6 @@
     box-shadow: 0 1px 0 rgba(255,255,255,.04), 0 4px 20px rgba(0,0,0,.2);
   }
   .topbar-name { color: #fff; font-size: 16px; font-weight: 600; letter-spacing: 2px; }
-  .topbar-role { color: var(--accent); font-size: 11px; letter-spacing: 2px; }
-
   .menu-btn {
     width: 36px; height: 36px; display: flex; flex-direction: column;
     align-items: center; justify-content: center; gap: 4px;
@@ -90,6 +142,15 @@
     position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: .6;
+  }
+  /* Sidebar film perforations */
+  .sidebar::after {
+    content: '';
+    position: absolute; right: 6px; top: 0; bottom: 0; width: 6px;
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg,
+      transparent 0px, transparent 16px,
+      rgba(255,255,255,.04) 16px, rgba(255,255,255,.04) 18px);
   }
   .sidebar-header {
     padding: 0 32px 36px;
@@ -170,6 +231,7 @@
   }
   section { margin-bottom: 72px; }
 
+  /* ── Viewfinder corners ── */
   .section-badge {
     font-size: 10px; letter-spacing: 3px; color: var(--accent);
     margin-bottom: 10px; display: inline-block; position: relative;
@@ -200,16 +262,59 @@
     50% { transform: translateX(200%); }
   }
 
-  /* ── Hero ── */
+  /* ── Hero with viewfinder frame ── */
+  .hero-wrap {
+    position: relative;
+    padding: 12px 0;
+  }
+  /* Viewfinder corner brackets */
+  .hero-wrap::before,
+  .hero-wrap::after {
+    content: '';
+    position: absolute; left: -16px; top: 0;
+    width: 28px; height: 28px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    opacity: .5;
+  }
+  .hero-wrap::after {
+    top: auto; bottom: 0;
+    border-top: none; border-bottom: 1.5px solid var(--accent);
+  }
+  .vf-right {
+    position: absolute; right: -16px; top: 0; bottom: 0; pointer-events: none;
+  }
+  .vf-right::before,
+  .vf-right::after {
+    content: '';
+    position: absolute; right: 0;
+    width: 28px; height: 28px;
+    border-top: 1.5px solid var(--accent);
+    border-right: 1.5px solid var(--accent);
+    opacity: .5;
+  }
+  .vf-right::after {
+    top: auto; bottom: 0;
+    border-top: none; border-bottom: 1.5px solid var(--accent);
+  }
+
   .hero-name { font-size: 48px; font-weight: 700; letter-spacing: 4px; color: #111; line-height: 1.1; }
   .hero-sub { font-size: 16px; color: var(--muted); margin-top: 12px; letter-spacing: 1px; }
   .hero-intro {
     font-size: 15px; color: #555; margin-top: 20px; line-height: 1.7;
-    padding: 18px 24px; background: #fff; border-left: 3px solid var(--accent);
+    padding: 18px 24px; background: var(--paper); border-left: 3px solid var(--accent);
     border-radius: 4px; max-width: 540px;
     transition: box-shadow .4s;
+    position: relative;
   }
   .hero-intro:hover { box-shadow: 0 0 30px rgba(198,161,91,.08); }
+  /* Timecode decoration inside hero */
+  .hero-intro::after {
+    content: '00:00:00:00';
+    position: absolute; right: 16px; bottom: 8px;
+    font-size: 9px; letter-spacing: 2px; color: #d0cbc0;
+    font-family: "SF Mono", "Consolas", "Courier New", monospace;
+  }
   .hero-meta {
     display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap;
   }
@@ -221,7 +326,7 @@
   .contact-item {
     display: flex; align-items: center; gap: 14px;
     padding: 16px 20px; border: 1px solid var(--border);
-    border-radius: 8px; background: #fff; text-decoration: none; color: var(--text);
+    border-radius: 8px; background: var(--paper); text-decoration: none; color: var(--text);
     transition: all .3s cubic-bezier(.4,0,.2,1);
     position: relative; overflow: hidden;
   }
@@ -271,7 +376,7 @@
   }
   .tag:hover {
     border-color: var(--accent);
-    background: #fff;
+    background: var(--paper);
     box-shadow: 0 2px 10px rgba(198,161,91,.1);
     transform: translateY(-1px);
   }
@@ -280,14 +385,18 @@
   .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .expect-item {
     padding: 20px 24px; border: 1px solid var(--border);
-    border-radius: 8px; background: #fff;
+    border-radius: 8px; background: var(--paper);
     transition: all .3s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
   }
-  .expect-item:hover {
-    border-color: var(--accent);
-    box-shadow: 0 4px 20px rgba(0,0,0,.04);
-    transform: translateY(-1px);
+  .expect-item::before {
+    content: '';
+    position: absolute; top: 0; left: 12px; right: 12px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(198,161,91,.25), transparent);
+    opacity: 0; transition: opacity .4s;
   }
+  .expect-item:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,.04); transform: translateY(-1px); }
+  .expect-item:hover::before { opacity: 1; }
   .expect-item .label { font-size: 11px; letter-spacing: 2px; color: var(--muted); }
   .expect-item .value { font-size: 16px; font-weight: 500; margin-top: 6px; }
 
@@ -333,7 +442,7 @@
     margin-top: 10px; font-size: 13px; color: var(--accent);
     letter-spacing: .5px;
     padding: 8px 14px; border-radius: 4px;
-    background: rgba(198,161,91,.05);
+    background: rgba(198,161,91,.06);
     display: inline-block;
     transition: background .3s;
   }
@@ -342,9 +451,16 @@
   /* ── Project cards ── */
   .project-card {
     padding: 24px 28px; border: 1px solid var(--border);
-    border-radius: 8px; background: #fff; margin-bottom: 14px;
+    border-radius: 8px; background: var(--paper); margin-bottom: 14px;
     transition: all .3s cubic-bezier(.4,0,.2,1);
     position: relative; overflow: hidden;
+  }
+  /* Play button watermark */
+  .project-card::after {
+    content: '▶';
+    position: absolute; right: 20px; bottom: 14px;
+    font-size: 48px; color: #e8e5dd;
+    transition: all .4s; pointer-events: none; line-height: 1;
   }
   .project-card::before {
     content: '';
@@ -354,20 +470,23 @@
   }
   .project-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.05); }
   .project-card:hover::before { opacity: .6; }
+  .project-card:hover::after { color: #ede8d8; }
   .project-top {
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 10px; margin-bottom: 8px;
   }
-  .project-title { font-size: 17px; font-weight: 600; letter-spacing: .5px; }
+  .project-title { font-size: 17px; font-weight: 600; letter-spacing: .5px; position: relative; z-index: 1; }
   .project-views { font-size: 13px; color: var(--accent); font-weight: 500; white-space: nowrap; }
   .project-desc {
     font-size: 14px; color: #555; line-height: 1.7;
     display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+    position: relative; z-index: 1;
   }
   .project-link {
     display: inline-flex; align-items: center; gap: 6px;
     margin-top: 10px; font-size: 12px; color: var(--muted);
     text-decoration: none; letter-spacing: .5px; transition: all .25s;
+    position: relative; z-index: 1;
   }
   .project-link:hover { color: var(--accent); gap: 10px; }
 
@@ -379,10 +498,30 @@
   .corner-deco.tl { top: 40px; left: 320px; border-top: 1px solid #999; border-left: 1px solid #999; }
   .corner-deco.br { bottom: 40px; right: 40px; border-bottom: 1px solid #999; border-right: 1px solid #999; }
 
+  /* ── Camera aperture ring (large subtle circle) ── */
+  .aperture-ring {
+    position: fixed; pointer-events: none; z-index: 0;
+    top: 50%; right: -100px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(198,161,91,.12);
+    transform: translateY(-50%);
+  }
+  .aperture-ring::after {
+    content: '';
+    position: absolute; inset: 20px; border-radius: 50%;
+    border: 1px solid rgba(198,161,91,.06);
+  }
+
   /* ═══════════ MOBILE ═══════════ */
   @media (max-width: 768px) {
     .topbar { display: flex; }
     .overlay { display: block; }
+
+    .film-strip { left: 0; opacity: .3; }
+    .aperture-ring { display: none; }
+    .lingnan-watermark { right: 10px; bottom: 20px; width: 120px; height: 110px; opacity: .02; }
+    .waveform-decor { display: none; }
 
     .sidebar {
       position: fixed; top: 56px; left: 0; bottom: 0;
@@ -400,29 +539,26 @@
 
     .hero-name { font-size: 34px; letter-spacing: 3px; }
     .hero-intro { max-width: 100%; }
+    .hero-intro::after { font-size: 8px; right: 10px; bottom: 6px; }
     .hero-meta { gap: 16px; }
+    .hero-wrap::before, .hero-wrap::after, .vf-right::before, .vf-right::after { opacity: .3; width: 20px; height: 20px; }
 
     .contact-grid { grid-template-columns: 1fr; }
-
     .expect-grid { grid-template-columns: 1fr 1fr; }
-
     section { margin-bottom: 48px; }
     .section-title { font-size: 24px; margin-bottom: 24px; }
     .section-line { margin-bottom: 24px; }
-
     .tl-company { font-size: 16px; }
     .tl-header { flex-direction: column; }
-
     .project-title { font-size: 15px; }
     .project-card { padding: 18px 20px; }
+    .project-card::after { font-size: 36px; right: 12px; bottom: 10px; }
 
     .corner-deco { display: none; }
     .ambient-orb { opacity: .03; }
-
     .portfolio-link { width: 100%; justify-content: center; }
   }
 
-  /* ── Small phone ── */
   @media (max-width: 380px) {
     .hero-name { font-size: 28px; }
     .hero-sub { font-size: 14px; }
@@ -436,20 +572,21 @@
 
 <div class="ambient-orb a"></div>
 <div class="ambient-orb b"></div>
+<div class="film-strip"></div>
+<div class="aperture-ring"></div>
+<div class="lingnan-watermark"></div>
+<div class="waveform-decor"></div>
 <div class="corner-deco tl"></div>
 <div class="corner-deco br"></div>
 
 <!-- ═══════════ MOBILE TOP BAR ═══════════ -->
 <div class="topbar">
-  <div>
-    <div class="topbar-name">饶一凡</div>
-  </div>
+  <div><div class="topbar-name">饶一凡</div></div>
   <button class="menu-btn" onclick="toggleMenu()" aria-label="菜单">
     <span></span><span></span><span></span>
   </button>
 </div>
 
-<!-- ═══════════ OVERLAY ═══════════ -->
 <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <!-- ═══════════ SIDEBAR ═══════════ -->
@@ -458,10 +595,8 @@
     <div class="sidebar-name">饶一凡</div>
     <div class="sidebar-role">影视媒体</div>
   </div>
-
   <div class="sidebar-nav">
     <div class="dir-label">目录</div>
-
     <div class="dir-group open">
       <div class="dir-item" onclick="toggleDir(this)">
         <span class="dir-caret">▶</span>
@@ -469,32 +604,16 @@
       </div>
       <div class="dir-children">
         <div class="dir-sub">
-          <a class="dir-item" data-target="profile" onclick="navTo('profile')">
-            <span class="dir-icon">📄</span>个人概况
-          </a>
-          <a class="dir-item" data-target="contact" onclick="navTo('contact')">
-            <span class="dir-icon">📄</span>联系方式
-          </a>
+          <a class="dir-item" data-target="profile" onclick="navTo('profile')"><span class="dir-icon">📄</span>个人概况</a>
+          <a class="dir-item" data-target="contact" onclick="navTo('contact')"><span class="dir-icon">📄</span>联系方式</a>
         </div>
       </div>
     </div>
-
-    <a class="dir-item" data-target="expectation" onclick="navTo('expectation')">
-      <span class="dir-icon">📄</span>求职期望
-    </a>
-    <a class="dir-item" data-target="education" onclick="navTo('education')">
-      <span class="dir-icon">📄</span>教育经历
-    </a>
-    <a class="dir-item" data-target="awards" onclick="navTo('awards')">
-      <span class="dir-icon">📄</span>荣誉奖项
-    </a>
-    <a class="dir-item" data-target="certificates" onclick="navTo('certificates')">
-      <span class="dir-icon">📄</span>资格证书
-    </a>
-    <a class="dir-item" data-target="skills" onclick="navTo('skills')">
-      <span class="dir-icon">📄</span>专业技能
-    </a>
-
+    <a class="dir-item" data-target="expectation" onclick="navTo('expectation')"><span class="dir-icon">📄</span>求职期望</a>
+    <a class="dir-item" data-target="education" onclick="navTo('education')"><span class="dir-icon">📄</span>教育经历</a>
+    <a class="dir-item" data-target="awards" onclick="navTo('awards')"><span class="dir-icon">📄</span>荣誉奖项</a>
+    <a class="dir-item" data-target="certificates" onclick="navTo('certificates')"><span class="dir-icon">📄</span>资格证书</a>
+    <a class="dir-item" data-target="skills" onclick="navTo('skills')"><span class="dir-icon">📄</span>专业技能</a>
     <div class="dir-group open">
       <div class="dir-item" onclick="toggleDir(this)">
         <span class="dir-caret">▶</span>
@@ -502,22 +621,13 @@
       </div>
       <div class="dir-children">
         <div class="dir-sub">
-          <a class="dir-item" data-target="proj-1" onclick="navTo('proj-1')">
-            <span class="dir-icon">🎬</span>岭南踏青
-          </a>
-          <a class="dir-item" data-target="proj-2" onclick="navTo('proj-2')">
-            <span class="dir-icon">🎬</span>大年初四 迎财神
-          </a>
-          <a class="dir-item" data-target="proj-3" onclick="navTo('proj-3')">
-            <span class="dir-icon">🎬</span>鱼灯游岭南
-          </a>
-          <a class="dir-item" data-target="proj-4" onclick="navTo('proj-4')">
-            <span class="dir-icon">🎬</span>岁启新元 粤韵迎新
-          </a>
+          <a class="dir-item" data-target="proj-1" onclick="navTo('proj-1')"><span class="dir-icon">🎬</span>岭南踏青</a>
+          <a class="dir-item" data-target="proj-2" onclick="navTo('proj-2')"><span class="dir-icon">🎬</span>大年初四 迎财神</a>
+          <a class="dir-item" data-target="proj-3" onclick="navTo('proj-3')"><span class="dir-icon">🎬</span>鱼灯游岭南</a>
+          <a class="dir-item" data-target="proj-4" onclick="navTo('proj-4')"><span class="dir-icon">🎬</span>岁启新元 粤韵迎新</a>
         </div>
       </div>
     </div>
-
     <div class="dir-group open">
       <div class="dir-item" onclick="toggleDir(this)">
         <span class="dir-caret">▶</span>
@@ -525,17 +635,12 @@
       </div>
       <div class="dir-children">
         <div class="dir-sub">
-          <a class="dir-item" data-target="exp-1" onclick="navTo('exp-1')">
-            <span class="dir-icon">📄</span>广州印象文化
-          </a>
-          <a class="dir-item" data-target="exp-2" onclick="navTo('exp-2')">
-            <span class="dir-icon">📄</span>广州六禾餐饮
-          </a>
+          <a class="dir-item" data-target="exp-1" onclick="navTo('exp-1')"><span class="dir-icon">📄</span>广州印象文化</a>
+          <a class="dir-item" data-target="exp-2" onclick="navTo('exp-2')"><span class="dir-icon">📄</span>广州六禾餐饮</a>
         </div>
       </div>
     </div>
   </div>
-
   <div class="sidebar-footer">RAO YIFAN · 2026</div>
 </aside>
 
@@ -543,16 +648,19 @@
 <main class="main">
 
   <section id="profile">
-    <div class="section-badge">Profile</div>
-    <div class="hero-name">饶一凡</div>
-    <div class="hero-sub">影视媒体 · 21岁 · 2026届大专应届生</div>
-    <div class="hero-intro">
-      注重内容创作，有发散性思维，擅长文旅类策划拍摄
-    </div>
-    <div class="hero-meta">
-      <div class="hero-meta-item"><strong>状态</strong> 离校，随时到岗</div>
-      <div class="hero-meta-item"><strong>城市</strong> 广州</div>
-      <div class="hero-meta-item"><strong>行动力强</strong> · 学习能力强 · 工作踏实</div>
+    <div class="hero-wrap">
+      <div class="vf-right"></div>
+      <div class="section-badge">Profile</div>
+      <div class="hero-name">饶一凡</div>
+      <div class="hero-sub">影视媒体 · 21岁 · 2026届大专应届生</div>
+      <div class="hero-intro">
+        注重内容创作，有发散性思维，擅长文旅类策划拍摄
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><strong>状态</strong> 离校，随时到岗</div>
+        <div class="hero-meta-item"><strong>城市</strong> 广州</div>
+        <div class="hero-meta-item"><strong>行动力强</strong> · 学习能力强 · 工作踏实</div>
+      </div>
     </div>
   </section>
 
@@ -563,31 +671,19 @@
     <div class="contact-grid">
       <div class="contact-item">
         <div class="contact-icon">📱</div>
-        <div>
-          <div class="contact-label">手机</div>
-          <div class="contact-value">13450629010</div>
-        </div>
+        <div><div class="contact-label">手机</div><div class="contact-value">13450629010</div></div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">邮箱</div>
-          <div class="contact-value">1658047328@qq.com</div>
-        </div>
+        <div><div class="contact-label">邮箱</div><div class="contact-value">1658047328@qq.com</div></div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">💬</div>
-        <div>
-          <div class="contact-label">微信</div>
-          <div class="contact-value">Raoyifan007</div>
-        </div>
+        <div><div class="contact-label">微信</div><div class="contact-value">Raoyifan007</div></div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">现居</div>
-          <div class="contact-value">广州</div>
-        </div>
+        <div><div class="contact-label">现居</div><div class="contact-value">广州</div></div>
       </div>
     </div>
     <a class="portfolio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">
@@ -600,22 +696,10 @@
     <div class="section-title">求职期望</div>
     <div class="section-line"></div>
     <div class="expect-grid">
-      <div class="expect-item">
-        <div class="label">职位</div>
-        <div class="value">影视媒体</div>
-      </div>
-      <div class="expect-item">
-        <div class="label">城市</div>
-        <div class="value">广州</div>
-      </div>
-      <div class="expect-item">
-        <div class="label">行业</div>
-        <div class="value">不限</div>
-      </div>
-      <div class="expect-item">
-        <div class="label">期望薪资</div>
-        <div class="value">6K – 11K</div>
-      </div>
+      <div class="expect-item"><div class="label">职位</div><div class="value">影视媒体</div></div>
+      <div class="expect-item"><div class="label">城市</div><div class="value">广州</div></div>
+      <div class="expect-item"><div class="label">行业</div><div class="value">不限</div></div>
+      <div class="expect-item"><div class="label">期望薪资</div><div class="value">6K – 11K</div></div>
     </div>
   </section>
 
@@ -646,9 +730,7 @@
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="tl-header">
-          <span class="tl-company">广东省525心理宣传视频大赛</span>
-        </div>
+        <div class="tl-header"><span class="tl-company">广东省525心理宣传视频大赛</span></div>
         <div class="tl-role">一等奖</div>
       </div>
     </div>
@@ -670,32 +752,19 @@
     <div class="section-line"></div>
     <div style="margin-bottom:28px">
       <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">剪辑软件</div>
-      <div class="tag-row">
-        <span class="tag">Premiere</span>
-        <span class="tag">剪映</span>
-        <span class="tag">DaVinci</span>
-      </div>
+      <div class="tag-row"><span class="tag">Premiere</span><span class="tag">剪映</span><span class="tag">DaVinci</span></div>
     </div>
     <div style="margin-bottom:28px">
       <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">拍摄设备</div>
-      <div class="tag-row">
-        <span class="tag">微单</span>
-      </div>
+      <div class="tag-row"><span class="tag">微单</span></div>
     </div>
     <div style="margin-bottom:28px">
       <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">平台运营</div>
-      <div class="tag-row">
-        <span class="tag">抖音运营</span>
-        <span class="tag">短视频运营</span>
-        <span class="tag">知识服务平台</span>
-      </div>
+      <div class="tag-row"><span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">知识服务平台</span></div>
     </div>
     <div>
       <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">其他工具</div>
-      <div class="tag-row">
-        <span class="tag">Photoshop</span>
-        <span class="tag">Lightroom</span>
-      </div>
+      <div class="tag-row"><span class="tag">Photoshop</span><span class="tag">Lightroom</span></div>
     </div>
   </section>
 
@@ -705,46 +774,23 @@
     <div class="section-line"></div>
 
     <div class="project-card" id="proj-1">
-      <div class="project-top">
-        <span class="project-title">《岭南踏青》</span>
-        <span class="project-views">3.5w 播放</span>
-      </div>
-      <div class="project-desc">
-        春风入岭南，闲庭花自开。"等闲识得东风面，万紫千红总是春。" 漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。不负春光，不负己，在古巷里遇见一整个春天。
-      </div>
+      <div class="project-top"><span class="project-title">《岭南踏青》</span><span class="project-views">3.5w 播放</span></div>
+      <div class="project-desc">春风入岭南，闲庭花自开。"等闲识得东风面，万紫千红总是春。" 漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。不负春光，不负己，在古巷里遇见一整个春天。</div>
       <a class="project-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">▶ 在抖音查看</a>
     </div>
-
     <div class="project-card" id="proj-2">
-      <div class="project-top">
-        <span class="project-title">《大年初四 迎财神》</span>
-        <span class="project-views">5.8w 播放</span>
-      </div>
-      <div class="project-desc">
-        大年初四｜在岭南印象园，遇见最暖的年味。大年初四，迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。
-      </div>
+      <div class="project-top"><span class="project-title">《大年初四 迎财神》</span><span class="project-views">5.8w 播放</span></div>
+      <div class="project-desc">大年初四｜在岭南印象园，遇见最暖的年味。大年初四，迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</div>
       <a class="project-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">▶ 在抖音查看</a>
     </div>
-
     <div class="project-card" id="proj-3">
-      <div class="project-top">
-        <span class="project-title">《鱼灯游岭南 铁花耀新年》</span>
-        <span class="project-views">6.7w 播放</span>
-      </div>
-      <div class="project-desc">
-        华灯初上，岭南印象园的夜被鱼灯点亮，一尾尾鱼灯穿巷而过，载着旧时光里的岭南年味缓缓巡游。当滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。
-      </div>
+      <div class="project-top"><span class="project-title">《鱼灯游岭南 铁花耀新年》</span><span class="project-views">6.7w 播放</span></div>
+      <div class="project-desc">华灯初上，岭南印象园的夜被鱼灯点亮，一尾尾鱼灯穿巷而过，载着旧时光里的岭南年味缓缓巡游。当滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</div>
       <a class="project-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">▶ 在抖音查看</a>
     </div>
-
     <div class="project-card" id="proj-4">
-      <div class="project-top">
-        <span class="project-title">《岁启新元，粤韵迎新》</span>
-        <span class="project-views">7.5w 播放</span>
-      </div>
-      <div class="project-desc">
-        岁启新元，粤韵迎新。元旦限定精彩轮番上演——全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……这个元旦，来岭南印象园感受最地道的岭南年味。
-      </div>
+      <div class="project-top"><span class="project-title">《岁启新元，粤韵迎新》</span><span class="project-views">7.5w 播放</span></div>
+      <div class="project-desc">岁启新元，粤韵迎新。元旦限定精彩轮番上演——全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……这个元旦，来岭南印象园感受最地道的岭南年味。</div>
       <a class="project-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">▶ 在抖音查看</a>
     </div>
   </section>
@@ -753,7 +799,6 @@
     <div class="section-badge">Experience</div>
     <div class="section-title">工作经历</div>
     <div class="section-line"></div>
-
     <div class="timeline">
       <div class="timeline-item" id="exp-1">
         <div class="timeline-dot"></div>
@@ -769,16 +814,9 @@
         </ul>
         <div class="tl-highlight">马年新年系列宣发视频 — 全平台累计 100w+ 播放量</div>
         <div class="tag-row" style="margin-top:14px">
-          <span class="tag">抖音运营</span>
-          <span class="tag">短视频运营</span>
-          <span class="tag">视频策划</span>
-          <span class="tag">视频拍摄</span>
-          <span class="tag">视频编辑</span>
-          <span class="tag">Premiere</span>
-          <span class="tag">脚本撰写</span>
+          <span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">视频策划</span><span class="tag">视频拍摄</span><span class="tag">视频编辑</span><span class="tag">Premiere</span><span class="tag">脚本撰写</span>
         </div>
       </div>
-
       <div class="timeline-item" id="exp-2">
         <div class="timeline-dot"></div>
         <div class="tl-header">
@@ -786,9 +824,7 @@
           <span class="tl-date">2023.01 – 2025.05</span>
         </div>
         <div class="tl-role">销售经理</div>
-        <ul class="tl-detail">
-          <li>分析制定餐饮计划，了解分析客户需求</li>
-        </ul>
+        <ul class="tl-detail"><li>分析制定餐饮计划，了解分析客户需求</li></ul>
       </div>
     </div>
   </section>
@@ -805,24 +841,18 @@ function toggleMenu() {
   overlay.classList.toggle('show');
   menuBtn.classList.toggle('open');
 }
-
 function closeMenu() {
   sidebar.classList.remove('open');
   overlay.classList.remove('show');
   menuBtn.classList.remove('open');
 }
-
-// Toggle directory group
 function toggleDir(el) {
   el.parentElement.classList.toggle('open');
 }
-
-// Navigate: scroll + close mobile menu
 function navTo(id) {
   closeMenu();
   scrollToSection(id);
 }
-
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -831,8 +861,6 @@ function scrollToSection(id) {
   const link = document.querySelector(`.dir-item[data-target="${id}"]`);
   if (link) link.classList.add('active');
 }
-
-// Scroll-spy
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -842,10 +870,7 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.4 });
-
 document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
-
-// Contact card hover glow follows mouse
 document.querySelectorAll('.contact-item').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
