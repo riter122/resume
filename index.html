@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>饶一凡 · 简历</title>
+<style>
+  :root {
+    --bg: #fafaf9;
+    --sidebar-bg: #121212;
+    --text: #2c2c2c;
+    --muted: #787878;
+    --accent: #c6a15b;
+    --accent-glow: rgba(198,161,91,.25);
+    --border: #e8e5e0;
+    --tag-bg: #f3f0eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+  }
+
+  /* ── Ambient ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: radial-gradient(circle, #d4d0c8 .5px, transparent .5px);
+    background-size: 28px 28px;
+    opacity: .45;
+  }
+  .ambient-orb {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 1;
+    filter: blur(80px); opacity: .06;
+  }
+  .ambient-orb.a { width: 300px; height: 300px; background: #c6a15b; top: -60px; right: -40px; }
+  .ambient-orb.b { width: 240px; height: 240px; background: #a0a0a0; bottom: -60px; left: 30%; }
+
+  /* ── Mobile Top Bar ── */
+  .topbar {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    height: 56px; background: #121212;
+    align-items: center; justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04), 0 4px 20px rgba(0,0,0,.2);
+  }
+  .topbar-name { color: #fff; font-size: 16px; font-weight: 600; letter-spacing: 2px; }
+  .topbar-role { color: var(--accent); font-size: 11px; letter-spacing: 2px; }
+
+  .menu-btn {
+    width: 36px; height: 36px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 4px;
+    cursor: pointer; background: none; border: none; padding: 0;
+  }
+  .menu-btn span {
+    display: block; width: 20px; height: 1.5px;
+    background: #999; border-radius: 1px;
+    transition: all .3s;
+  }
+  .menu-btn.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-btn.open span:nth-child(2) { opacity: 0; }
+  .menu-btn.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* ── Overlay ── */
+  .overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 25; opacity: 0; transition: opacity .3s;
+  }
+  .overlay.show { opacity: 1; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 280px; min-width: 280px;
+    background: var(--sidebar-bg);
+    color: #ccc; padding: 48px 0 32px;
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0;
+    z-index: 30; overflow-y: auto;
+    box-shadow: 1px 0 0 rgba(255,255,255,.03), 2px 0 20px rgba(0,0,0,.3);
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: .6;
+  }
+  .sidebar-header {
+    padding: 0 32px 36px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    margin-bottom: 24px;
+  }
+  .sidebar-name { font-size: 20px; font-weight: 600; color: #fff; letter-spacing: 2px; }
+  .sidebar-role { font-size: 11px; color: var(--accent); letter-spacing: 3px; margin-top: 6px; }
+
+  .sidebar-nav { flex: 1; padding: 0 16px; }
+  .dir-label { font-size: 10px; letter-spacing: 3px; color: #4a4a4a; padding: 0 16px 12px; }
+
+  .dir-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; border-radius: 6px;
+    cursor: pointer; font-size: 14px; color: #999;
+    transition: all .25s cubic-bezier(.4,0,.2,1);
+    text-decoration: none; user-select: none;
+    position: relative; -webkit-tap-highlight-color: transparent;
+  }
+  .dir-item:hover { color: #e8e8e8; background: rgba(255,255,255,.03); }
+  .dir-item.active { color: #fff; background: rgba(198,161,91,.12); }
+  .dir-item.active::after {
+    content: '';
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 2px; height: 16px; background: var(--accent); border-radius: 1px;
+    box-shadow: 0 0 6px var(--accent-glow);
+  }
+  .dir-icon { width: 16px; font-size: 12px; text-align: center; flex-shrink: 0; color: #5a5a5a; }
+  .dir-item.active .dir-icon { color: var(--accent); }
+
+  .dir-sub { padding-left: 20px; overflow: hidden; }
+  .dir-sub .dir-item { font-size: 13px; padding: 8px 16px; }
+
+  .dir-caret {
+    font-size: 8px; width: 14px; text-align: center;
+    flex-shrink: 0; transition: transform .3s cubic-bezier(.4,0,.2,1);
+    color: #4a4a4a; cursor: pointer;
+  }
+  .dir-group.open > .dir-item .dir-caret { transform: rotate(90deg); color: var(--accent); }
+
+  .dir-children {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1),
+                opacity .35s cubic-bezier(.4,0,.2,1);
+  }
+  .dir-group.open > .dir-children {
+    max-height: 500px;
+    opacity: 1;
+  }
+  .dir-children .dir-item {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .dir-group.open > .dir-children .dir-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .dir-group.open > .dir-children .dir-item:nth-child(1) { transition-delay: .04s; }
+  .dir-group.open > .dir-children .dir-item:nth-child(2) { transition-delay: .08s; }
+  .dir-group.open > .dir-children .dir-item:nth-child(3) { transition-delay: .12s; }
+  .dir-group.open > .dir-children .dir-item:nth-child(4) { transition-delay: .16s; }
+
+  .sidebar-footer {
+    padding: 24px 32px 0;
+    border-top: 1px solid rgba(255,255,255,.04);
+    margin-top: 24px;
+    font-size: 10px; color: #444; letter-spacing: 2px;
+  }
+
+  /* ── Main ── */
+  .main {
+    margin-left: 280px; padding: 80px 100px; max-width: 920px;
+    position: relative; z-index: 2;
+  }
+  section { margin-bottom: 72px; }
+
+  .section-badge {
+    font-size: 10px; letter-spacing: 3px; color: var(--accent);
+    margin-bottom: 10px; display: inline-block; position: relative;
+  }
+  .section-badge::after {
+    content: '';
+    position: absolute; bottom: -2px; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: .4;
+  }
+  .section-title {
+    font-size: 28px; font-weight: 600; letter-spacing: 1px;
+    margin-bottom: 32px; color: #1a1a1a;
+  }
+
+  .section-line {
+    width: 40px; height: 2px; background: var(--accent); margin-bottom: 32px;
+    position: relative;
+  }
+  .section-line::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+    animation: lineShimmer 2.5s ease-in-out infinite;
+  }
+  @keyframes lineShimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(200%); }
+  }
+
+  /* ── Hero ── */
+  .hero-name { font-size: 48px; font-weight: 700; letter-spacing: 4px; color: #111; line-height: 1.1; }
+  .hero-sub { font-size: 16px; color: var(--muted); margin-top: 12px; letter-spacing: 1px; }
+  .hero-intro {
+    font-size: 15px; color: #555; margin-top: 20px; line-height: 1.7;
+    padding: 18px 24px; background: #fff; border-left: 3px solid var(--accent);
+    border-radius: 4px; max-width: 540px;
+    transition: box-shadow .4s;
+  }
+  .hero-intro:hover { box-shadow: 0 0 30px rgba(198,161,91,.08); }
+  .hero-meta {
+    display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap;
+  }
+  .hero-meta-item { font-size: 13px; color: var(--muted); }
+  .hero-meta-item strong { color: var(--text); font-weight: 500; margin-right: 4px; }
+
+  /* ── Contact cards ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px; border: 1px solid var(--border);
+    border-radius: 8px; background: #fff; text-decoration: none; color: var(--text);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .contact-item::after {
+    content: '';
+    position: absolute; inset: 0; border-radius: 8px;
+    background: radial-gradient(400px at var(--mx,50%) var(--my,50%), rgba(198,161,91,.06), transparent);
+    opacity: 0; transition: opacity .4s;
+  }
+  .contact-item:hover, .contact-item:active { border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,.04); }
+  .contact-item:hover::after, .contact-item:active::after { opacity: 1; }
+  .contact-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--tag-bg); display: flex; align-items: center;
+    justify-content: center; font-size: 16px; flex-shrink: 0;
+    transition: background .3s;
+  }
+  .contact-item:hover .contact-icon, .contact-item:active .contact-icon { background: rgba(198,161,91,.12); }
+  .contact-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .contact-value { font-size: 14px; font-weight: 500; margin-top: 2px; word-break: break-all; }
+
+  .portfolio-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px; padding: 12px 22px;
+    border: 1px solid var(--accent); border-radius: 6px;
+    color: var(--accent); text-decoration: none; font-size: 14px;
+    letter-spacing: .5px; transition: all .3s;
+    position: relative; overflow: hidden;
+  }
+  .portfolio-link::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(198,161,91,.1) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform .6s;
+  }
+  .portfolio-link:hover::before { transform: translateX(100%); }
+  .portfolio-link:hover { background: var(--accent); color: #fff; box-shadow: 0 4px 20px var(--accent-glow); }
+
+  /* ── Tags ── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    font-size: 13px; padding: 7px 18px; border-radius: 20px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    color: var(--text); letter-spacing: .5px;
+    transition: all .25s; white-space: nowrap;
+  }
+  .tag:hover {
+    border-color: var(--accent);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(198,161,91,.1);
+    transform: translateY(-1px);
+  }
+
+  /* ── Expectation card ── */
+  .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .expect-item {
+    padding: 20px 24px; border: 1px solid var(--border);
+    border-radius: 8px; background: #fff;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .expect-item:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 20px rgba(0,0,0,.04);
+    transform: translateY(-1px);
+  }
+  .expect-item .label { font-size: 11px; letter-spacing: 2px; color: var(--muted); }
+  .expect-item .value { font-size: 16px; font-weight: 500; margin-top: 6px; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; }
+  .timeline-item {
+    position: relative; padding: 0 0 40px 28px;
+    border-left: 1px solid var(--border);
+    transition: border-color .4s;
+  }
+  .timeline-item:hover { border-left-color: #d5c9a8; }
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute; left: -5px; top: 4px;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+  }
+  .timeline-dot::after {
+    content: '';
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 1px solid var(--accent);
+    animation: dotPulse 2.5s ease-out infinite;
+    opacity: 0;
+  }
+  @keyframes dotPulse {
+    0% { transform: scale(1); opacity: .5; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+
+  .tl-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+  }
+  .tl-company { font-size: 18px; font-weight: 600; letter-spacing: .5px; }
+  .tl-date { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  .tl-role { font-size: 14px; color: var(--accent); margin-bottom: 12px; letter-spacing: 1px; }
+  .tl-detail { font-size: 14px; color: #555; line-height: 1.8; }
+  .tl-detail li {
+    list-style: none; padding-left: 16px; position: relative; margin-bottom: 4px;
+  }
+  .tl-detail li::before { content: '—'; position: absolute; left: -4px; color: #ccc; }
+  .tl-highlight {
+    margin-top: 10px; font-size: 13px; color: var(--accent);
+    letter-spacing: .5px;
+    padding: 8px 14px; border-radius: 4px;
+    background: rgba(198,161,91,.05);
+    display: inline-block;
+    transition: background .3s;
+  }
+  .timeline-item:hover .tl-highlight { background: rgba(198,161,91,.1); }
+
+  /* ── Project cards ── */
+  .project-card {
+    padding: 24px 28px; border: 1px solid var(--border);
+    border-radius: 8px; background: #fff; margin-bottom: 14px;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity .4s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.05); }
+  .project-card:hover::before { opacity: .6; }
+  .project-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px; margin-bottom: 8px;
+  }
+  .project-title { font-size: 17px; font-weight: 600; letter-spacing: .5px; }
+  .project-views { font-size: 13px; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .project-desc {
+    font-size: 14px; color: #555; line-height: 1.7;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 10px; font-size: 12px; color: var(--muted);
+    text-decoration: none; letter-spacing: .5px; transition: all .25s;
+  }
+  .project-link:hover { color: var(--accent); gap: 10px; }
+
+  /* ── Corner decoration ── */
+  .corner-deco {
+    position: fixed; pointer-events: none; z-index: 1;
+    width: 60px; height: 60px; opacity: .12;
+  }
+  .corner-deco.tl { top: 40px; left: 320px; border-top: 1px solid #999; border-left: 1px solid #999; }
+  .corner-deco.br { bottom: 40px; right: 40px; border-bottom: 1px solid #999; border-right: 1px solid #999; }
+
+  /* ═══════════ MOBILE ═══════════ */
+  @media (max-width: 768px) {
+    .topbar { display: flex; }
+    .overlay { display: block; }
+
+    .sidebar {
+      position: fixed; top: 56px; left: 0; bottom: 0;
+      width: 280px; z-index: 30;
+      transform: translateX(-100%);
+      box-shadow: none;
+      padding-top: 20px;
+    }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 30px rgba(0,0,0,.4); }
+
+    .main {
+      margin-left: 0; padding: 76px 20px 40px;
+      max-width: 100%;
+    }
+
+    .hero-name { font-size: 34px; letter-spacing: 3px; }
+    .hero-intro { max-width: 100%; }
+    .hero-meta { gap: 16px; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+
+    .expect-grid { grid-template-columns: 1fr 1fr; }
+
+    section { margin-bottom: 48px; }
+    .section-title { font-size: 24px; margin-bottom: 24px; }
+    .section-line { margin-bottom: 24px; }
+
+    .tl-company { font-size: 16px; }
+    .tl-header { flex-direction: column; }
+
+    .project-title { font-size: 15px; }
+    .project-card { padding: 18px 20px; }
+
+    .corner-deco { display: none; }
+    .ambient-orb { opacity: .03; }
+
+    .portfolio-link { width: 100%; justify-content: center; }
+  }
+
+  /* ── Small phone ── */
+  @media (max-width: 380px) {
+    .hero-name { font-size: 28px; }
+    .hero-sub { font-size: 14px; }
+    .expect-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 21px; }
+    .tag { font-size: 12px; padding: 6px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient-orb a"></div>
+<div class="ambient-orb b"></div>
+<div class="corner-deco tl"></div>
+<div class="corner-deco br"></div>
+
+<!-- ═══════════ MOBILE TOP BAR ═══════════ -->
+<div class="topbar">
+  <div>
+    <div class="topbar-name">饶一凡</div>
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- ═══════════ OVERLAY ═══════════ -->
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-name">饶一凡</div>
+    <div class="sidebar-role">影视媒体</div>
+  </div>
+
+  <div class="sidebar-nav">
+    <div class="dir-label">目录</div>
+
+    <div class="dir-group open">
+      <div class="dir-item" onclick="toggleDir(this)">
+        <span class="dir-caret">▶</span>
+        <span class="dir-icon">📁</span>基本信息
+      </div>
+      <div class="dir-children">
+        <div class="dir-sub">
+          <a class="dir-item" data-target="profile" onclick="navTo('profile')">
+            <span class="dir-icon">📄</span>个人概况
+          </a>
+          <a class="dir-item" data-target="contact" onclick="navTo('contact')">
+            <span class="dir-icon">📄</span>联系方式
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a class="dir-item" data-target="expectation" onclick="navTo('expectation')">
+      <span class="dir-icon">📄</span>求职期望
+    </a>
+    <a class="dir-item" data-target="education" onclick="navTo('education')">
+      <span class="dir-icon">📄</span>教育经历
+    </a>
+    <a class="dir-item" data-target="awards" onclick="navTo('awards')">
+      <span class="dir-icon">📄</span>荣誉奖项
+    </a>
+    <a class="dir-item" data-target="certificates" onclick="navTo('certificates')">
+      <span class="dir-icon">📄</span>资格证书
+    </a>
+    <a class="dir-item" data-target="skills" onclick="navTo('skills')">
+      <span class="dir-icon">📄</span>专业技能
+    </a>
+
+    <div class="dir-group open">
+      <div class="dir-item" onclick="toggleDir(this)">
+        <span class="dir-caret">▶</span>
+        <span class="dir-icon">📁</span>项目作品
+      </div>
+      <div class="dir-children">
+        <div class="dir-sub">
+          <a class="dir-item" data-target="proj-1" onclick="navTo('proj-1')">
+            <span class="dir-icon">🎬</span>岭南踏青
+          </a>
+          <a class="dir-item" data-target="proj-2" onclick="navTo('proj-2')">
+            <span class="dir-icon">🎬</span>大年初四 迎财神
+          </a>
+          <a class="dir-item" data-target="proj-3" onclick="navTo('proj-3')">
+            <span class="dir-icon">🎬</span>鱼灯游岭南
+          </a>
+          <a class="dir-item" data-target="proj-4" onclick="navTo('proj-4')">
+            <span class="dir-icon">🎬</span>岁启新元 粤韵迎新
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dir-group open">
+      <div class="dir-item" onclick="toggleDir(this)">
+        <span class="dir-caret">▶</span>
+        <span class="dir-icon">📁</span>工作经历
+      </div>
+      <div class="dir-children">
+        <div class="dir-sub">
+          <a class="dir-item" data-target="exp-1" onclick="navTo('exp-1')">
+            <span class="dir-icon">📄</span>广州印象文化
+          </a>
+          <a class="dir-item" data-target="exp-2" onclick="navTo('exp-2')">
+            <span class="dir-icon">📄</span>广州六禾餐饮
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">RAO YIFAN · 2026</div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+
+  <section id="profile">
+    <div class="section-badge">Profile</div>
+    <div class="hero-name">饶一凡</div>
+    <div class="hero-sub">影视媒体 · 21岁 · 2026届大专应届生</div>
+    <div class="hero-intro">
+      注重内容创作，有发散性思维，擅长文旅类策划拍摄
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>状态</strong> 离校，随时到岗</div>
+      <div class="hero-meta-item"><strong>城市</strong> 广州</div>
+      <div class="hero-meta-item"><strong>行动力强</strong> · 学习能力强 · 工作踏实</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-badge">Contact</div>
+    <div class="section-title">联系方式</div>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div>
+          <div class="contact-label">手机</div>
+          <div class="contact-value">13450629010</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">邮箱</div>
+          <div class="contact-value">1658047328@qq.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-label">微信</div>
+          <div class="contact-value">Raoyifan007</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">现居</div>
+          <div class="contact-value">广州</div>
+        </div>
+      </div>
+    </div>
+    <a class="portfolio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">
+      🎬 查看个人作品集 →
+    </a>
+  </section>
+
+  <section id="expectation">
+    <div class="section-badge">Expectation</div>
+    <div class="section-title">求职期望</div>
+    <div class="section-line"></div>
+    <div class="expect-grid">
+      <div class="expect-item">
+        <div class="label">职位</div>
+        <div class="value">影视媒体</div>
+      </div>
+      <div class="expect-item">
+        <div class="label">城市</div>
+        <div class="value">广州</div>
+      </div>
+      <div class="expect-item">
+        <div class="label">行业</div>
+        <div class="value">不限</div>
+      </div>
+      <div class="expect-item">
+        <div class="label">期望薪资</div>
+        <div class="value">6K – 11K</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-badge">Education</div>
+    <div class="section-title">教育经历</div>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广东文艺职业学院</span>
+          <span class="tl-date">2023 – 2026</span>
+        </div>
+        <div class="tl-role">电子商务 · 大专</div>
+        <ul class="tl-detail">
+          <li>主修课程：电子商务</li>
+          <li>校内实践：宣传部骨干</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="section-badge">Awards</div>
+    <div class="section-title">荣誉奖项</div>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广东省525心理宣传视频大赛</span>
+        </div>
+        <div class="tl-role">一等奖</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="section-badge">Certificates</div>
+    <div class="section-title">资格证书</div>
+    <div class="section-line"></div>
+    <div class="tag-row">
+      <span class="tag">AOPA无人机驾驶员执照</span>
+      <span class="tag">驾驶证C1</span>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-badge">Skills</div>
+    <div class="section-title">专业技能</div>
+    <div class="section-line"></div>
+    <div style="margin-bottom:28px">
+      <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">剪辑软件</div>
+      <div class="tag-row">
+        <span class="tag">Premiere</span>
+        <span class="tag">剪映</span>
+        <span class="tag">DaVinci</span>
+      </div>
+    </div>
+    <div style="margin-bottom:28px">
+      <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">拍摄设备</div>
+      <div class="tag-row">
+        <span class="tag">微单</span>
+      </div>
+    </div>
+    <div style="margin-bottom:28px">
+      <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">平台运营</div>
+      <div class="tag-row">
+        <span class="tag">抖音运营</span>
+        <span class="tag">短视频运营</span>
+        <span class="tag">知识服务平台</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;">其他工具</div>
+      <div class="tag-row">
+        <span class="tag">Photoshop</span>
+        <span class="tag">Lightroom</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-badge">Projects</div>
+    <div class="section-title">项目作品</div>
+    <div class="section-line"></div>
+
+    <div class="project-card" id="proj-1">
+      <div class="project-top">
+        <span class="project-title">《岭南踏青》</span>
+        <span class="project-views">3.5w 播放</span>
+      </div>
+      <div class="project-desc">
+        春风入岭南，闲庭花自开。"等闲识得东风面，万紫千红总是春。" 漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。不负春光，不负己，在古巷里遇见一整个春天。
+      </div>
+      <a class="project-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card" id="proj-2">
+      <div class="project-top">
+        <span class="project-title">《大年初四 迎财神》</span>
+        <span class="project-views">5.8w 播放</span>
+      </div>
+      <div class="project-desc">
+        大年初四｜在岭南印象园，遇见最暖的年味。大年初四，迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。
+      </div>
+      <a class="project-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card" id="proj-3">
+      <div class="project-top">
+        <span class="project-title">《鱼灯游岭南 铁花耀新年》</span>
+        <span class="project-views">6.7w 播放</span>
+      </div>
+      <div class="project-desc">
+        华灯初上，岭南印象园的夜被鱼灯点亮，一尾尾鱼灯穿巷而过，载着旧时光里的岭南年味缓缓巡游。当滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。
+      </div>
+      <a class="project-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card" id="proj-4">
+      <div class="project-top">
+        <span class="project-title">《岁启新元，粤韵迎新》</span>
+        <span class="project-views">7.5w 播放</span>
+      </div>
+      <div class="project-desc">
+        岁启新元，粤韵迎新。元旦限定精彩轮番上演——全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……这个元旦，来岭南印象园感受最地道的岭南年味。
+      </div>
+      <a class="project-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-badge">Experience</div>
+    <div class="section-title">工作经历</div>
+    <div class="section-line"></div>
+
+    <div class="timeline">
+      <div class="timeline-item" id="exp-1">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广州印象文化旅游发展有限公司</span>
+          <span class="tl-date">2025.06 – 至今</span>
+        </div>
+        <div class="tl-role">新媒体内容运营 · 市场营销部</div>
+        <ul class="tl-detail">
+          <li>独立负责全年新媒体内容的策划、拍摄、剪辑与发布</li>
+          <li>确定宣传方向，有针对性产出文旅类视频内容</li>
+          <li>负责脚本撰写、现场拍摄、后期剪辑到全平台发布的全流程</li>
+        </ul>
+        <div class="tl-highlight">马年新年系列宣发视频 — 全平台累计 100w+ 播放量</div>
+        <div class="tag-row" style="margin-top:14px">
+          <span class="tag">抖音运营</span>
+          <span class="tag">短视频运营</span>
+          <span class="tag">视频策划</span>
+          <span class="tag">视频拍摄</span>
+          <span class="tag">视频编辑</span>
+          <span class="tag">Premiere</span>
+          <span class="tag">脚本撰写</span>
+        </div>
+      </div>
+
+      <div class="timeline-item" id="exp-2">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广州六禾餐饮管理有限公司</span>
+          <span class="tl-date">2023.01 – 2025.05</span>
+        </div>
+        <div class="tl-role">销售经理</div>
+        <ul class="tl-detail">
+          <li>分析制定餐饮计划，了解分析客户需求</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuBtn = document.querySelector('.menu-btn');
+
+function toggleMenu() {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+  menuBtn.classList.toggle('open');
+}
+
+function closeMenu() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+  menuBtn.classList.remove('open');
+}
+
+// Toggle directory group
+function toggleDir(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+// Navigate: scroll + close mobile menu
+function navTo(id) {
+  closeMenu();
+  scrollToSection(id);
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.dir-item[data-target]').forEach(a => a.classList.remove('active'));
+  const link = document.querySelector(`.dir-item[data-target="${id}"]`);
+  if (link) link.classList.add('active');
+}
+
+// Scroll-spy
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.dir-item[data-target]').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.dir-item[data-target="${entry.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+
+// Contact card hover glow follows mouse
+document.querySelectorAll('.contact-item').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+});
+</script>
+
+</body>
+</html>
