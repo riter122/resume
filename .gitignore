@@ -1,0 +1,4 @@
+node_modules/
+*.tmp
+filelist.txt
+ref_*.jpg
