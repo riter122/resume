@@ -8,7 +8,7 @@
 
 :root {
   --accent-mono: #A68A56;
-  --bg: #060606;
+  --bg: #111111;
   --ch01: #B3925C;
   --ch02: #9B4850;
   --ch03: #528580;
@@ -19,7 +19,7 @@
   --dark: #0F0F0F;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html { overflow-x:hidden; }
 body {
   font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
   background:
@@ -28,13 +28,14 @@ body {
     var(--bg);
   color:var(--white);
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  padding-right:40px;
+
 }
 body::before {
   content:''; position:fixed; inset:0; pointer-events:none; z-index:998;
   background:radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(4,2,0,.65) 100%);
+  transform:translateZ(0); backface-visibility:hidden;
 }
+
 /* ── 胶片漏光层 ── */
 .light-leaks {
   position:fixed; inset:0; pointer-events:none; z-index:1000;
@@ -58,28 +59,12 @@ body::before {
   top:10%; right:0;
   width:30%; height:40%;
   background:linear-gradient(195deg, rgba(220,170,60,.08) 0%, transparent 80%);
-  transform:rotate(-18deg);
+  transform:rotate(-18deg) translateZ(0);
   border-radius:50%;
-  filter:blur(40px);
+  filter:blur(24px);
 }
-body::after {
-  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:180px 180px; opacity:.04; mix-blend-mode:overlay;
-}
+/* 胶片颗粒已移除——SVG feTurbulence 导致滚动重绘抽搐 */
 
-.film-strip {
-  position:fixed; top:0; right:0; bottom:0;
-  width:40px; z-index:50;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:10px;
-}
-.film-strip::before {
-  content:''; position:absolute; inset:0;
-  background:repeating-linear-gradient(180deg,
-    transparent 0px,transparent 14px,
-    rgba(255,255,255,.06) 14px,rgba(255,255,255,.06) 16px);
-}
 
 /* ═══════════ HERO – Chapter Select ═══════════ */
 .hero {
@@ -136,15 +121,7 @@ body::after {
   transition:all .4s cubic-bezier(.22,.61,.36,1);
   position:relative;
 }
-.chapter-item::after {
-  content:'';
-  position:absolute; left:0; bottom:0;
-  width:100%; height:1px;
-  background:linear-gradient(90deg,
-    rgba(255,255,255,.06) 0%,
-    transparent 100%);
-  transition:all .4s;
-}
+.chapter-item::after { display:none; }
 .chapter-item:hover::after {
   background:linear-gradient(90deg,
     var(--accent-mono) 0%,
@@ -209,13 +186,13 @@ body::after {
   position:relative; overflow:hidden;
   cursor:pointer; text-decoration:none;
   transition:all .4s cubic-bezier(.22,.61,.36,1);
-  border-bottom:1px solid rgba(255,255,255,.04);
+  border-bottom:none;
   background:var(--dark);
   -webkit-tap-highlight-color:transparent;
 }
 .card-item:hover {
   transform:scale(1.04);
-  border-bottom-color:rgba(255,255,255,.18);
+  border-bottom-color:transparent;
   z-index:5;
 }
 .card-item .card-img-wrap {
@@ -279,8 +256,8 @@ body::after {
 }
 .left-block::after {
   content:''; position:absolute; inset:0;
-  background:linear-gradient(180deg,transparent 50%,var(--accent-dark) 100%);
-  opacity:.3;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--accent-dark) 100%);
+  opacity:.2;
 }
 .left-num {
   font-size:clamp(80px,12vw,140px); font-weight:900;
@@ -307,12 +284,8 @@ body::after {
 .left-back:hover { color:var(--white); }
 .content-area {
   flex:1; padding:80px 60px 80px 64px;
-  overflow-y:auto;
 }
-.content-area::-webkit-scrollbar { width:4px; }
-.content-area::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); }
-
-/* ═══════════ FILM STRIP ═══════════ */
+/* .content-area 不再 overflow-y:auto — 嵌套滚动导致页面抽搐 */
 
 /* ═══════════ SHARED DETAIL STYLES ═══════════ */
 .detail-section { margin-bottom:48px; }
@@ -323,9 +296,11 @@ body::after {
 .detail-section h3 {
   font-size:14px; letter-spacing:4px; color:var(--accent);
   text-transform:uppercase; margin-bottom:20px; padding-bottom:8px;
-  border-bottom:1px solid rgba(255,255,255,.06);
+  border-bottom:none;
 }
-.sub { font-size:14px; color:var(--gray); letter-spacing:2px; margin-bottom:20px; }
+.sub { font-size:14px; color:var(--gray); letter-spacing:2px; margin-bottom:20px; text-transform:uppercase; }
+.name-en { display:block; font-size:.28em; font-weight:400; letter-spacing:8px; color:var(--accent-mono); margin-top:4px; }
+.sec-en { font-size:.55em; font-weight:400; letter-spacing:2px; color:var(--gray); }
 .pull-quote {
   font-size:clamp(18px,2.5vw,24px); font-weight:600;
   line-height:1.6; letter-spacing:1px; color:var(--white);
@@ -335,6 +310,14 @@ body::after {
 .meta-row { display:flex; gap:24px; margin-bottom:20px; flex-wrap:wrap; }
 .meta { font-size:13px; color:var(--gray); letter-spacing:1px; }
 .meta b { color:var(--white); font-weight:600; }
+.profile-cover { position:relative; overflow:hidden; border-radius:4px; margin-bottom:32px; }
+.profile-cover .profile-banner { width:100%; height:100%; min-height:420px; object-fit:cover; filter:brightness(.5) saturate(1.15); }
+.profile-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:36px 40px; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.8) 100%); }
+.profile-overlay h2 { font-size:clamp(32px,5vw,52px); font-weight:900; letter-spacing:2px; text-shadow:0 2px 16px rgba(0,0,0,.5); }
+.profile-overlay .sub { font-size:15px; letter-spacing:3px; }
+.profile-overlay .pull-quote { border-left-color:var(--accent-mono); }
+.profile-overlay .detail-section { margin-bottom:24px; }
+.profile-overlay .detail-section h3 { margin-bottom:12px; }
 .tags-row { display:flex; flex-wrap:wrap; gap:8px; }
 .tag {
   font-size:11px; letter-spacing:2px; padding:6px 16px;
@@ -352,8 +335,6 @@ body::after {
 .item-sub { font-size:13px; color:var(--accent); letter-spacing:2px; margin-bottom:8px; }
 .item-desc { font-size:14px; color:var(--gray); line-height:1.7; }
 
-.project-item { margin-bottom:36px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.04); }
-.project-item:last-child { border-bottom:none; }
 .proj-num { font-size:10px; letter-spacing:6px; color:var(--accent); margin-bottom:8px; font-weight:700; }
 .proj-title { font-size:clamp(20px,3vw,28px); font-weight:900; letter-spacing:-1px; margin-bottom:4px; }
 .proj-views { font-size:12px; letter-spacing:2px; color:var(--accent); margin-bottom:14px; display:inline-block; }
@@ -364,13 +345,24 @@ body::after {
   text-decoration:none; font-weight:600; transition:gap .3s;
 }
 .proj-link:hover { gap:12px; }
-.proj-img { width:100%; aspect-ratio:16/9; object-fit:cover; margin-bottom:20px; border-radius:2px; display:block; }
+.proj-cover { position:relative; overflow:hidden; border-radius:4px; margin-bottom:32px; aspect-ratio:16/9; }
+.proj-cover .proj-img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.5) saturate(1.2); transition:all .5s; }
+.proj-cover:hover .proj-img { filter:brightness(.65) saturate(1.25); transform:scale(1.03); }
+.proj-cover .proj-gradient { position:absolute; inset:0; pointer-events:none; z-index:1; background:linear-gradient(180deg, transparent 25%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.7) 90%, rgba(0,0,0,.85) 100%); }
+.proj-cover:hover { box-shadow:0 0 24px rgba(166,138,86,.15),0 0 48px rgba(166,138,86,.06); }
+.proj-info { position:absolute; bottom:0; left:0; right:0; z-index:2; padding:32px 32px 28px; }
+.proj-info .proj-num { color:var(--accent-mono); font-size:12px; letter-spacing:6px; font-weight:700; }
+.proj-info .proj-title { color:#fff; font-size:clamp(22px,3.5vw,32px); font-weight:900; letter-spacing:2px; text-shadow:0 2px 12px rgba(0,0,0,.5); }
+.proj-info .proj-views { color:var(--accent-mono); font-size:13px; letter-spacing:3px; font-weight:600; }
+.proj-info .proj-desc { color:rgba(255,255,255,.85); font-size:15px; line-height:1.7; letter-spacing:.5px; }
+.proj-info .proj-link { color:var(--accent-mono); font-size:12px; letter-spacing:4px; font-weight:700; }
 
 .exp-item { margin-bottom:40px; }
 .exp-meta { margin-bottom:8px; }
-.exp-date { font-size:10px; letter-spacing:4px; color:var(--gray); }
-.exp-company { font-size:20px; font-weight:700; margin-bottom:4px; letter-spacing:1px; }
-.exp-role { font-size:13px; color:var(--accent); letter-spacing:2px; margin-bottom:14px; }
+.exp-date { font-size:11px; letter-spacing:5px; color:var(--gray); font-weight:600; text-transform:uppercase; }
+.exp-company { font-size:clamp(22px,3vw,30px); font-weight:900; margin-bottom:2px; letter-spacing:2px; text-transform:uppercase; }
+.exp-company .exp-en { display:block; font-size:.4em; font-weight:400; letter-spacing:3px; color:var(--accent-mono); margin-top:2px; }
+.exp-role { font-size:14px; color:var(--accent-mono); letter-spacing:3px; margin-bottom:14px; font-weight:600; }
 .exp-list { list-style:none; margin-bottom:12px; }
 .exp-list li {
   font-size:14px; line-height:1.8; color:var(--gray);
@@ -378,21 +370,27 @@ body::after {
 }
 .exp-list li::before { content:'→'; position:absolute; left:-4px; color:var(--accent); }
 .exp-highlight {
-  padding:8px 16px; background:var(--accent); color:var(--white);
-  font-size:13px; font-weight:600; letter-spacing:1px; display:inline-block;
+  padding:10px 20px; background:var(--accent-mono); color:var(--white);
+  font-size:14px; font-weight:700; letter-spacing:3px; display:inline-block;
 }
 
 .skill-group { margin-bottom:32px; }
 .skill-cat { font-size:11px; letter-spacing:4px; color:var(--gray); margin-bottom:12px; text-transform:uppercase; }
+.skills-cover { position:relative; overflow:hidden; border-radius:4px; margin-bottom:12px; aspect-ratio:21/9; }
+.skills-cover .skills-banner { width:100%; height:100%; object-fit:cover; filter:brightness(.55) saturate(1.2); }
+.skills-overlay { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:36px 40px; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.15) 35%, rgba(0,0,0,.55) 70%, rgba(0,0,0,.8) 100%); }
+.skills-overlay .skill-group { margin-bottom:16px; }
+.skills-overlay .skill-cat { color:var(--accent-mono); font-size:13px; letter-spacing:6px; font-weight:700; }
+.skills-overlay .tag { border-color:rgba(255,255,255,.22); color:rgba(255,255,255,.85); background:rgba(0,0,0,.3); font-size:12px; letter-spacing:3px; padding:8px 18px; }
 
 .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:40px; }
-.contact-card { padding:16px 20px; border:1px solid rgba(255,255,255,.06); transition:all .3s; }
-.contact-card:hover { border-color:var(--accent); }
+.contact-card { padding:16px 20px; background:rgba(255,255,255,.03); transition:all .3s; }
+.contact-card:hover { background:rgba(255,255,255,.06); }
 .clabel { font-size:10px; letter-spacing:3px; color:var(--gray); text-transform:uppercase; margin-bottom:4px; }
 .cval { font-size:16px; font-weight:600; color:var(--white); }
 .expect-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.expect-item { padding:14px 18px; border:1px solid rgba(255,255,255,.06); transition:all .3s; }
-.expect-item:hover { border-color:var(--accent); }
+.expect-item { padding:14px 18px; background:rgba(255,255,255,.03); transition:all .3s; }
+.expect-item:hover { background:rgba(255,255,255,.06); }
 .elabel { font-size:10px; letter-spacing:3px; color:var(--gray); text-transform:uppercase; display:block; margin-bottom:4px; }
 .eval { font-size:15px; font-weight:600; color:var(--white); }
 .folio-link {
@@ -403,9 +401,55 @@ body::after {
 }
 .folio-link:hover { background:var(--accent); color:var(--white); }
 
+
+/* ── 竖图满铺·文字叠层（个人概况 / 联系方式）── */
+.sec-d4983c .content-area,
+.sec-3a7d5a .content-area {
+  padding:0; display:flex; flex-direction:column;
+}
+.portrait-panel {
+  position:relative; flex:1; overflow:hidden;
+  min-height:85vh; display:flex; align-items:stretch;
+}
+.portrait-panel > img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; display:block;
+  filter:brightness(.55) saturate(1.15);
+  transition:filter .6s;
+}
+.portrait-panel:hover > img { filter:brightness(.65) saturate(1.2); }
+.portrait-overlay {
+  position:relative; z-index:1; flex:1;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:72px 64px;
+}
+.sec-d4983c .portrait-overlay {
+  background:linear-gradient(180deg, rgba(16,10,4,.38) 0%, rgba(24,15,7,.55) 40%, rgba(30,20,10,.72) 70%, rgba(35,24,12,.80) 100%);
+}
+.sec-3a7d5a .portrait-overlay {
+  background:linear-gradient(180deg, rgba(7,13,9,.38) 0%, rgba(10,18,14,.55) 40%, rgba(14,24,18,.72) 70%, rgba(16,28,20,.80) 100%);
+}
+.portrait-overlay .detail-section { margin-bottom:34px; }
+.portrait-overlay .detail-section:last-child { margin-bottom:0; }
+.portrait-overlay h2 { letter-spacing:4px; font-size:clamp(34px,5.5vw,56px); text-shadow:0 2px 20px rgba(0,0,0,.6); font-weight:900; }
+.portrait-overlay h3 { letter-spacing:6px; font-size:15px; }
+.portrait-overlay .sub { letter-spacing:5px; font-size:14px; font-weight:600; text-shadow:0 1px 8px rgba(0,0,0,.5); }
+.portrait-overlay .name-en { font-size:.3em; letter-spacing:10px; }
+.portrait-overlay .pull-quote { letter-spacing:3px; line-height:1.8; font-size:clamp(18px,2.5vw,26px); text-shadow:0 1px 8px rgba(0,0,0,.4); }
+.portrait-overlay .item-desc { line-height:1.9; letter-spacing:1px; }
+.portrait-overlay .tag { letter-spacing:4px; padding:8px 20px; background:rgba(0,0,0,.35); border-color:rgba(255,255,255,.15); font-weight:600; }
+.portrait-overlay .contact-card,
+.portrait-overlay .expect-item { background:rgba(0,0,0,.35); backdrop-filter:blur(4px); }
+.portrait-overlay .folio-link { margin-top:28px; }
+.portrait-overlay .clabel { letter-spacing:4px; }
+.portrait-overlay .cval { font-size:18px; letter-spacing:2px; }
+.portrait-overlay .elabel { letter-spacing:4px; }
+.portrait-overlay .eval { font-size:17px; letter-spacing:2px; }
+
+
 /* ═══════════ MOBILE ═══════════ */
 @media (max-width:900px) {
-  .hero { flex-direction:column; padding-right:28px; }
+  .hero { flex-direction:column; padding-right:0; }
   .hero-left { width:100%; min-width:0; padding:48px 28px 24px; }
   .masthead { margin-bottom:32px; }
   .masthead-name { font-size:44px; }
@@ -420,11 +464,13 @@ body::after {
   .card-item .card-overlay .card-num { font-size:28px; }
   .card-item .card-overlay .card-label { font-size:12px; letter-spacing:2px; }
 
-  .section { flex-direction:column; padding-right:28px; }
+  .section { flex-direction:column; }
   .left-block { width:100%; min-width:0; min-height:30vh; padding:40px 28px; }
   .left-num { font-size:72px; }
   .content-area { padding:40px 28px 80px; }
   .contact-grid,.expect-grid { grid-template-columns:1fr; }
+  .portrait-panel { min-height:auto; }
+  .portrait-overlay { padding:40px 28px; }
 
   
 
@@ -442,12 +488,17 @@ body::after {
 .sec-5B4FCF .strip-dot.active { background:#726B94; box-shadow:0 0 12px #726B94; }
 .sec-3A7D5A { --accent:#5A7C64; --accent-dark:#08140E; }
 .sec-3A7D5A .left-block { background:#5A7C64; }
+/* ── 分区底色渐变 —— 每个 section 底色为其主色的极暗版本 ── */
+.sec-d4983c { background-color:#1C1711; }
+.sec-c42030 { background-color:#1A1010; }
+.sec-0e7c7b { background-color:#0E1816; }
+.sec-5b4fcf { background-color:#141117; }
+.sec-3a7d5a { background-color:#101712; }
 .sec-3A7D5A .strip-dot.active { background:#5A7C64; box-shadow:0 0 12px #5A7C64; }
 </style>
 </head>
 <body>
 
-<div class="film-strip"></div>
 
 <div class="hero" id="hero">
   <div class="hero-left">
@@ -509,7 +560,7 @@ body::after {
     <div class="card-list">
       <a href="#sec-d4983c" class="card-item card01">
         <div class="card-img-wrap">
-          <img src="images/01_profile.jpg" alt="个人概况" style="object-position:center 25%">
+          <img src="images/01_profile.jpg" alt="个人概况" style="object-position:center 73%">
         </div>
         <div class="card-overlay">
           <span class="card-num">01</span>
@@ -518,7 +569,7 @@ body::after {
       </a>
       <a href="#sec-c42030" class="card-item card02">
         <div class="card-img-wrap">
-          <img src="images/02_works.jpg" alt="项目作品">
+          <img src="images/02_works.jpg" alt="岭南建筑·人物与环境" style="object-position:center 51%">
         </div>
         <div class="card-overlay">
           <span class="card-num">02</span>
@@ -527,7 +578,7 @@ body::after {
       </a>
       <a href="#sec-0e7c7b" class="card-item card03">
         <div class="card-img-wrap">
-          <img src="images/03_experience.jpg" alt="工作经历">
+          <img src="images/03_experience.jpg" alt="工作经历" style="object-position:center 45%">
         </div>
         <div class="card-overlay">
           <span class="card-num">03</span>
@@ -545,7 +596,7 @@ body::after {
       </a>
       <a href="#sec-3a7d5a" class="card-item card05">
         <div class="card-img-wrap">
-          <img src="images/05_contact.jpg" alt="联系方式" style="object-position:center 30%">
+          <img src="images/05_contact.jpg" alt="陈楚明" style="object-position:center 33%">
         </div>
         <div class="card-overlay">
           <span class="card-num">05</span>
@@ -563,22 +614,13 @@ body::after {
     <a href="#hero" class="left-back">&larr; 返回目录</a>
   </div>
   <div class="content-area">
-<div class="detail-section">
-<h2>饶一凡</h2>
-<p class="sub">影视媒体 · 21岁 · 2026届大专应届生</p>
-<div class="pull-quote">注重<span class="hl">内容创作</span>，有发散性思维，擅长<span class="hl">文旅类</span>策划拍摄。</div>
-<div class="meta-row"><span class="meta"><b>状态</b> 离校，随时到岗</span><span class="meta"><b>城市</b> 广州</span></div>
-<div class="tags-row"><span class="tag">行动力强</span><span class="tag">学习能力强</span><span class="tag">工作踏实</span></div>
+<div class="portrait-panel">
+<img src="images/portrait_profile.jpg" alt="饶一凡">
+<div class="portrait-overlay">
+<div class="detail-section"><h2>饶一凡<span class="name-en">RAO YIFAN</span></h2><p class="sub">FILMMAKER &nbsp;·&nbsp; AGE 21 &nbsp;·&nbsp; CLASS OF 2026</p><div class="pull-quote">注重<span class="hl">内容创作</span>，有发散性思维，擅长<span class="hl">文旅类</span>策划拍摄。</div><div class="meta-row"><span class="meta"><b>状态</b> 离校，随时到岗</span><span class="meta"><b>城市</b> 广州</span></div><div class="tags-row"><span class="tag">行动力强</span><span class="tag">学习能力强</span><span class="tag">工作踏实</span></div></div>
+<div class="detail-section"><h3>教育经历<span class="sec-en"> / EDUCATION</span></h3><div class="item"><div class="item-head"><span class="item-title">广东文艺职业学院</span><span class="item-date">2023 – 2026</span></div><div class="item-sub">电子商务 · 大专</div><p class="item-desc">主修课程：电子商务 / 校内实践：宣传部骨干</p></div></div>
+<div class="detail-section"><h3>荣誉 &amp; 证书<span class="sec-en"> / HONORS</span></h3><div class="item"><div class="item-head"><span class="item-title">广东省525心理宣传视频大赛</span></div><div class="item-sub">一等奖</div></div><div class="tags-row" style="margin-top:16px"><span class="tag">AOPA无人机驾驶员执照</span><span class="tag">驾驶证C1</span></div></div>
 </div>
-<div class="detail-section">
-<h3>教育经历</h3>
-<div class="item"><div class="item-head"><span class="item-title">广东文艺职业学院</span><span class="item-date">2023 – 2026</span></div>
-<div class="item-sub">电子商务 · 大专</div><p class="item-desc">主修课程：电子商务 / 校内实践：宣传部骨干</p></div>
-</div>
-<div class="detail-section">
-<h3>荣誉 & 证书</h3>
-<div class="item"><div class="item-head"><span class="item-title">广东省525心理宣传视频大赛</span></div><div class="item-sub">一等奖</div></div>
-<div class="tags-row" style="margin-top:16px"><span class="tag">AOPA无人机驾驶员执照</span><span class="tag">驾驶证C1</span></div>
 </div></div>
 </section>
 
@@ -590,19 +632,12 @@ body::after {
     <a href="#hero" class="left-back">&larr; 返回目录</a>
   </div>
   <div class="content-area">
-<div class="detail-section"><h2>项目作品</h2><p class="sub">4部岭南文旅系列短片，累计 23.5w 播放</p></div>
-<div class="project-item"><div class="proj-num">01 / 04</div><h3 class="proj-title">《岭南踏青》</h3><span class="proj-views">3.5w 播放</span>
-<p class="proj-desc">春风入岭南，闲庭花自开。漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。</p>
-<a class="proj-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
-<div class="project-item"><div class="proj-num">02 / 04</div><h3 class="proj-title">《大年初四 迎财神》</h3><span class="proj-views">5.8w 播放</span>
-<p class="proj-desc">大年初四迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</p>
-<a class="proj-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
-<div class="project-item"><div class="proj-num">03 / 04</div><h3 class="proj-title">《鱼灯游岭南 铁花耀新年》</h3><span class="proj-views">6.7w 播放</span>
-<p class="proj-desc">华灯初上，鱼灯穿巷而过。滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</p>
-<a class="proj-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
-<div class="project-item"><div class="proj-num">04 / 04</div><h3 class="proj-title">《岁启新元，粤韵迎新》</h3><span class="proj-views">7.5w 播放</span>
-<p class="proj-desc">岁启新元，粤韵迎新。全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……感受最地道的岭南年味。</p>
-<a class="proj-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+<div class="detail-section"><h2>项目作品<span class="name-en">SELECTED WORKS</span></h2><p class="sub">4 FILMS &nbsp;·&nbsp; LINGNAN CULTURAL SERIES &nbsp;·&nbsp; 235K TOTAL VIEWS</p></div>
+<div class="proj-cover"><img class="proj-img" src="images/proj01_lingnan.jpg" alt="岭南踏青"><div class="proj-gradient"></div><div class="proj-info"><div class="proj-num">01 / 04</div><h3 class="proj-title">《岭南踏青》</h3><span class="proj-views">35K VIEWS</span><p class="proj-desc">春风入岭南，闲庭花自开。漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。</p><a class="proj-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+<div class="proj-cover"><img class="proj-img" src="images/proj02_newyear.jpg" alt="大年初四 迎财神"><div class="proj-gradient"></div><div class="proj-info"><div class="proj-num">02 / 04</div><h3 class="proj-title">《大年初四 迎财神》</h3><span class="proj-views">58K VIEWS</span><p class="proj-desc">大年初四迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</p><a class="proj-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+<div class="proj-cover"><img class="proj-img" src="images/proj03_fishlantern.jpg" alt="鱼灯游岭南 铁花耀新年"><div class="proj-gradient"></div><div class="proj-info"><div class="proj-num">03 / 04</div><h3 class="proj-title">《鱼灯游岭南 铁花耀新年》</h3><span class="proj-views">67K VIEWS</span><p class="proj-desc">华灯初上，鱼灯穿巷而过。滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</p><a class="proj-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+<div class="proj-cover"><img class="proj-img" src="images/proj04_yueyun.jpg" alt="岁启新元，粤韵迎新"><div class="proj-gradient"></div><div class="proj-info"><div class="proj-num">04 / 04</div><h3 class="proj-title">《岁启新元，粤韵迎新》</h3><span class="proj-views">75K VIEWS</span><p class="proj-desc">岁启新元，粤韵迎新。全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……感受最地道的岭南年味。</p><a class="proj-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+</div>
 </section>
 
 <section class="section sec-0e7c7b" id="sec-0e7c7b">
@@ -613,7 +648,8 @@ body::after {
     <a href="#hero" class="left-back">&larr; 返回目录</a>
   </div>
   <div class="content-area">
-<div class="detail-section"><h2>工作经历</h2></div>
+<div class="profile-cover"><img class="profile-banner" src="images/profile_banner.jpg" alt="工作经历"><div class="profile-overlay">
+<div class="detail-section"><h2>工作经历<span class="name-en">EXPERIENCE</span></h2></div>
 <div class="exp-item"><div class="exp-meta"><span class="exp-date">2025.06 — 至今</span></div>
 <h3 class="exp-company">广州印象文化旅游发展有限公司</h3>
 <div class="exp-role">新媒体内容运营 · 市场营销部</div>
@@ -624,7 +660,7 @@ body::after {
 <div class="tags-row" style="margin-top:14px"><span class="tag">抖音运营</span><span class="tag">短视频</span><span class="tag">视频策划</span><span class="tag">拍摄</span><span class="tag">Premiere</span></div></div>
 <div class="exp-item"><div class="exp-meta"><span class="exp-date">2023.01 — 2025.05</span></div>
 <h3 class="exp-company">广州六禾餐饮管理有限公司</h3>
-<div class="exp-role">销售经理</div><ul class="exp-list"><li>分析制定餐饮计划，了解分析客户需求</li></ul></div></div>
+<div class="exp-role">销售经理</div><ul class="exp-list"><li>分析制定餐饮计划，了解分析客户需求</li></ul></div></div></div>
 </section>
 
 <section class="section sec-5b4fcf" id="sec-5b4fcf">
@@ -635,11 +671,8 @@ body::after {
     <a href="#hero" class="left-back">&larr; 返回目录</a>
   </div>
   <div class="content-area">
-<div class="detail-section"><h2>专业技能</h2></div>
-<div class="skill-group"><div class="skill-cat">剪辑软件</div><div class="tags-row"><span class="tag">Premiere</span><span class="tag">剪映</span><span class="tag">DaVinci Resolve</span></div></div>
-<div class="skill-group"><div class="skill-cat">拍摄设备</div><div class="tags-row"><span class="tag">微单</span></div></div>
-<div class="skill-group"><div class="skill-cat">平台运营</div><div class="tags-row"><span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">知识服务平台</span></div></div>
-<div class="skill-group"><div class="skill-cat">其他工具</div><div class="tags-row"><span class="tag">Photoshop</span><span class="tag">Lightroom</span></div></div></div>
+<div class="detail-section"><h2>专业技能<span class="name-en">SKILLSET</span></h2></div>
+<div class="skills-cover"><img class="skills-banner" src="images/skills_banner.jpg" alt="岭南建筑"><div class="skills-overlay"><div class="skill-group"><div class="skill-cat">剪辑软件</div><div class="tags-row"><span class="tag">Premiere</span><span class="tag">剪映</span><span class="tag">DaVinci Resolve</span></div></div><div class="skill-group"><div class="skill-cat">拍摄设备</div><div class="tags-row"><span class="tag">微单</span></div></div><div class="skill-group"><div class="skill-cat">平台运营</div><div class="tags-row"><span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">知识服务平台</span></div></div><div class="skill-group"><div class="skill-cat">其他工具</div><div class="tags-row"><span class="tag">Photoshop</span><span class="tag">Lightroom</span></div></div></div></div></div>
 </section>
 
 <section class="section sec-3a7d5a" id="sec-3a7d5a">
@@ -650,16 +683,21 @@ body::after {
     <a href="#hero" class="left-back">&larr; 返回目录</a>
   </div>
   <div class="content-area">
-<div class="detail-section"><h2>联系方式</h2></div>
+<div class="portrait-panel">
+<img src="images/portrait_contact.jpg" alt="联系方式">
+<div class="portrait-overlay">
+<div class="detail-section"><h2>联系方式<span class="name-en">CONTACT</span></h2></div>
 <div class="contact-grid"><div class="contact-card"><div class="clabel">手机</div><div class="cval">13450629010</div></div>
 <div class="contact-card"><div class="clabel">邮箱</div><div class="cval">1658047328@qq.com</div></div>
 <div class="contact-card"><div class="clabel">微信</div><div class="cval">Raoyifan007</div></div>
 <div class="contact-card"><div class="clabel">现居</div><div class="cval">广州</div></div></div>
-<div class="detail-section"><h3>求职期望</h3>
+<div class="detail-section"><h3>求职期望<span class="sec-en"> / EXPECTATIONS</span></h3>
 <div class="expect-grid"><div class="expect-item"><span class="elabel">职位</span><span class="eval">影视媒体</span></div>
 <div class="expect-item"><span class="elabel">城市</span><span class="eval">广州</span></div>
 <div class="expect-item"><span class="elabel">期望薪资</span><span class="eval">8K – 11K</span></div></div></div>
-<a class="folio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">查看作品集 &nearr;</a></div>
+<a class="folio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">查看作品集 &nearr;</a>
+</div>
+</div></div>
 </section>
 
 <script>
@@ -681,8 +719,6 @@ body::after {
   });
 })();
 </script>
-
-<div class="light-leaks"><div class="ll-streak"></div></div>
 
 </body>
 </html>
