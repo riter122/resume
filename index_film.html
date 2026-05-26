@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>饶一凡 · 简历</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sidebar-bg: #0a0a0a;
+    --paper: #faf8f3;
+    --bg: #f2efe7;
+    --text: #1a1a1a;
+    --muted: #6b6358;
+    --accent: #c49a4a;
+    --accent-glow: rgba(196,154,74,.2);
+    --border: #e4ded2;
+    --tag-bg: #f2efe7;
+    --ink: #111;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.002) 2px, rgba(0,0,0,.002) 4px),
+      radial-gradient(ellipse at 50% 100%, rgba(196,154,74,.03) 0%, transparent 70%),
+      radial-gradient(ellipse at 50% 0%, rgba(180,150,100,.02) 0%, transparent 60%);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(circle, #d9d3c5 .5px, transparent .5px);
+    background-size: 28px 28px;
+    opacity: .28;
+  }
+
+  .ambient-orb {
+    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
+    filter: blur(120px);
+  }
+  .ambient-orb.a { width: 380px; height: 380px; background: #c49a4a; top: -100px; right: -80px; opacity: .04; }
+  .ambient-orb.b { width: 280px; height: 280px; background: #a09080; bottom: -60px; left: 20%; opacity: .03; }
+
+  .lingnan-watermark {
+    position: fixed; pointer-events: none; z-index: 0;
+    bottom: 80px; right: 80px;
+    width: 180px; height: 160px;
+    opacity: .02;
+    background:
+      linear-gradient(175deg, transparent 30%, #3a3a3a 30%, #3a3a3a 32%, transparent 32%),
+      linear-gradient(5deg, transparent 30%, #3a3a3a 30%, #3a3a3a 32%, transparent 32%),
+      linear-gradient(180deg, transparent 28%, #3a3a3a 28%, #3a3a3a 40%, transparent 40%),
+      linear-gradient(180deg, transparent 55%, #3a3a3a 55%, #3a3a3a 100%, transparent 100%);
+  }
+
+  .film-perf {
+    position: fixed; top: 0; left: 280px; bottom: 0;
+    width: 10px; pointer-events: none; z-index: 1;
+    background: repeating-linear-gradient(180deg,
+      transparent 0px, transparent 18px,
+      rgba(180,170,150,.3) 18px, rgba(180,170,150,.3) 20px);
+    opacity: .6;
+  }
+
+  .waveform {
+    position: fixed; pointer-events: none; z-index: 0;
+    bottom: 140px; left: 330px;
+    width: 200px; height: 30px;
+    opacity: .035;
+    background: repeating-linear-gradient(90deg,
+      transparent 0px, #3a3a3a 0px, #3a3a3a 1px, transparent 1px, transparent 5px,
+      transparent 5px, #3a3a3a 5px, #3a3a3a 2px, transparent 2px, transparent 8px,
+      transparent 8px, #3a3a3a 8px, #3a3a3a 3px, transparent 3px, transparent 11px);
+    mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  }
+
+  /* ── Mobile Top Bar ── */
+  .topbar {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    height: 54px; background: var(--sidebar-bg);
+    align-items: center; justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.03), 0 4px 20px rgba(0,0,0,.25);
+  }
+  .topbar-name { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 2px; font-family: "Noto Serif SC", serif; }
+  .menu-btn {
+    width: 32px; height: 32px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 4px;
+    cursor: pointer; background: none; border: none; padding: 0;
+  }
+  .menu-btn span {
+    display: block; width: 18px; height: 1.5px;
+    background: #999; border-radius: 1px; transition: all .3s;
+  }
+  .menu-btn.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+  .menu-btn.open span:nth-child(2) { opacity: 0; }
+  .menu-btn.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+  .overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5);
+    z-index: 25; opacity: 0; transition: opacity .3s;
+  }
+  .overlay.show { opacity: 1; }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 280px; min-width: 280px;
+    background: var(--sidebar-bg);
+    color: #b0b0b0; padding: 36px 0 24px;
+    display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; bottom: 0;
+    z-index: 30; overflow-y: auto;
+    box-shadow: 1px 0 0 rgba(255,255,255,.02), 2px 0 24px rgba(0,0,0,.35);
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: .7;
+  }
+  .sidebar::after {
+    content: '';
+    position: absolute; right: 8px; top: 0; bottom: 0; width: 5px;
+    pointer-events: none;
+    background: repeating-linear-gradient(180deg,
+      transparent 0px, transparent 20px,
+      rgba(255,255,255,.03) 20px, rgba(255,255,255,.03) 22px);
+  }
+
+  .sidebar-header {
+    padding: 0 28px 28px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    margin-bottom: 20px;
+  }
+  .sidebar-name {
+    font-family: "Noto Serif SC", serif;
+    font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 3px;
+  }
+  .sidebar-role {
+    font-size: 10px; color: var(--accent); letter-spacing: 4px; margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .sidebar-nav { flex: 1; padding: 0 16px; }
+  .nav-section-label {
+    font-size: 9px; letter-spacing: 4px; color: #3a3a3a;
+    padding: 16px 14px 10px; text-transform: uppercase;
+  }
+  .nav-section-label:first-child { padding-top: 0; }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; border-radius: 5px;
+    cursor: pointer; font-size: 13px; color: #888;
+    transition: all .25s cubic-bezier(.4,0,.2,1);
+    text-decoration: none; user-select: none;
+    position: relative;
+  }
+  .nav-item:hover { color: #d8d8d8; background: rgba(255,255,255,.02); }
+  .nav-item.active { color: #fff; background: rgba(196,154,74,.1); }
+  .nav-item.active::after {
+    content: '';
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 2px; height: 14px; background: var(--accent); border-radius: 1px;
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+  .nav-icon { width: 16px; font-size: 11px; text-align: center; flex-shrink: 0; color: #4a4a4a; }
+  .nav-item.active .nav-icon { color: var(--accent); }
+
+  .nav-group { }
+  .nav-group-toggle {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; border-radius: 5px;
+    cursor: pointer; font-size: 13px; color: #888;
+    transition: all .25s; user-select: none;
+  }
+  .nav-group-toggle:hover { color: #d8d8d8; background: rgba(255,255,255,.02); }
+  .nav-group.open > .nav-group-toggle { color: #ccc; background: rgba(196,154,74,.04); }
+  .nav-caret {
+    font-size: 7px; width: 12px; text-align: center;
+    flex-shrink: 0; color: #3a3a3a;
+    transition: transform .35s cubic-bezier(.22,.61,.36,1);
+  }
+  .nav-group.open > .nav-group-toggle .nav-caret { transform: rotate(90deg); color: var(--accent); }
+  .nav-sub {
+    overflow: hidden;
+    max-height: 0; opacity: 0;
+    transition: max-height .4s cubic-bezier(.22,.61,.36,1), opacity .3s ease;
+    padding-left: 18px;
+  }
+  .nav-group.open > .nav-sub { max-height: 300px; opacity: 1; }
+  .nav-sub .nav-item { font-size: 12px; padding: 6px 14px; }
+
+  .sidebar-footer {
+    padding: 20px 28px 0;
+    border-top: 1px solid rgba(255,255,255,.03);
+    margin-top: 20px;
+    font-size: 9px; color: #333; letter-spacing: 3px;
+  }
+
+  /* ── Main ── */
+  .main {
+    margin-left: 280px; padding: 80px 90px; max-width: 920px;
+    position: relative; z-index: 2;
+  }
+  section { margin-bottom: 72px; }
+
+  .section-num {
+    font-family: "Noto Serif SC", serif;
+    font-size: 120px; font-weight: 900; color: rgba(0,0,0,.025);
+    position: absolute; top: -50px; left: -20px;
+    pointer-events: none; line-height: 1; letter-spacing: -4px;
+  }
+
+  .section-badge {
+    font-size: 9px; letter-spacing: 4px; color: var(--accent);
+    margin-bottom: 8px; display: inline-block;
+    position: relative; text-transform: uppercase;
+  }
+  .section-badge::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: .5;
+  }
+  .section-title {
+    font-family: "Noto Serif SC", serif;
+    font-size: 30px; font-weight: 700; letter-spacing: 2px;
+    margin-bottom: 20px; color: var(--ink); position: relative;
+  }
+
+  .section-line {
+    width: 36px; height: 2px; background: var(--accent); margin-bottom: 24px;
+    position: relative; overflow: hidden;
+  }
+  .section-line::after {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+    animation: lineShimmer 3s ease-in-out infinite;
+  }
+  @keyframes lineShimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(200%); }
+  }
+
+  /* ── Hero ── */
+  .hero-wrap {
+    position: relative;
+    padding: 12px 0;
+  }
+  .hero-wrap::before, .hero-wrap::after {
+    content: '';
+    position: absolute; left: -14px; top: 0;
+    width: 24px; height: 24px;
+    border-top: 1.5px solid var(--accent);
+    border-left: 1.5px solid var(--accent);
+    opacity: .45;
+  }
+  .hero-wrap::after {
+    top: auto; bottom: 0;
+    border-top: none; border-bottom: 1.5px solid var(--accent);
+  }
+  .vf-right { position: absolute; right: -14px; top: 0; bottom: 0; pointer-events: none; }
+  .vf-right::before, .vf-right::after {
+    content: '';
+    position: absolute; right: 0;
+    width: 24px; height: 24px;
+    border-top: 1.5px solid var(--accent);
+    border-right: 1.5px solid var(--accent);
+    opacity: .45;
+  }
+  .vf-right::after {
+    top: auto; bottom: 0;
+    border-top: none; border-bottom: 1.5px solid var(--accent);
+  }
+
+  .hero-name {
+    font-family: "Noto Serif SC", serif;
+    font-size: 56px; font-weight: 900; letter-spacing: 6px;
+    color: var(--ink); line-height: 1.1;
+  }
+  .hero-sub {
+    font-size: 15px; color: var(--muted); margin-top: 10px;
+    letter-spacing: 2px; font-weight: 400;
+  }
+  .hero-intro {
+    font-size: 15px; color: #555; margin-top: 16px; line-height: 1.7;
+    padding: 16px 22px; background: var(--paper);
+    border-left: 3px solid var(--accent);
+    max-width: 540px; position: relative;
+    box-shadow: 0 2px 12px rgba(0,0,0,.03);
+    transition: box-shadow .5s;
+  }
+  .hero-intro:hover { box-shadow: 0 4px 28px rgba(196,154,74,.08); }
+  .timecode {
+    position: absolute; right: 16px; bottom: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: #a09480; font-family: "SF Mono", "Consolas", "Courier New", monospace;
+  }
+  .hero-meta {
+    display: flex; gap: 24px; margin-top: 18px; flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 13px; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hero-meta-item .meta-dot {
+    width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+    opacity: .6; flex-shrink: 0;
+  }
+
+  /* ── Contact ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border: 1px solid var(--border);
+    background: var(--paper); text-decoration: none; color: var(--text);
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .contact-item::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(400px at var(--mx,50%) var(--my,50%), rgba(196,154,74,.06), transparent);
+    opacity: 0; transition: opacity .4s;
+  }
+  .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,.04); }
+  .contact-item:hover::after { opacity: 1; }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--tag-bg); display: flex; align-items: center;
+    justify-content: center; font-size: 15px; flex-shrink: 0;
+    transition: background .3s;
+  }
+  .contact-item:hover .contact-icon { background: rgba(196,154,74,.12); }
+  .contact-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .contact-value { font-size: 14px; font-weight: 500; margin-top: 2px; word-break: break-all; }
+
+  .portfolio-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 14px; padding: 10px 22px;
+    border: 1px solid var(--accent);
+    color: var(--accent); text-decoration: none; font-size: 13px;
+    letter-spacing: 1px; transition: all .3s;
+    position: relative; overflow: hidden;
+    font-family: "Noto Serif SC", serif;
+  }
+  .portfolio-link::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(196,154,74,.12) 50%, transparent 60%);
+    transform: translateX(-100%); transition: transform .6s;
+  }
+  .portfolio-link:hover::before { transform: translateX(100%); }
+  .portfolio-link:hover { background: var(--accent); color: #fff; box-shadow: 0 4px 20px var(--accent-glow); }
+
+  /* ── Expectation ── */
+  .expect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .expect-item {
+    padding: 16px 20px; border: 1px solid var(--border);
+    background: var(--paper); transition: all .3s cubic-bezier(.4,0,.2,1);
+    position: relative; overflow: hidden;
+  }
+  .expect-item::before {
+    content: '';
+    position: absolute; top: 0; left: 14px; right: 14px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,154,74,.25), transparent);
+    opacity: 0; transition: opacity .4s;
+  }
+  .expect-item:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(0,0,0,.04); transform: translateY(-1px); }
+  .expect-item:hover::before { opacity: 1; }
+  .expect-item .label { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .expect-item .value { font-size: 16px; font-weight: 600; margin-top: 6px; font-family: "Noto Serif SC", serif; }
+
+  /* ── Tags & Skills ── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    display: inline-flex; align-items: center;
+    font-size: 12px; padding: 5px 14px; border-radius: 3px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    color: var(--text); letter-spacing: .5px;
+    transition: all .25s; white-space: nowrap;
+  }
+  .skill-logo {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border-radius: 3px;
+    margin-right: 7px; flex-shrink: 0;
+    font-size: 9px; font-weight: 700; color: #fff; letter-spacing: 0;
+  }
+  .skill-logo svg { display: block; }
+  .tag:hover {
+    border-color: var(--accent); background: var(--paper);
+    box-shadow: 0 2px 10px rgba(196,154,74,.1); transform: translateY(-1px);
+  }
+
+  .skill-block { margin-bottom: 18px; }
+  .skill-block-label { font-size: 12px; color: var(--muted); letter-spacing: 2px; margin-bottom: 8px; text-transform: uppercase; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; }
+  .timeline-item {
+    position: relative; padding: 0 0 32px 28px;
+    border-left: 1px solid var(--border);
+    transition: border-color .4s;
+  }
+  .timeline-item:hover { border-left-color: #d5c9a8; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -5px; top: 5px;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--accent);
+  }
+  .timeline-dot::after {
+    content: '';
+    position: absolute; inset: -4px; border-radius: 50%;
+    border: 1px solid var(--accent);
+    animation: dotPulse 2.5s ease-out infinite;
+    opacity: 0;
+  }
+  @keyframes dotPulse {
+    0% { transform: scale(1); opacity: .5; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+  .tl-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 6px;
+  }
+  .tl-company { font-size: 18px; font-weight: 600; letter-spacing: .5px; }
+  .tl-date { font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  .tl-role { font-size: 13px; color: var(--accent); margin-bottom: 10px; letter-spacing: 1px; }
+  .tl-detail { font-size: 14px; color: #555; line-height: 1.7; }
+  .tl-detail li {
+    list-style: none; padding-left: 14px; position: relative; margin-bottom: 2px;
+  }
+  .tl-detail li::before { content: '—'; position: absolute; left: -2px; color: #ccc; }
+  .tl-highlight {
+    margin-top: 10px; font-size: 13px; color: var(--accent); letter-spacing: .5px;
+    padding: 6px 14px; background: rgba(196,154,74,.06);
+    display: inline-block; transition: background .3s;
+  }
+  .timeline-item:hover .tl-highlight { background: rgba(196,154,74,.1); }
+
+  /* ── Project cards ── */
+  .project-card {
+    position: relative; padding: 24px 26px;
+    border: 1px solid var(--border);
+    background: var(--paper); margin-bottom: 12px;
+    transition: all .35s cubic-bezier(.4,0,.2,1);
+    overflow: hidden;
+  }
+  .project-card::after {
+    content: '▶';
+    position: absolute; right: 18px; bottom: 14px;
+    font-size: 48px; color: #ece8de;
+    transition: all .4s; pointer-events: none; line-height: 1;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity .4s;
+  }
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,.06);
+  }
+  .project-card:hover::before { opacity: .6; }
+  .project-card:hover::after { color: #f0ebe0; }
+
+  .project-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 12px; margin-bottom: 8px;
+  }
+  .project-title {
+    font-family: "Noto Serif SC", serif;
+    font-size: 20px; font-weight: 700; letter-spacing: 1px; position: relative; z-index: 1;
+  }
+  .project-views {
+    font-size: 12px; color: var(--accent); font-weight: 600;
+    padding: 3px 10px; border: 1px solid rgba(196,154,74,.25);
+    white-space: nowrap; font-family: "SF Mono", "Consolas", monospace;
+    letter-spacing: 1px;
+  }
+  .project-desc {
+    font-size: 14px; color: #555; line-height: 1.75;
+    display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+    overflow: hidden; position: relative; z-index: 1; max-width: 85%;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 8px; font-size: 12px; color: var(--muted);
+    text-decoration: none; letter-spacing: 1px; transition: all .25s;
+    position: relative; z-index: 1; font-family: "Noto Serif SC", serif;
+  }
+  .project-link:hover { color: var(--accent); gap: 12px; }
+
+  .aperture-ring {
+    position: fixed; pointer-events: none; z-index: 0;
+    top: 50%; right: -120px;
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 1px solid rgba(196,154,74,.1);
+    transform: translateY(-50%);
+  }
+  .aperture-ring::after {
+    content: '';
+    position: absolute; inset: 24px; border-radius: 50%;
+    border: 1px solid rgba(196,154,74,.05);
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s cubic-bezier(.22,.61,.36,1),
+                transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .topbar { display: flex; }
+    .overlay { display: block; }
+    .film-perf { left: 0; opacity: .25; }
+    .aperture-ring { display: none; }
+    .lingnan-watermark { right: 10px; bottom: 20px; width: 100px; height: 90px; opacity: .015; }
+    .waveform { display: none; }
+
+    .sidebar {
+      position: fixed; top: 54px; left: 0; bottom: 0;
+      width: 280px; z-index: 30;
+      transform: translateX(-100%); box-shadow: none; padding-top: 20px;
+    }
+    .sidebar.open { transform: translateX(0); box-shadow: 4px 0 30px rgba(0,0,0,.4); }
+
+    .main { margin-left: 0; padding: 74px 20px 40px; max-width: 100%; }
+
+    .hero-name { font-size: 36px; letter-spacing: 4px; }
+    .hero-intro { max-width: 100%; }
+    .hero-meta { gap: 14px; }
+    .hero-wrap::before, .hero-wrap::after,
+    .vf-right::before, .vf-right::after { opacity: .3; width: 18px; height: 18px; }
+
+    .section-title { font-size: 24px; }
+    .section-num { font-size: 80px; top: -34px; left: -10px; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+    .expect-grid { grid-template-columns: 1fr 1fr; }
+    section { margin-bottom: 48px; }
+    .tl-company { font-size: 16px; }
+    .tl-header { flex-direction: column; }
+    .project-title { font-size: 16px; }
+    .project-card { padding: 18px 20px; }
+    .project-card::after { font-size: 36px; right: 14px; bottom: 12px; }
+    .project-desc { max-width: 100%; }
+    .portfolio-link { width: 100%; justify-content: center; }
+    .timecode { font-size: 10px; right: 10px; bottom: 6px; }
+  }
+
+  @media (max-width: 380px) {
+    .hero-name { font-size: 28px; }
+    .hero-sub { font-size: 13px; }
+    .expect-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 21px; }
+    .section-num { font-size: 64px; top: -28px; }
+    .tag { font-size: 11px; padding: 5px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ambient-orb a"></div>
+<div class="ambient-orb b"></div>
+<div class="film-perf"></div>
+<div class="aperture-ring"></div>
+<div class="lingnan-watermark"></div>
+<div class="waveform"></div>
+
+<!-- ═══════════ MOBILE TOP BAR ═══════════ -->
+<div class="topbar">
+  <div><div class="topbar-name">饶一凡</div></div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-name">饶一凡</div>
+    <div class="sidebar-role">Film &amp; Media</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Profile</div>
+    <a class="nav-item active" data-target="profile" onclick="navTo('profile')">
+      <span class="nav-icon">▸</span>个人概况
+    </a>
+    <a class="nav-item" data-target="contact" onclick="navTo('contact')">
+      <span class="nav-icon">▸</span>联系方式
+    </a>
+    <a class="nav-item" data-target="expectation" onclick="navTo('expectation')">
+      <span class="nav-icon">▸</span>求职期望
+    </a>
+
+    <div class="nav-section-label">Background</div>
+    <a class="nav-item" data-target="education" onclick="navTo('education')">
+      <span class="nav-icon">▸</span>教育经历
+    </a>
+    <a class="nav-item" data-target="awards" onclick="navTo('awards')">
+      <span class="nav-icon">▸</span>荣誉奖项
+    </a>
+    <a class="nav-item" data-target="certificates" onclick="navTo('certificates')">
+      <span class="nav-icon">▸</span>资格证书
+    </a>
+    <a class="nav-item" data-target="skills" onclick="navTo('skills')">
+      <span class="nav-icon">▸</span>专业技能
+    </a>
+
+    <div class="nav-section-label">Portfolio</div>
+    <div class="nav-group open">
+      <div class="nav-group-toggle" onclick="toggleDir(this)">
+        <span class="nav-caret">▶</span>项目作品
+      </div>
+      <div class="nav-sub">
+        <a class="nav-item" data-target="proj-1" onclick="navTo('proj-1')">岭南踏青</a>
+        <a class="nav-item" data-target="proj-2" onclick="navTo('proj-2')">大年初四 迎财神</a>
+        <a class="nav-item" data-target="proj-3" onclick="navTo('proj-3')">鱼灯游岭南</a>
+        <a class="nav-item" data-target="proj-4" onclick="navTo('proj-4')">岁启新元 粤韵迎新</a>
+      </div>
+    </div>
+
+    <div class="nav-section-label">Experience</div>
+    <a class="nav-item" data-target="exp-1" onclick="navTo('exp-1')">
+      <span class="nav-icon">▸</span>广州印象文化
+    </a>
+    <a class="nav-item" data-target="exp-2" onclick="navTo('exp-2')">
+      <span class="nav-icon">▸</span>广州六禾餐饮
+    </a>
+  </div>
+  <div class="sidebar-footer">RAO YIFAN · 2026</div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<main class="main">
+
+  <!-- 01 Profile -->
+  <section id="profile" style="position:relative">
+    <div class="section-num" aria-hidden="true">01</div>
+    <div class="hero-wrap reveal">
+      <div class="vf-right"></div>
+      <div class="section-badge">Profile</div>
+      <div class="hero-name">饶一凡</div>
+      <div class="hero-sub">影视媒体 · 21岁 · 2026届大专应届生</div>
+      <div class="hero-intro">
+        注重内容创作，有发散性思维，擅长文旅类策划拍摄
+        <span class="timecode" id="timecode">00:00:00</span>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><span class="meta-dot"></span> 离校，随时到岗</div>
+        <div class="hero-meta-item"><span class="meta-dot"></span> 广州</div>
+        <div class="hero-meta-item"><span class="meta-dot"></span> 行动力强 · 学习能力强 · 工作踏实</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Contact -->
+  <section id="contact" style="position:relative">
+    <div class="section-num" aria-hidden="true">02</div>
+    <div class="reveal">
+      <div class="section-badge">Contact</div>
+      <div class="section-title">联系方式</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid reveal reveal-delay-1">
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div><div class="contact-label">手机</div><div class="contact-value">13450629010</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><div class="contact-label">邮箱</div><div class="contact-value">1658047328@qq.com</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div><div class="contact-label">微信</div><div class="contact-value">Raoyifan007</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label">现居</div><div class="contact-value">广州</div></div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <a class="portfolio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">
+        ▶ 查看个人作品集
+      </a>
+    </div>
+  </section>
+
+  <!-- 03 Expectation -->
+  <section id="expectation" style="position:relative">
+    <div class="section-num" aria-hidden="true">03</div>
+    <div class="reveal">
+      <div class="section-badge">Expectation</div>
+      <div class="section-title">求职期望</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="expect-grid reveal reveal-delay-1">
+      <div class="expect-item"><div class="label">职位</div><div class="value">影视媒体</div></div>
+      <div class="expect-item"><div class="label">城市</div><div class="value">广州</div></div>
+      <div class="expect-item"><div class="label">行业</div><div class="value">不限</div></div>
+      <div class="expect-item"><div class="label">期望薪资</div><div class="value">8K – 11K</div></div>
+    </div>
+  </section>
+
+  <!-- 04 Education -->
+  <section id="education" style="position:relative">
+    <div class="section-num" aria-hidden="true">04</div>
+    <div class="reveal">
+      <div class="section-badge">Education</div>
+      <div class="section-title">教育经历</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline reveal reveal-delay-1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广东文艺职业学院</span>
+          <span class="tl-date">2023 – 2026</span>
+        </div>
+        <div class="tl-role">电子商务 · 大专</div>
+        <ul class="tl-detail">
+          <li>主修课程：电子商务</li>
+          <li>校内实践：宣传部骨干</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Awards -->
+  <section id="awards" style="position:relative">
+    <div class="section-num" aria-hidden="true">05</div>
+    <div class="reveal">
+      <div class="section-badge">Awards</div>
+      <div class="section-title">荣誉奖项</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline reveal reveal-delay-1">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="tl-header"><span class="tl-company">广东省525心理宣传视频大赛</span></div>
+        <div class="tl-role">一等奖</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Certificates -->
+  <section id="certificates" style="position:relative">
+    <div class="section-num" aria-hidden="true">06</div>
+    <div class="reveal">
+      <div class="section-badge">Certificates</div>
+      <div class="section-title">资格证书</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="tag-row reveal reveal-delay-1">
+      <span class="tag">AOPA无人机驾驶员执照</span>
+      <span class="tag">驾驶证C1</span>
+    </div>
+  </section>
+
+  <!-- 07 Skills -->
+  <section id="skills" style="position:relative">
+    <div class="section-num" aria-hidden="true">07</div>
+    <div class="reveal">
+      <div class="section-badge">Skills</div>
+      <div class="section-title">专业技能</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="skill-block">
+        <div class="skill-block-label">剪辑软件</div>
+        <div class="tag-row">
+          <span class="tag"><span class="skill-logo" style="background:#7B6FDE">Pr</span>Premiere</span>
+          <span class="tag"><span class="skill-logo" style="background:#FF0050">剪</span>剪映</span>
+          <span class="tag"><span class="skill-logo" style="background:#0077E0">Da</span>DaVinci</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">拍摄设备</div>
+        <div class="tag-row">
+          <span class="tag">
+            <span class="skill-logo" style="background:#555">
+              <svg width="11" height="9" viewBox="0 0 11 9"><rect x="0.5" y="2" width="10" height="6.5" rx="1.5" stroke="#fff" stroke-width="0.8"/><circle cx="5.5" cy="5.2" r="1.6" stroke="#fff" stroke-width="0.7"/><rect x="3" y="0.5" width="3" height="2" rx="0.5" stroke="#fff" stroke-width="0.7"/></svg>
+            </span>微单
+          </span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">平台运营</div>
+        <div class="tag-row">
+          <span class="tag"><span class="skill-logo" style="background:#111">抖</span>抖音运营</span>
+          <span class="tag"><span class="skill-logo" style="background:#333"><svg width="8" height="10" viewBox="0 0 8 10"><polygon points="0,0 8,5 0,10" fill="#fff"/></svg></span>短视频运营</span>
+          <span class="tag"><span class="skill-logo" style="background:#3B7DD8">知</span>知识服务平台</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">其他工具</div>
+        <div class="tag-row">
+          <span class="tag"><span class="skill-logo" style="background:#31A8FF">Ps</span>Photoshop</span>
+          <span class="tag"><span class="skill-logo" style="background:#6E6E6E">Lr</span>Lightroom</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Projects -->
+  <section id="projects" style="position:relative">
+    <div class="section-num" aria-hidden="true">08</div>
+    <div class="reveal">
+      <div class="section-badge">Portfolio</div>
+      <div class="section-title">项目作品</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-1" id="proj-1">
+      <div class="project-top">
+        <span class="project-title">《岭南踏青》</span>
+        <span class="project-views">3.5w 播放</span>
+      </div>
+      <div class="project-desc">春风入岭南，闲庭花自开。"等闲识得东风面，万紫千红总是春。" 漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。不负春光，不负己，在古巷里遇见一整个春天。</div>
+      <a class="project-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2" id="proj-2">
+      <div class="project-top">
+        <span class="project-title">《大年初四 迎财神》</span>
+        <span class="project-views">5.8w 播放</span>
+      </div>
+      <div class="project-desc">大年初四｜在岭南印象园，遇见最暖的年味。大年初四，迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</div>
+      <a class="project-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card reveal reveal-delay-3" id="proj-3">
+      <div class="project-top">
+        <span class="project-title">《鱼灯游岭南 铁花耀新年》</span>
+        <span class="project-views">6.7w 播放</span>
+      </div>
+      <div class="project-desc">华灯初上，岭南印象园的夜被鱼灯点亮，一尾尾鱼灯穿巷而过，载着旧时光里的岭南年味缓缓巡游。当滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</div>
+      <a class="project-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+
+    <div class="project-card reveal reveal-delay-4" id="proj-4">
+      <div class="project-top">
+        <span class="project-title">《岁启新元，粤韵迎新》</span>
+        <span class="project-views">7.5w 播放</span>
+      </div>
+      <div class="project-desc">岁启新元，粤韵迎新。元旦限定精彩轮番上演——全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……这个元旦，来岭南印象园感受最地道的岭南年味。</div>
+      <a class="project-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">▶ 在抖音查看</a>
+    </div>
+  </section>
+
+  <!-- 09 Experience -->
+  <section id="experience" style="position:relative">
+    <div class="section-num" aria-hidden="true">09</div>
+    <div class="reveal">
+      <div class="section-badge">Experience</div>
+      <div class="section-title">工作经历</div>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal reveal-delay-1" id="exp-1">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广州印象文化旅游发展有限公司</span>
+          <span class="tl-date">2025.06 – 至今</span>
+        </div>
+        <div class="tl-role">新媒体内容运营 · 市场营销部</div>
+        <ul class="tl-detail">
+          <li>独立负责全年新媒体内容的策划、拍摄、剪辑与发布</li>
+          <li>确定宣传方向，有针对性产出文旅类视频内容</li>
+          <li>负责脚本撰写、现场拍摄、后期剪辑到全平台发布的全流程</li>
+        </ul>
+        <div class="tl-highlight">马年新年系列宣发视频 — 全平台累计 100w+ 播放量</div>
+        <div class="tag-row" style="margin-top:12px">
+          <span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">视频策划</span>
+          <span class="tag">视频拍摄</span><span class="tag">视频编辑</span><span class="tag">Premiere</span>
+          <span class="tag">脚本撰写</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2" id="exp-2">
+        <div class="timeline-dot"></div>
+        <div class="tl-header">
+          <span class="tl-company">广州六禾餐饮管理有限公司</span>
+          <span class="tl-date">2023.01 – 2025.05</span>
+        </div>
+        <div class="tl-role">销售经理</div>
+        <ul class="tl-detail"><li>分析制定餐饮计划，了解分析客户需求</li></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// Live timecode
+(function() {
+  const el = document.getElementById('timecode');
+  if (!el) return;
+  const start = Date.now();
+  function tick() {
+    const sec = Math.floor((Date.now() - start) / 1000);
+    const h = String(Math.floor(sec / 3600)).padStart(2, '0');
+    const m = String(Math.floor((sec % 3600) / 60)).padStart(2, '0');
+    const s = String(sec % 60).padStart(2, '0');
+    el.textContent = h + ':' + m + ':' + s;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// Mobile menu
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuBtn = document.querySelector('.menu-btn');
+
+function toggleMenu() {
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+  menuBtn.classList.toggle('open');
+}
+function closeMenu() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+  menuBtn.classList.remove('open');
+}
+function toggleDir(el) {
+  el.parentElement.classList.toggle('open');
+}
+function navTo(id) {
+  closeMenu();
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.nav-item[data-target]').forEach(function(a) { a.classList.remove('active'); });
+  const link = document.querySelector('.nav-item[data-target="' + id + '"]');
+  if (link) link.classList.add('active');
+}
+
+// Intersection Observer: nav active state
+var sectionObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      document.querySelectorAll('.nav-item[data-target]').forEach(function(a) { a.classList.remove('active'); });
+      var link = document.querySelector('.nav-item[data-target="' + entry.target.id + '"]');
+      if (link) link.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('section[id]').forEach(function(s) { sectionObserver.observe(s); });
+
+// Contact card mouse tracking
+document.querySelectorAll('.contact-item').forEach(function(card) {
+  card.addEventListener('mousemove', function(e) {
+    var rect = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+  });
+});
+
+// Scroll reveal
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+// Show hero immediately
+document.querySelectorAll('#profile .reveal').forEach(function(el) { el.classList.add('visible'); });
+</script>
+
+</body>
+</html>

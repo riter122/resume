@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>饶一凡 · 简历</title>
+<style>
+
+:root {
+  --accent-mono: #A68A56;
+  --bg: #060606;
+  --ch01: #B3925C;
+  --ch02: #9B4850;
+  --ch03: #528580;
+  --ch04: #726B94;
+  --ch05: #5A7C64;
+  --white: #EBE5DC;
+  --gray: #7D7972;
+  --dark: #0F0F0F;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(80,55,25,.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 70%, rgba(60,35,15,.10) 0%, transparent 50%),
+    var(--bg);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-right:40px;
+}
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:998;
+  background:radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(4,2,0,.65) 100%);
+}
+/* ── 胶片漏光层 ── */
+.light-leaks {
+  position:fixed; inset:0; pointer-events:none; z-index:1000;
+}
+.light-leaks::before {
+  content:''; position:absolute;
+  top:-15%; right:-20%;
+  width:65%; height:55%;
+  background:radial-gradient(ellipse at 75% 15%, rgba(210,160,70,.14) 0%, rgba(180,130,50,.05) 35%, transparent 65%);
+  transform:rotate(-10deg);
+}
+.light-leaks::after {
+  content:''; position:absolute;
+  bottom:-10%; left:-15%;
+  width:55%; height:45%;
+  background:radial-gradient(ellipse at 10% 90%, rgba(200,150,60,.11) 0%, transparent 70%);
+  transform:rotate(8deg);
+}
+.light-leaks .ll-streak {
+  position:absolute;
+  top:10%; right:0;
+  width:30%; height:40%;
+  background:linear-gradient(195deg, rgba(220,170,60,.08) 0%, transparent 80%);
+  transform:rotate(-18deg);
+  border-radius:50%;
+  filter:blur(40px);
+}
+body::after {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px; opacity:.04; mix-blend-mode:overlay;
+}
+
+.film-strip {
+  position:fixed; top:0; right:0; bottom:0;
+  width:40px; z-index:50;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:10px;
+}
+.film-strip::before {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(180deg,
+    transparent 0px,transparent 14px,
+    rgba(255,255,255,.06) 14px,rgba(255,255,255,.06) 16px);
+}
+
+/* ═══════════ HERO – Chapter Select ═══════════ */
+.hero {
+  min-height:100vh; display:flex; position:relative; z-index:1;
+  padding-right:0;
+}
+.hero::before {
+  content:''; position:absolute; top:-40%; left:-15%; right:0; height:120%;
+  background:radial-gradient(ellipse at 22% 42%, rgba(220,165,70,.15) 0%, rgba(170,120,45,.06) 35%, transparent 65%);
+  pointer-events:none; z-index:0;
+}
+.hero-left {
+  width:38%; min-width:360px;
+  padding:56px 36px 56px 64px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; z-index:2;
+}
+.masthead { margin-bottom:44px; }
+.masthead-name {
+  font-size:clamp(64px,8.5vw,120px);
+  font-weight:900; letter-spacing:0;
+  line-height:.85; color:var(--white);
+  text-transform:uppercase;
+}
+.masthead-name .last {
+  display:block; font-size:.65em;
+  color:var(--accent-mono);
+  -webkit-text-stroke:0;
+  margin-top:6px;
+  font-weight:700; letter-spacing:10px;
+}
+.masthead-credit {
+  font-size:9px; letter-spacing:6px; color:var(--gray);
+  text-transform:uppercase; margin-bottom:8px;
+}
+.masthead-tagline {
+  font-size:clamp(14px,1.8vw,20px); font-weight:600;
+  letter-spacing:6px; color:var(--accent-mono);
+  margin:16px 0 24px; line-height:1.3;
+  text-transform:uppercase;
+}
+.poster-rule {
+  width:100%; height:1px;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,.12) 0%,
+    rgba(255,255,255,.01) 100%);
+  margin-bottom:28px;
+}
+.chapter-list { display:flex; flex-direction:column; gap:0; }
+.chapter-item {
+  display:flex; align-items:center; gap:16px;
+  padding:10px 0; cursor:pointer;
+  text-decoration:none; color:var(--white);
+  transition:all .4s cubic-bezier(.22,.61,.36,1);
+  position:relative;
+}
+.chapter-item::after {
+  content:'';
+  position:absolute; left:0; bottom:0;
+  width:100%; height:1px;
+  background:linear-gradient(90deg,
+    rgba(255,255,255,.06) 0%,
+    transparent 100%);
+  transition:all .4s;
+}
+.chapter-item:hover::after {
+  background:linear-gradient(90deg,
+    var(--accent-mono) 0%,
+    rgba(255,255,255,.06) 40%,
+    transparent 100%);
+  height:1px;
+}
+.chapter-item:hover {
+  padding-left:12px;
+}
+.chapter-num {
+  font-size:clamp(48px,6vw,72px); font-weight:900;
+  letter-spacing:-3px; line-height:1;
+  min-width:60px; transition:all .4s;
+  font-style:italic;
+}
+.chapter-item:hover .chapter-num { transform:scale(1.08); }
+.chapter-info { flex:1; }
+.chapter-info .cn {
+  font-size:8px; letter-spacing:6px; color:var(--gray);
+  text-transform:uppercase; margin-bottom:2px;
+}
+.chapter-info .ct {
+  font-size:clamp(14px,1.6vw,18px); font-weight:700; letter-spacing:3px;
+  line-height:1.2; text-transform:uppercase;
+}
+.chapter-info .cd {
+  font-size:10px; letter-spacing:2px; color:var(--gray);
+  margin-top:2px;
+}
+.chapter-arrow {
+  font-size:16px; color:var(--accent-mono);
+  opacity:0; transform:translateX(-12px);
+  transition:all .4s;
+  font-weight:300;
+}
+.chapter-item:hover .chapter-arrow { opacity:1; transform:translateX(0); }
+.chapter-num { color:var(--accent-mono); }
+
+.hero-right {
+  flex:1; display:flex; align-items:center;
+  justify-content:center; padding:60px 48px;
+  position:relative; overflow:hidden;
+}
+.hero-right::before {
+  content:'';
+  position:absolute; left:0; top:60px; bottom:60px;
+  width:1px;
+  background:linear-gradient(180deg,
+    transparent 0%,
+    rgba(255,255,255,.06) 15%,
+    rgba(255,255,255,.04) 85%,
+    transparent 100%);
+}
+.card-list {
+  display:flex; flex-direction:column; gap:0;
+  width:100%;
+}
+.card-item {
+  display:block;
+  height:clamp(88px,11vh,120px);
+  position:relative; overflow:hidden;
+  cursor:pointer; text-decoration:none;
+  transition:all .4s cubic-bezier(.22,.61,.36,1);
+  border-bottom:1px solid rgba(255,255,255,.04);
+  background:var(--dark);
+  -webkit-tap-highlight-color:transparent;
+}
+.card-item:hover {
+  transform:scale(1.04);
+  border-bottom-color:rgba(255,255,255,.18);
+  z-index:5;
+}
+.card-item .card-img-wrap {
+  position:absolute; inset:0;
+}
+.card-item .card-img-wrap::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(160deg,
+    transparent 30%,
+    rgba(0,0,0,.15) 50%,
+    rgba(0,0,0,.5) 80%,
+    rgba(0,0,0,.7) 100%);
+  z-index:1; pointer-events:none;
+}
+.card-item .card-img-wrap img {
+  width:100%; height:100%; object-fit:cover;
+  opacity:.75; transition:all .5s;
+  filter:brightness(.9) saturate(1.1);
+}
+.card-item:hover .card-img-wrap img { opacity:1; filter:brightness(1.05) saturate(1.15); }
+.card-item .card-overlay {
+  position:absolute; right:16px; bottom:12px; z-index:2;
+  display:flex; align-items:baseline; gap:10px;
+  pointer-events:none;
+}
+.card-item .card-overlay .card-num {
+  font-size:clamp(40px,5vw,56px); font-weight:900;
+  letter-spacing:-2px; line-height:1;
+  transition:all .35s;
+  text-shadow:0 2px 8px rgba(0,0,0,.6);
+}
+.card-item:hover .card-overlay .card-num { transform:scale(1.08); }
+.card-item .card-overlay .card-label {
+  font-size:clamp(13px,1.6vw,16px); font-weight:700; letter-spacing:3px;
+  color:rgba(255,255,255,.9);
+  text-shadow:0 2px 6px rgba(0,0,0,.6);
+}
+
+.card01 .card-img-wrap{background:linear-gradient(160deg,var(--ch01) 0%,#1C1408 100%)}
+.card01 .card-num{color:var(--ch01)}
+.card01:hover{box-shadow:0 0 30px rgba(179,146,92,.25),0 0 60px rgba(179,146,92,.12),0 0 100px rgba(179,146,92,.06)}
+.card02 .card-img-wrap{background:linear-gradient(160deg,var(--ch02) 0%,#14080A 100%)}
+.card02 .card-num{color:var(--ch02)}
+.card02:hover{box-shadow:0 0 30px rgba(155,72,80,.25),0 0 60px rgba(155,72,80,.12),0 0 100px rgba(155,72,80,.06)}
+.card03 .card-img-wrap{background:linear-gradient(160deg,var(--ch03) 0%,#061413 100%)}
+.card03 .card-num{color:var(--ch03)}
+.card03:hover{box-shadow:0 0 30px rgba(82,133,128,.25),0 0 60px rgba(82,133,128,.12),0 0 100px rgba(82,133,128,.06)}
+.card04 .card-img-wrap{background:linear-gradient(160deg,var(--ch04) 0%,#0D0B18 100%)}
+.card04 .card-num{color:var(--ch04)}
+.card04:hover{box-shadow:0 0 30px rgba(114,107,148,.25),0 0 60px rgba(114,107,148,.12),0 0 100px rgba(114,107,148,.06)}
+.card05 .card-img-wrap{background:linear-gradient(160deg,var(--ch05) 0%,#08140E 100%)}
+.card05 .card-num{color:var(--ch05)}
+.card05:hover{box-shadow:0 0 30px rgba(90,124,100,.25),0 0 60px rgba(90,124,100,.12),0 0 100px rgba(90,124,100,.06)}
+
+.left-block {
+  width:35%; min-width:320px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:60px 40px; position:relative; overflow:hidden;
+}
+.left-block::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 50%,var(--accent-dark) 100%);
+  opacity:.3;
+}
+.left-num {
+  font-size:clamp(80px,12vw,140px); font-weight:900;
+  letter-spacing:-6px; line-height:1;
+  color:rgba(0,0,0,.2); position:relative; z-index:1;
+}
+.left-title {
+  font-size:clamp(20px,3vw,32px); font-weight:700;
+  letter-spacing:6px; color:var(--white);
+  position:relative; z-index:1; margin-top:12px;
+}
+.left-subtitle {
+  font-size:10px; letter-spacing:6px;
+  color:rgba(255,255,255,.5);
+  position:relative; z-index:1; margin-top:8px;
+  text-transform:uppercase;
+}
+.left-back {
+  position:absolute; bottom:40px;
+  font-size:11px; letter-spacing:4px;
+  color:rgba(255,255,255,.5); text-decoration:none;
+  z-index:2; transition:all .3s;
+}
+.left-back:hover { color:var(--white); }
+.content-area {
+  flex:1; padding:80px 60px 80px 64px;
+  overflow-y:auto;
+}
+.content-area::-webkit-scrollbar { width:4px; }
+.content-area::-webkit-scrollbar-thumb { background:rgba(255,255,255,.1); }
+
+/* ═══════════ FILM STRIP ═══════════ */
+
+/* ═══════════ SHARED DETAIL STYLES ═══════════ */
+.detail-section { margin-bottom:48px; }
+.detail-section h2 {
+  font-size:clamp(28px,4vw,44px); font-weight:900;
+  letter-spacing:-1px; margin-bottom:12px; color:var(--white);
+}
+.detail-section h3 {
+  font-size:14px; letter-spacing:4px; color:var(--accent);
+  text-transform:uppercase; margin-bottom:20px; padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.sub { font-size:14px; color:var(--gray); letter-spacing:2px; margin-bottom:20px; }
+.pull-quote {
+  font-size:clamp(18px,2.5vw,24px); font-weight:600;
+  line-height:1.6; letter-spacing:1px; color:var(--white);
+  padding-left:20px; border-left:3px solid var(--accent); margin-bottom:24px;
+}
+.hl { background:var(--accent); color:var(--white); padding:1px 8px; }
+.meta-row { display:flex; gap:24px; margin-bottom:20px; flex-wrap:wrap; }
+.meta { font-size:13px; color:var(--gray); letter-spacing:1px; }
+.meta b { color:var(--white); font-weight:600; }
+.tags-row { display:flex; flex-wrap:wrap; gap:8px; }
+.tag {
+  font-size:11px; letter-spacing:2px; padding:6px 16px;
+  border:1px solid rgba(255,255,255,.12); color:var(--gray);
+  transition:all .3s; cursor:default; text-transform:uppercase;
+}
+.tag:hover { border-color:var(--accent); color:var(--white); }
+.item { margin-bottom:24px; }
+.item-head {
+  display:flex; justify-content:space-between; align-items:baseline;
+  flex-wrap:wrap; gap:12px; margin-bottom:4px;
+}
+.item-title { font-size:18px; font-weight:700; color:var(--white); }
+.item-date { font-size:12px; color:var(--gray); letter-spacing:2px; }
+.item-sub { font-size:13px; color:var(--accent); letter-spacing:2px; margin-bottom:8px; }
+.item-desc { font-size:14px; color:var(--gray); line-height:1.7; }
+
+.project-item { margin-bottom:36px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.04); }
+.project-item:last-child { border-bottom:none; }
+.proj-num { font-size:10px; letter-spacing:6px; color:var(--accent); margin-bottom:8px; font-weight:700; }
+.proj-title { font-size:clamp(20px,3vw,28px); font-weight:900; letter-spacing:-1px; margin-bottom:4px; }
+.proj-views { font-size:12px; letter-spacing:2px; color:var(--accent); margin-bottom:14px; display:inline-block; }
+.proj-desc { font-size:14px; line-height:1.8; color:var(--gray); margin-bottom:14px; }
+.proj-link {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; letter-spacing:4px; color:var(--accent);
+  text-decoration:none; font-weight:600; transition:gap .3s;
+}
+.proj-link:hover { gap:12px; }
+.proj-img { width:100%; aspect-ratio:16/9; object-fit:cover; margin-bottom:20px; border-radius:2px; display:block; }
+
+.exp-item { margin-bottom:40px; }
+.exp-meta { margin-bottom:8px; }
+.exp-date { font-size:10px; letter-spacing:4px; color:var(--gray); }
+.exp-company { font-size:20px; font-weight:700; margin-bottom:4px; letter-spacing:1px; }
+.exp-role { font-size:13px; color:var(--accent); letter-spacing:2px; margin-bottom:14px; }
+.exp-list { list-style:none; margin-bottom:12px; }
+.exp-list li {
+  font-size:14px; line-height:1.8; color:var(--gray);
+  padding-left:16px; position:relative; margin-bottom:4px;
+}
+.exp-list li::before { content:'→'; position:absolute; left:-4px; color:var(--accent); }
+.exp-highlight {
+  padding:8px 16px; background:var(--accent); color:var(--white);
+  font-size:13px; font-weight:600; letter-spacing:1px; display:inline-block;
+}
+
+.skill-group { margin-bottom:32px; }
+.skill-cat { font-size:11px; letter-spacing:4px; color:var(--gray); margin-bottom:12px; text-transform:uppercase; }
+
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:40px; }
+.contact-card { padding:16px 20px; border:1px solid rgba(255,255,255,.06); transition:all .3s; }
+.contact-card:hover { border-color:var(--accent); }
+.clabel { font-size:10px; letter-spacing:3px; color:var(--gray); text-transform:uppercase; margin-bottom:4px; }
+.cval { font-size:16px; font-weight:600; color:var(--white); }
+.expect-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.expect-item { padding:14px 18px; border:1px solid rgba(255,255,255,.06); transition:all .3s; }
+.expect-item:hover { border-color:var(--accent); }
+.elabel { font-size:10px; letter-spacing:3px; color:var(--gray); text-transform:uppercase; display:block; margin-bottom:4px; }
+.eval { font-size:15px; font-weight:600; color:var(--white); }
+.folio-link {
+  display:inline-flex; align-items:center; gap:8px; margin-top:36px;
+  padding:12px 24px; border:2px solid var(--accent); color:var(--accent);
+  text-decoration:none; font-size:12px; letter-spacing:3px; font-weight:700;
+  transition:all .3s;
+}
+.folio-link:hover { background:var(--accent); color:var(--white); }
+
+/* ═══════════ MOBILE ═══════════ */
+@media (max-width:900px) {
+  .hero { flex-direction:column; padding-right:28px; }
+  .hero-left { width:100%; min-width:0; padding:48px 28px 24px; }
+  .masthead { margin-bottom:32px; }
+  .masthead-name { font-size:44px; }
+  .masthead-tagline { font-size:14px; letter-spacing:4px; }
+  .chapter-num { font-size:36px; min-width:42px; }
+  .chapter-info .cd { font-size:9px; }
+  .chapter-info .ct { font-size:13px; letter-spacing:2px; }
+  .hero-right { padding:20px 28px 80px; }
+  .card-list { max-width:100%; }
+  .card-item { height:clamp(64px,10vh,88px); }
+  .card-overlay { right:12px; bottom:8px; gap:8px; }
+  .card-item .card-overlay .card-num { font-size:28px; }
+  .card-item .card-overlay .card-label { font-size:12px; letter-spacing:2px; }
+
+  .section { flex-direction:column; padding-right:28px; }
+  .left-block { width:100%; min-width:0; min-height:30vh; padding:40px 28px; }
+  .left-num { font-size:72px; }
+  .content-area { padding:40px 28px 80px; }
+  .contact-grid,.expect-grid { grid-template-columns:1fr; }
+
+  
+
+.sec-D4983C { --accent:#B3925C; --accent-dark:#1C1408; }
+.sec-D4983C .left-block { background:#B3925C; }
+.sec-D4983C .strip-dot.active { background:#B3925C; box-shadow:0 0 12px #B3925C; }
+.sec-C42030 { --accent:#9B4850; --accent-dark:#14080A; }
+.sec-C42030 .left-block { background:#9B4850; }
+.sec-C42030 .strip-dot.active { background:#9B4850; box-shadow:0 0 12px #9B4850; }
+.sec-0E7C7B { --accent:#528580; --accent-dark:#061413; }
+.sec-0E7C7B .left-block { background:#528580; }
+.sec-0E7C7B .strip-dot.active { background:#528580; box-shadow:0 0 12px #528580; }
+.sec-5B4FCF { --accent:#726B94; --accent-dark:#0D0B18; }
+.sec-5B4FCF .left-block { background:#726B94; }
+.sec-5B4FCF .strip-dot.active { background:#726B94; box-shadow:0 0 12px #726B94; }
+.sec-3A7D5A { --accent:#5A7C64; --accent-dark:#08140E; }
+.sec-3A7D5A .left-block { background:#5A7C64; }
+.sec-3A7D5A .strip-dot.active { background:#5A7C64; box-shadow:0 0 12px #5A7C64; }
+</style>
+</head>
+<body>
+
+<div class="film-strip"></div>
+
+<div class="hero" id="hero">
+  <div class="hero-left">
+    <div class="masthead">
+      <div class="masthead-name">RAO <span class="last">饶一凡</span></div>
+      <div class="masthead-tagline">STAY GOLD PONY BOY</div>
+      <div class="poster-rule"></div>
+    </div>
+    <div class="chapter-list">
+      <a href="#sec-d4983c" class="chapter-item">
+        <span class="chapter-num">01</span>
+        <div class="chapter-info">
+          <div class="cn">Reel One</div>
+          <div class="ct">个人概况</div>
+          <div class="cd">Profile</div>
+        </div>
+        <span class="chapter-arrow">▶</span>
+      </a>
+      <a href="#sec-c42030" class="chapter-item">
+        <span class="chapter-num">02</span>
+        <div class="chapter-info">
+          <div class="cn">Reel Two</div>
+          <div class="ct">项目作品</div>
+          <div class="cd">Selected Works</div>
+        </div>
+        <span class="chapter-arrow">▶</span>
+      </a>
+      <a href="#sec-0e7c7b" class="chapter-item">
+        <span class="chapter-num">03</span>
+        <div class="chapter-info">
+          <div class="cn">Reel Three</div>
+          <div class="ct">工作经历</div>
+          <div class="cd">Experience</div>
+        </div>
+        <span class="chapter-arrow">▶</span>
+      </a>
+      <a href="#sec-5b4fcf" class="chapter-item">
+        <span class="chapter-num">04</span>
+        <div class="chapter-info">
+          <div class="cn">Reel Four</div>
+          <div class="ct">专业技能</div>
+          <div class="cd">Skillset</div>
+        </div>
+        <span class="chapter-arrow">▶</span>
+      </a>
+      <a href="#sec-3a7d5a" class="chapter-item">
+        <span class="chapter-num">05</span>
+        <div class="chapter-info">
+          <div class="cn">Reel Five</div>
+          <div class="ct">联系方式</div>
+          <div class="cd">Contact</div>
+        </div>
+        <span class="chapter-arrow">▶</span>
+      </a>
+      <div class="masthead-credit" style="margin-top:auto;padding-top:24px;">A RAO YIFAN PRODUCTION &nbsp;·&nbsp; GUANGZHOU &nbsp;·&nbsp; 2026</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="card-list">
+      <a href="#sec-d4983c" class="card-item card01">
+        <div class="card-img-wrap">
+          <img src="images/01_profile.jpg" alt="个人概况" style="object-position:center 25%">
+        </div>
+        <div class="card-overlay">
+          <span class="card-num">01</span>
+          <span class="card-label">个人概况</span>
+        </div>
+      </a>
+      <a href="#sec-c42030" class="card-item card02">
+        <div class="card-img-wrap">
+          <img src="images/02_works.jpg" alt="项目作品">
+        </div>
+        <div class="card-overlay">
+          <span class="card-num">02</span>
+          <span class="card-label">项目作品</span>
+        </div>
+      </a>
+      <a href="#sec-0e7c7b" class="card-item card03">
+        <div class="card-img-wrap">
+          <img src="images/03_experience.jpg" alt="工作经历">
+        </div>
+        <div class="card-overlay">
+          <span class="card-num">03</span>
+          <span class="card-label">工作经历</span>
+        </div>
+      </a>
+      <a href="#sec-5b4fcf" class="card-item card04">
+        <div class="card-img-wrap">
+          <img src="images/04_skills.jpg" alt="专业技能">
+        </div>
+        <div class="card-overlay">
+          <span class="card-num">04</span>
+          <span class="card-label">专业技能</span>
+        </div>
+      </a>
+      <a href="#sec-3a7d5a" class="card-item card05">
+        <div class="card-img-wrap">
+          <img src="images/05_contact.jpg" alt="联系方式" style="object-position:center 30%">
+        </div>
+        <div class="card-overlay">
+          <span class="card-num">05</span>
+          <span class="card-label">联系方式</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<section class="section sec-d4983c" id="sec-d4983c">
+  <div class="left-block">
+    <div class="left-num">01</div>
+    <div class="left-title">个人概况</div>
+    <div class="left-subtitle">Profile</div>
+    <a href="#hero" class="left-back">&larr; 返回目录</a>
+  </div>
+  <div class="content-area">
+<div class="detail-section">
+<h2>饶一凡</h2>
+<p class="sub">影视媒体 · 21岁 · 2026届大专应届生</p>
+<div class="pull-quote">注重<span class="hl">内容创作</span>，有发散性思维，擅长<span class="hl">文旅类</span>策划拍摄。</div>
+<div class="meta-row"><span class="meta"><b>状态</b> 离校，随时到岗</span><span class="meta"><b>城市</b> 广州</span></div>
+<div class="tags-row"><span class="tag">行动力强</span><span class="tag">学习能力强</span><span class="tag">工作踏实</span></div>
+</div>
+<div class="detail-section">
+<h3>教育经历</h3>
+<div class="item"><div class="item-head"><span class="item-title">广东文艺职业学院</span><span class="item-date">2023 – 2026</span></div>
+<div class="item-sub">电子商务 · 大专</div><p class="item-desc">主修课程：电子商务 / 校内实践：宣传部骨干</p></div>
+</div>
+<div class="detail-section">
+<h3>荣誉 & 证书</h3>
+<div class="item"><div class="item-head"><span class="item-title">广东省525心理宣传视频大赛</span></div><div class="item-sub">一等奖</div></div>
+<div class="tags-row" style="margin-top:16px"><span class="tag">AOPA无人机驾驶员执照</span><span class="tag">驾驶证C1</span></div>
+</div></div>
+</section>
+
+<section class="section sec-c42030" id="sec-c42030">
+  <div class="left-block">
+    <div class="left-num">02</div>
+    <div class="left-title">项目作品</div>
+    <div class="left-subtitle">Selected Works</div>
+    <a href="#hero" class="left-back">&larr; 返回目录</a>
+  </div>
+  <div class="content-area">
+<div class="detail-section"><h2>项目作品</h2><p class="sub">4部岭南文旅系列短片，累计 23.5w 播放</p></div>
+<div class="project-item"><div class="proj-num">01 / 04</div><h3 class="proj-title">《岭南踏青》</h3><span class="proj-views">3.5w 播放</span>
+<p class="proj-desc">春风入岭南，闲庭花自开。漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。</p>
+<a class="proj-link" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
+<div class="project-item"><div class="proj-num">02 / 04</div><h3 class="proj-title">《大年初四 迎财神》</h3><span class="proj-views">5.8w 播放</span>
+<p class="proj-desc">大年初四迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</p>
+<a class="proj-link" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
+<div class="project-item"><div class="proj-num">03 / 04</div><h3 class="proj-title">《鱼灯游岭南 铁花耀新年》</h3><span class="proj-views">6.7w 播放</span>
+<p class="proj-desc">华灯初上，鱼灯穿巷而过。滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</p>
+<a class="proj-link" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">观看作品 &rarr;</a></div>
+<div class="project-item"><div class="proj-num">04 / 04</div><h3 class="proj-title">《岁启新元，粤韵迎新》</h3><span class="proj-views">7.5w 播放</span>
+<p class="proj-desc">岁启新元，粤韵迎新。全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……感受最地道的岭南年味。</p>
+<a class="proj-link" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">观看作品 &rarr;</a></div></div>
+</section>
+
+<section class="section sec-0e7c7b" id="sec-0e7c7b">
+  <div class="left-block">
+    <div class="left-num">03</div>
+    <div class="left-title">工作经历</div>
+    <div class="left-subtitle">Experience</div>
+    <a href="#hero" class="left-back">&larr; 返回目录</a>
+  </div>
+  <div class="content-area">
+<div class="detail-section"><h2>工作经历</h2></div>
+<div class="exp-item"><div class="exp-meta"><span class="exp-date">2025.06 — 至今</span></div>
+<h3 class="exp-company">广州印象文化旅游发展有限公司</h3>
+<div class="exp-role">新媒体内容运营 · 市场营销部</div>
+<ul class="exp-list"><li>独立负责全年新媒体内容的策划、拍摄、剪辑与发布</li>
+<li>确定宣传方向，有针对性产出文旅类视频内容</li>
+<li>负责脚本撰写、现场拍摄、后期剪辑到全平台发布的全流程</li></ul>
+<div class="exp-highlight">马年新年系列宣发视频 — 全平台累计 100w+ 播放量</div>
+<div class="tags-row" style="margin-top:14px"><span class="tag">抖音运营</span><span class="tag">短视频</span><span class="tag">视频策划</span><span class="tag">拍摄</span><span class="tag">Premiere</span></div></div>
+<div class="exp-item"><div class="exp-meta"><span class="exp-date">2023.01 — 2025.05</span></div>
+<h3 class="exp-company">广州六禾餐饮管理有限公司</h3>
+<div class="exp-role">销售经理</div><ul class="exp-list"><li>分析制定餐饮计划，了解分析客户需求</li></ul></div></div>
+</section>
+
+<section class="section sec-5b4fcf" id="sec-5b4fcf">
+  <div class="left-block">
+    <div class="left-num">04</div>
+    <div class="left-title">专业技能</div>
+    <div class="left-subtitle">Skillset</div>
+    <a href="#hero" class="left-back">&larr; 返回目录</a>
+  </div>
+  <div class="content-area">
+<div class="detail-section"><h2>专业技能</h2></div>
+<div class="skill-group"><div class="skill-cat">剪辑软件</div><div class="tags-row"><span class="tag">Premiere</span><span class="tag">剪映</span><span class="tag">DaVinci Resolve</span></div></div>
+<div class="skill-group"><div class="skill-cat">拍摄设备</div><div class="tags-row"><span class="tag">微单</span></div></div>
+<div class="skill-group"><div class="skill-cat">平台运营</div><div class="tags-row"><span class="tag">抖音运营</span><span class="tag">短视频运营</span><span class="tag">知识服务平台</span></div></div>
+<div class="skill-group"><div class="skill-cat">其他工具</div><div class="tags-row"><span class="tag">Photoshop</span><span class="tag">Lightroom</span></div></div></div>
+</section>
+
+<section class="section sec-3a7d5a" id="sec-3a7d5a">
+  <div class="left-block">
+    <div class="left-num">05</div>
+    <div class="left-title">联系方式</div>
+    <div class="left-subtitle">Contact</div>
+    <a href="#hero" class="left-back">&larr; 返回目录</a>
+  </div>
+  <div class="content-area">
+<div class="detail-section"><h2>联系方式</h2></div>
+<div class="contact-grid"><div class="contact-card"><div class="clabel">手机</div><div class="cval">13450629010</div></div>
+<div class="contact-card"><div class="clabel">邮箱</div><div class="cval">1658047328@qq.com</div></div>
+<div class="contact-card"><div class="clabel">微信</div><div class="cval">Raoyifan007</div></div>
+<div class="contact-card"><div class="clabel">现居</div><div class="cval">广州</div></div></div>
+<div class="detail-section"><h3>求职期望</h3>
+<div class="expect-grid"><div class="expect-item"><span class="elabel">职位</span><span class="eval">影视媒体</span></div>
+<div class="expect-item"><span class="elabel">城市</span><span class="eval">广州</span></div>
+<div class="expect-item"><span class="elabel">期望薪资</span><span class="eval">8K – 11K</span></div></div></div>
+<a class="folio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">查看作品集 &nearr;</a></div>
+</section>
+
+<script>
+(function(){
+  var heroLeft = document.querySelector('.hero > div:first-child');
+  heroLeft.className = 'hero-left';
+
+  // Hero card hover ↔ chapter hover sync
+  var chapters = document.querySelectorAll('.chapter-item');
+  var cards = document.querySelectorAll('.card-item');
+  chapters.forEach(function(item, i) {
+    item.addEventListener('mouseenter', function() {
+      cards.forEach(function(c) { c.style.opacity = '.35'; });
+      if (cards[i]) { cards[i].style.opacity = '1'; if (cards[i]) { cards[i].style.opacity = '1'; cards[i].style.transform = 'scale(1.04)'; }; }
+    });
+    item.addEventListener('mouseleave', function() {
+      cards.forEach(function(c) { c.style.opacity = '1'; c.style.transform = ''; });
+    });
+  });
+})();
+</script>
+
+<div class="light-leaks"><div class="ll-streak"></div></div>
+
+</body>
+</html>
