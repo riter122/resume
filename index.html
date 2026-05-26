@@ -72,7 +72,8 @@ body {
 
 /* ═══════════ SLIDE 1 — MAGAZINE COVER (LO-FI style) ═══════════ */
 .cover {
-  display: grid; grid-template-columns: 1fr 1fr; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; padding: 0;
+  align-items: stretch;
 }
 
 .cover-text {
@@ -119,25 +120,22 @@ body {
 
 /* Right: full-bleed portrait */
 .cover-photo {
-  position: relative; overflow: hidden; background: var(--gray-dark);
-}
-.cover-photo img {
-  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  position: relative; overflow: hidden;
+  background-color: var(--gray-dark);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
 /* ═══════════ SLIDE 2 — ABOUT (editorial spread) ═══════════ */
 .about {
-  display: grid; grid-template-columns: 1fr 1.4fr; gap: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1.4fr; grid-template-rows: 1fr; gap: 0; padding: 0;
+  align-items: stretch;
 }
 .about-photo {
-  position: relative; overflow: hidden; background: var(--gray-dark);
-}
-.about-photo img {
-  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  position: relative; overflow: hidden;
+  background-color: var(--gray-dark);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .about-text {
   display: flex; flex-direction: column; justify-content: center;
@@ -172,15 +170,14 @@ body {
 
 /* ═══════════ SLIDE 3–6 — PROJECT (i-D style spread) ═══════════ */
 .proj {
-  display: grid; grid-template-columns: 1.3fr 1fr; gap: 0;
+  display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr; gap: 0;
+  align-items: stretch;
 }
 .proj-photo {
-  position: relative; overflow: hidden; background: var(--gray-dark);
-}
-.proj-photo img {
-  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  position: relative; overflow: hidden;
+  background-color: var(--gray-dark);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
 .proj-info {
@@ -223,15 +220,14 @@ body {
 
 /* ═══════════ SLIDE 7 — EXPERIENCE ═══════════ */
 .experience {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0; padding: 0;
+  align-items: stretch;
 }
 .exp-photo {
-  position: relative; overflow: hidden; background: var(--gray-dark);
-}
-.exp-photo img {
-  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  position: relative; overflow: hidden;
+  background-color: var(--gray-dark);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
 .exp-text {
@@ -290,15 +286,14 @@ body {
 
 /* ═══════════ SLIDE 8 — SKILLS + CONTACT ═══════════ */
 .final {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0; padding: 0;
+  align-items: stretch;
 }
 .final-photo {
-  position: relative; overflow: hidden; background: var(--gray-dark);
-}
-.final-photo img {
-  position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: cover;
+  position: relative; overflow: hidden;
+  background-color: var(--gray-dark);
+  background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
 .final-text {
@@ -418,17 +413,13 @@ body {
       <span class="ctag">视频拍摄</span>
     </div>
   </div>
-  <div class="cover-photo">
-    <img src="images/portrait.jpg" alt="Portrait" onerror="this.style.opacity='0'">
-  </div>
+  <div class="cover-photo" style="background-image: url('images/portrait.jpg');"></div>
   <div class="cover-red-dot"></div>
 </section>
 
 <!-- ═══════════ SLIDE 2 — ABOUT ═══════════ -->
 <section class="slide about" id="slide2">
-  <div class="about-photo">
-    <img src="images/about.jpg" alt="About" onerror="this.style.opacity='0'">
-  </div>
+  <div class="about-photo" style="background-image: url('images/about.jpg');"></div>
   <div class="about-text">
     <div class="sec-num fade-up">EDITOR'S NOTE</div>
     <div class="sec-title fade-up">关于我</div>
@@ -448,9 +439,7 @@ body {
 
 <!-- ═══════════ SLIDE 3 — PROJECT 1 ═══════════ -->
 <section class="slide proj" id="slide3">
-  <div class="proj-photo">
-    <img src="images/project-01.jpg" alt="岭南踏青" onerror="this.style.opacity='0'">
-  </div>
+  <div class="proj-photo" style="background-image: url('images/project-01.jpg');"></div>
   <div class="proj-info">
     <div class="pj-num fade-up">SELECTED WORKS / 01</div>
     <div class="pj-title fade-up">
@@ -466,9 +455,7 @@ body {
 
 <!-- ═══════════ SLIDE 4 — PROJECT 2 ═══════════ -->
 <section class="slide proj" id="slide4">
-  <div class="proj-photo">
-    <img src="images/project-02.jpg" alt="大年初四迎财神" onerror="this.style.opacity='0'">
-  </div>
+  <div class="proj-photo" style="background-image: url('images/project-02.jpg');"></div>
   <div class="proj-info">
     <div class="pj-num fade-up">SELECTED WORKS / 02</div>
     <div class="pj-title fade-up">
@@ -484,9 +471,7 @@ body {
 
 <!-- ═══════════ SLIDE 5 — PROJECT 3 ═══════════ -->
 <section class="slide proj" id="slide5">
-  <div class="proj-photo">
-    <img src="images/project-03.jpg" alt="鱼灯游岭南" onerror="this.style.opacity='0'">
-  </div>
+  <div class="proj-photo" style="background-image: url('images/project-03.jpg');"></div>
   <div class="proj-info">
     <div class="pj-num fade-up">SELECTED WORKS / 03</div>
     <div class="pj-title fade-up">
@@ -502,9 +487,7 @@ body {
 
 <!-- ═══════════ SLIDE 6 — PROJECT 4 ═══════════ -->
 <section class="slide proj" id="slide6">
-  <div class="proj-photo">
-    <img src="images/project-04.jpg" alt="岁启新元" onerror="this.style.opacity='0'">
-  </div>
+  <div class="proj-photo" style="background-image: url('images/project-04.jpg');"></div>
   <div class="proj-info">
     <div class="pj-num fade-up">SELECTED WORKS / 04</div>
     <div class="pj-title fade-up">
@@ -520,9 +503,7 @@ body {
 
 <!-- ═══════════ SLIDE 7 — EXPERIENCE ═══════════ -->
 <section class="slide experience" id="slide7">
-  <div class="exp-photo">
-    <img src="images/experience.jpg" alt="Experience" onerror="this.style.opacity='0'">
-  </div>
+  <div class="exp-photo" style="background-image: url('images/experience.jpg');"></div>
   <div class="exp-text">
     <div class="sec-num fade-up">EXPERIENCE</div>
     <div class="sec-title fade-up">工作经历</div>
@@ -553,9 +534,7 @@ body {
 
 <!-- ═══════════ SLIDE 8 — SKILLS + CONTACT ═══════════ -->
 <section class="slide final" id="slide8">
-  <div class="final-photo">
-    <img src="images/contact.jpg" alt="Contact" onerror="this.style.opacity='0'">
-  </div>
+  <div class="final-photo" style="background-image: url('images/contact.jpg');"></div>
   <div class="final-text">
     <div class="sec-num fade-up">SKILLSET &amp; CONTACT</div>
     <div class="sec-title fade-up">技能 & 联系</div>
