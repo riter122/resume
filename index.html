@@ -512,6 +512,7 @@ body::before {
   /* 2. 左侧数字不裁切 */
   .left-num {
     font-size:52px; letter-spacing:-2px; line-height:1;
+    color:var(--white);
   }
   .left-title {
     font-size:18px; letter-spacing:3px; margin-top:8px;
@@ -542,69 +543,77 @@ body::before {
     font-size:9px; letter-spacing:2px;
   }
 
-  /* 4. 工作经历 & 专业技能 排版优化（参考联系方式板块间距） */
-  .exp-item { margin-bottom:24px; }
-  .exp-date { font-size:9px; letter-spacing:3px; }
-  .exp-company { font-size:19px; letter-spacing:1px; }
-  .exp-company .exp-en { font-size:.5em; }
-  .exp-role { font-size:11px; letter-spacing:2px; margin-bottom:10px; }
-  .exp-list li {
-    font-size:12px; line-height:1.7; padding-left:12px; margin-bottom:3px;
+  /* 4. 工作经历 —— 图片保持大尺寸（裁切不缩放），允许叠层内容自然延伸 */
+  .profile-cover { margin-bottom:24px; overflow:visible; }
+  .profile-overlay {
+    padding:24px 20px 20px;
   }
-  .exp-highlight { font-size:11px; letter-spacing:2px; padding:6px 12px; }
+  .profile-overlay h2 {
+    font-size:clamp(18px,3.5vw,28px); letter-spacing:1px;
+  }
+  .profile-overlay .sub {
+    font-size:10px; letter-spacing:2px;
+  }
+  .profile-overlay .pull-quote {
+    font-size:12px; line-height:1.5; padding-left:10px; border-left-width:2px;
+  }
+  .profile-overlay .detail-section {
+    margin-bottom:12px;
+  }
+  .profile-overlay .detail-section h3 {
+    font-size:10px; letter-spacing:3px; margin-bottom:6px;
+  }
+  .profile-overlay .item-desc {
+    font-size:12px; line-height:1.6;
+  }
+  .profile-overlay .tag {
+    font-size:9px; letter-spacing:2px; padding:4px 10px;
+  }
+
+  .exp-item { margin-bottom:20px; }
+  .exp-company { font-size:17px; line-height:1.2; word-break:keep-all; }
+  .exp-meta { margin-bottom:4px; }
+  .exp-date { font-size:9px; }
+  .exp-role { font-size:10px; margin-bottom:6px; }
+  .exp-list li {
+    font-size:11px; line-height:1.6; padding-left:10px; word-break:keep-all; overflow-wrap:break-word;
+  }
+  .exp-highlight { font-size:10px; padding:5px 10px; }
+
+  /* 5. 专业技能 —— 图片保持 21:9 比例（裁切不缩放），允许叠层内容自然延伸 */
+  .skills-cover { margin-bottom:8px; overflow:visible; }
+  /* 不设 aspect-ratio，保持 PC 端 21:9 */
+  .skills-overlay {
+    padding:16px 16px 12px;
+  }
+  .skills-overlay .skill-group {
+    margin-bottom:8px;
+  }
+  .skills-overlay .skill-cat {
+    font-size:9px; letter-spacing:3px;
+  }
+  .skills-overlay .tag {
+    font-size:9px; letter-spacing:1px; padding:4px 8px;
+  }
 
   .skill-group { margin-bottom:20px; }
   .skill-cat { font-size:9px; letter-spacing:3px; margin-bottom:8px; }
   .tag { font-size:10px; letter-spacing:1px; padding:5px 10px; }
 
-  .skills-cover { margin-bottom:6px; }
-  .skills-overlay { padding:20px 24px; }
-  .skills-overlay .skill-cat { font-size:10px; letter-spacing:4px; }
-  .skills-overlay .tag { font-size:10px; letter-spacing:2px; padding:5px 12px; }
-
-  /* 5. 内容区通用微调 */
+  /* 6. 内容区通用微调 */
   .content-area { padding:32px 24px 80px; }
-  .item-title { font-size:15px; }
+  .item-title { font-size:14px; }
   .item-sub { font-size:11px; letter-spacing:1px; }
   .item-desc { font-size:13px; line-height:1.7; }
   .detail-section { margin-bottom:32px; }
-  .detail-section h2 { font-size:clamp(24px,3.5vw,32px); }
+  .detail-section h2 { font-size:clamp(20px,3.5vw,28px); }
   .detail-section h3 { font-size:12px; letter-spacing:3px; }
+  .item-head { gap:8px; }
+  .item-date { font-size:10px; }
 
   /* hero 章节导航微调 */
   .chapter-num { font-size:32px; min-width:40px; }
   .chapter-info .ct { font-size:12px; letter-spacing:1px; }
-
-  /* 6. 工作经历 —— 封面图缩小 + 内容区不裁切 */
-  .profile-cover { margin-bottom:24px; }
-  .profile-cover .profile-banner { min-height:240px; }
-  .profile-overlay { padding:18px 20px; }
-  .profile-overlay h2 { font-size:clamp(22px,3.5vw,32px); letter-spacing:1px; }
-  .profile-overlay .sub { font-size:10px; letter-spacing:2px; }
-  .profile-overlay .pull-quote { font-size:13px; line-height:1.6; padding-left:12px; border-left-width:2px; }
-  .profile-overlay .detail-section { margin-bottom:16px; }
-  .profile-overlay .detail-section h3 { font-size:10px; letter-spacing:3px; margin-bottom:8px; }
-
-  .exp-item { margin-bottom:20px; }
-  .exp-company { font-size:17px; line-height:1.2; }
-  .exp-meta { margin-bottom:4px; }
-  .exp-date { font-size:9px; }
-  .exp-role { font-size:10px; margin-bottom:6px; }
-  .exp-list li { font-size:11px; line-height:1.6; padding-left:10px; word-break:break-all; }
-  .exp-highlight { font-size:10px; padding:5px 10px; }
-
-  /* 7. 专业技能 —— 横图比例调高 + overlay 内容不溢出 */
-  .skills-cover { aspect-ratio:16/9; margin-bottom:4px; }
-  .skills-overlay { padding:14px 16px; justify-content:flex-end; }
-  .skills-overlay .skill-group { margin-bottom:10px; }
-  .skills-overlay .skill-cat { font-size:9px; letter-spacing:3px; }
-  .skills-overlay .tag { font-size:9px; letter-spacing:1px; padding:4px 8px; }
-
-  /* 8. 通用内容区：防止横向溢出 */
-  .detail-section h2 { font-size:clamp(20px,3vw,28px); word-break:break-all; }
-  .item-head { gap:8px; }
-  .item-title { font-size:14px; }
-  .item-date { font-size:10px; }
 
 }
 
