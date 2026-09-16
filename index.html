@@ -1,668 +1,220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>饶一凡 — 简历</title>
-<style>
-:root {
-  --red: #8B1A2B;
-  --red-bright: #C41E3A;
-  --red-dark: #3D0F15;
-  --cream: #E8D5C4;
-  --white: #F0EDEB;
-  --black: #0A0A0A;
-  --gray: #8A8A8A;
-  --gray-dark: #1C1C1C;
-  --serif: "Songti SC", "STSong", "SimSun", "Noto Serif CJK SC", "Georgia", serif;
-  --sans: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", "Arial", sans-serif;
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="饶一凡｜短视频拍摄剪辑与AI视觉创作简历">
+  <title>饶一凡｜短视频拍摄剪辑／AI视觉创作</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%230d0d0d'/%3E%3Cpath d='M14 45V17h18c11 0 18 5 18 14s-7 14-18 14H14zm11-9h8c5 0 8-2 8-5s-3-5-8-5h-8v10z' fill='%23b89a62'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#0c0c0c;--panel:#131313;--panel2:#181714;--text:#ebe6dd;--muted:#9b978f;--gold:#b89a62;--gold2:#7f6841;--red:#9b4f55;--teal:#5e8c86;--line:rgba(235,230,221,.12);--nav:188px;--max:1180px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:24px}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.75 "PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;-webkit-font-smoothing:antialiased}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;background:radial-gradient(ellipse at 75% 8%,rgba(184,154,98,.08),transparent 36%),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,80px 100%}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    .skip{position:fixed;left:12px;top:-80px;z-index:100;background:var(--text);color:#111;padding:8px 12px}.skip:focus{top:12px}
+    .side-nav{position:fixed;left:0;top:0;bottom:0;width:var(--nav);z-index:20;border-right:1px solid var(--line);background:rgba(12,12,12,.86);backdrop-filter:blur(18px);padding:28px 22px;display:flex;flex-direction:column}
+    .monogram{font-weight:900;font-size:28px;letter-spacing:-1px;color:var(--gold);text-decoration:none}.monogram span{display:block;color:var(--text);font-size:11px;letter-spacing:3px;font-weight:600;margin-top:-5px}
+    .nav-list{list-style:none;padding:0;margin:auto 0;display:grid;gap:2px}.nav-list a{display:grid;grid-template-columns:28px 1fr;gap:10px;text-decoration:none;padding:9px 0;color:var(--muted);font-size:13px;transition:.25s}.nav-list .num{font:800 12px/1.8 Arial;color:var(--gold2)}.nav-list a:hover,.nav-list a.active{color:var(--text);transform:translateX(4px)}.nav-list a.active .num{color:var(--gold)}
+    .nav-foot{color:#666;font-size:10px;line-height:1.6;letter-spacing:1px;text-transform:uppercase}
+    .mobile-nav{display:none}
+    main{margin-left:var(--nav)}
+    .section{position:relative;border-bottom:1px solid var(--line);padding:104px clamp(28px,6vw,90px)}
+    .inner{width:min(var(--max),100%);margin:0 auto}
+    .eyebrow{color:var(--gold);font:700 12px/1.4 Arial;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}.section-title{font-size:clamp(36px,5vw,72px);line-height:1.04;letter-spacing:-2px;margin:0 0 46px}.section-title small{display:block;color:var(--muted);font:500 12px/1.4 Arial;letter-spacing:5px;margin-top:13px;text-transform:uppercase}
+    .hero{min-height:100svh;padding-top:70px;display:flex;align-items:center;overflow:hidden}.hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(300px,.88fr);gap:clamp(36px,7vw,100px);align-items:center}.hero h1{font-size:clamp(64px,10vw,150px);line-height:.83;letter-spacing:-7px;margin:0;text-transform:uppercase}.hero h1 span{display:block;color:var(--gold);font-size:.46em;letter-spacing:10px;margin-top:18px}.role{font-size:clamp(20px,2.1vw,30px);font-weight:650;letter-spacing:1px;margin:32px 0 18px}.intro{max-width:660px;color:#c5c0b7;font-size:17px}.proof-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.proof-strip span{border:1px solid rgba(184,154,98,.46);background:rgba(184,154,98,.08);padding:6px 10px;color:#ded7c9;font:700 12px/1.3 Arial;letter-spacing:.2px}.meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:14px}.meta b{color:var(--text);font-weight:600}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 17px;border:1px solid var(--gold2);text-decoration:none;font-size:14px;letter-spacing:.5px;transition:.25s;background:transparent;color:var(--text)}.btn.primary{background:var(--gold);color:#111;border-color:var(--gold)}.btn:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    .hero-visual{position:relative;min-height:600px}.frame{position:absolute;overflow:hidden;background:#1a1a1a}.frame img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.05)}.frame-main{right:0;top:0;width:76%;height:74%}.frame-secondary{left:0;bottom:0;width:58%;height:45%;border:10px solid var(--bg)}.frame:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.65))}.frame-label{position:absolute;z-index:2;left:18px;bottom:14px;font:700 11px/1.3 Arial;letter-spacing:2px;color:#fff}.film-mark{position:absolute;right:-22px;bottom:34px;color:var(--gold);font:900 clamp(90px,11vw,150px)/.8 Arial;opacity:.15;font-style:italic}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--panel)}.stat{padding:26px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;font:800 clamp(28px,4vw,50px)/1 Arial;color:var(--gold);margin-bottom:10px}.stat span{color:var(--muted);font-size:13px}
+    .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:42px}.cap{padding:28px;background:var(--panel);border:1px solid var(--line);min-height:200px}.cap-num{font:800 12px Arial;color:var(--gold);letter-spacing:2px}.cap h3{font-size:21px;margin:22px 0 10px}.cap p{color:var(--muted);margin:0;font-size:14px}
+    .timeline{display:grid;gap:28px}.job{display:grid;grid-template-columns:210px 1fr;gap:36px;padding:34px 0;border-top:1px solid var(--line)}.job-date{color:var(--gold);font:700 13px/1.5 Arial;letter-spacing:1px}.job h3{font-size:24px;line-height:1.35;margin:0 0 6px}.job-role{color:var(--teal);font-size:14px;margin-bottom:18px}.job ul{margin:0;padding-left:1.15em;color:#c7c2b9}.job li{margin:8px 0}.highlight{display:inline-block;margin-top:18px;border-left:3px solid var(--gold);padding:5px 14px;color:var(--text);background:linear-gradient(90deg,rgba(184,154,98,.12),transparent)}
+    .case{margin:0 0 96px}.case:last-child{margin-bottom:0}.case-head{display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:end;padding-bottom:20px;border-bottom:1px solid var(--line)}.case-index{font:900 54px/.8 Arial;color:var(--gold);font-style:italic}.case h3{margin:0;font-size:clamp(28px,4vw,48px);line-height:1.1}.case-type{color:var(--muted);font:600 11px Arial;letter-spacing:2px;text-transform:uppercase}.case-body{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:32px}.case-body h4{font-size:13px;color:var(--gold);letter-spacing:2px;margin:0 0 12px}.case-body p,.case-body li{color:#bbb6ad}.case-body ul{padding-left:1.1em;margin:0}.case-body li{margin:8px 0}.solution{background:var(--panel2);border-left:1px solid var(--gold2);padding:24px}.result-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.result-strip span{border:1px solid var(--line);padding:7px 11px;font-size:12px;color:#d1ccc3}
+    .case-proof{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:24px;margin-top:30px;padding:18px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(184,154,98,.08),transparent 40%),var(--panel)}.case-proof:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent 42px,rgba(184,154,98,.05) 43px);pointer-events:none}.case-photo,.case-ai-image{position:relative;z-index:1;overflow:hidden;background:#0a0a0a}.case-photo{min-height:310px}.case-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.06)}.proof-caption{position:absolute;left:14px;bottom:12px;z-index:2;margin:0;color:#f3eee4;font:700 11px/1.4 Arial;letter-spacing:1.3px;text-shadow:0 2px 8px #000}.proof-copy{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;padding:10px}.proof-copy h4{margin:0 0 14px}.proof-copy p{margin:0;color:#c7c1b8}.proof-copy .result-strip{margin-top:20px}.ai-proof{grid-template-columns:minmax(220px,.6fr) minmax(0,1.4fr);align-items:stretch;background:linear-gradient(120deg,rgba(184,154,98,.12),transparent 47%),var(--panel)}.case-ai-image{min-height:420px}.case-ai-image img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04)}.case-ai-image:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.7))}.motion-proof{position:relative;z-index:1;padding:18px 12px}.motion-proof h4{margin:0 0 18px}.workflow{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.step{background:var(--panel);padding:20px;min-height:118px}.step b{display:block;color:var(--gold);font:800 12px Arial;margin-bottom:12px}.step span{font-size:14px;color:#c0bbb2}
+    .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}.work-card{position:relative;min-height:290px;overflow:hidden;background:#151515}.work-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:.5s}.work-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.9))}.work-info{position:absolute;z-index:2;left:22px;right:22px;bottom:18px}.work-info b{font-size:18px}.work-info span{float:right;color:var(--gold);font:700 13px Arial}.work-card:hover img{transform:scale(1.035);filter:saturate(1.12)}
+    .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.skill-group{border-top:1px solid var(--line);padding:26px 0}.skill-group h3{font-size:15px;color:var(--gold);margin:0 0 15px}.tags{display:flex;flex-wrap:wrap;gap:9px}.tag{padding:7px 11px;background:var(--panel);border:1px solid var(--line);color:#c8c3ba;font-size:13px}
+    .education-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px}.edu-card{padding:34px;border:1px solid var(--line);background:var(--panel)}.edu-card h3{font-size:24px;margin:0 0 5px}.edu-card .degree{color:var(--teal)}.edu-card p{color:var(--muted)}.honors{display:grid;gap:12px}.honor{padding:18px 20px;border-left:2px solid var(--gold);background:var(--panel)}
+    .contact{min-height:48vh;display:flex;align-items:center}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end}.contact h2{font-size:clamp(48px,8vw,110px);line-height:.9;margin:0;letter-spacing:-4px}.contact-copy{color:var(--muted);max-width:580px;margin-top:26px}.contact-list{display:grid;gap:12px}.contact-item{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-bottom:1px solid var(--line)}.contact-item span{color:var(--muted);font-size:13px}.copy-btn{border:0;background:none;color:var(--text);cursor:pointer;text-align:right;padding:0}.copy-btn:hover{color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+    footer{margin-left:var(--nav);padding:22px clamp(28px,6vw,90px);color:#6d6962;font-size:11px;letter-spacing:1px}
+    @media(max-width:900px){:root{--nav:0px}.side-nav{display:none}.mobile-nav{display:flex;position:sticky;top:0;z-index:30;height:58px;align-items:center;justify-content:space-between;padding:0 18px;background:rgba(12,12,12,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.mobile-nav .monogram{font-size:22px}.mobile-menu{display:flex;gap:14px;overflow-x:auto;margin-left:18px}.mobile-menu a{white-space:nowrap;text-decoration:none;color:var(--muted);font-size:12px}.mobile-menu a.active{color:var(--gold)}main,footer{margin-left:0}.section{padding:76px 22px}.hero{min-height:auto;padding-top:70px}.hero-grid{grid-template-columns:1fr}.hero h1{letter-spacing:-4px}.hero-visual{min-height:470px}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.cap-grid,.case-body,.skills-grid,.education-grid,.contact-grid,.case-proof,.ai-proof{grid-template-columns:1fr}.job{grid-template-columns:1fr;gap:10px}.case-head{grid-template-columns:66px 1fr}.case-type{grid-column:2}.workflow{grid-template-columns:repeat(2,1fr)}.works-grid{grid-template-columns:1fr}.case-photo{min-height:280px}.case-ai-image{min-height:390px}.contact{min-height:auto}}
+    @media(max-width:520px){.hero h1{font-size:58px}.hero h1 span{letter-spacing:5px}.hero-visual{min-height:390px}.frame-main{width:84%;height:72%}.frame-secondary{width:64%;height:42%}.section-title{font-size:38px}.stats{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)!important}.stat:last-child{border-bottom:0!important}.cap-grid,.workflow{grid-template-columns:1fr}.case-head{grid-template-columns:52px 1fr}.case-index{font-size:40px}.contact h2{font-size:54px;letter-spacing:-2px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.work-card img,.btn,.nav-list a{transition:none}}
+    @media print{.side-nav,.mobile-nav,.hero-actions{display:none!important}main,footer{margin:0}.section{padding:40px;break-inside:avoid}.hero{min-height:auto}.reveal{opacity:1;transform:none}}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: var(--sans);
-  background: var(--black);
-  color: var(--white);
-  -webkit-font-smoothing: antialiased;
-  overflow: hidden;
-}
-
-/* ═══════════ PRESENTATION CONTAINER ═══════════ */
-.preso {
-  height: 100vh; width: 100vw;
-  overflow-y: scroll; overflow-x: hidden;
-  scroll-snap-type: y mandatory;
-}
-
-/* ═══════════ SLIDE ═══════════ */
-.slide {
-  height: 100vh; width: 100vw;
-  scroll-snap-align: start;
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* ═══════════ NAV DOTS ═══════════ */
-.nav-dots {
-  position: fixed; right: 16px; top: 50%; transform: translateY(-50%);
-  z-index: 100; display: flex; flex-direction: column; gap: 8px;
-}
-.nav-dot {
-  width: 4px; height: 20px; border-radius: 2px;
-  background: rgba(255,255,255,.08);
-  cursor: pointer; transition: all .4s ease;
-  border: none; padding: 0;
-}
-.nav-dot.active { background: var(--red-bright); height: 32px; }
-
-/* ═══════════ TOP MASTHEAD ═══════════ */
-.masthead {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
-  padding: 14px 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  mix-blend-mode: difference; pointer-events: none;
-}
-.masthead .mag-title {
-  font-size: 10px; letter-spacing: 8px; color: var(--white); font-weight: 700;
-}
-.masthead .issue {
-  font-size: 9px; letter-spacing: 4px; color: var(--gray);
-}
-
-/* ═══════════ SLIDE 1 — MAGAZINE COVER (LO-FI style) ═══════════ */
-.cover {
-  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; padding: 0;
-  align-items: stretch;
-}
-
-.cover-text {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 40px 80px 8vw;
-  position: relative; z-index: 2;
-}
-.cover-kicker {
-  font-size: 11px; letter-spacing: 10px;
-  color: var(--cream); margin-bottom: 20px; font-weight: 700;
-}
-.cover-title-en {
-  font-size: clamp(28px, 3.5vw, 48px);
-  font-weight: 900; letter-spacing: 12px;
-  color: var(--cream); line-height: 1; margin-bottom: 4px;
-}
-.cover-title-cn {
-  font-family: var(--serif);
-  font-size: clamp(72px, 11vw, 150px);
-  font-weight: 900; line-height: .85; letter-spacing: -2px;
-  color: var(--white);
-}
-.cover-title-cn .hl { color: var(--red-bright); }
-.cover-sub {
-  font-family: var(--serif);
-  font-size: clamp(14px, 1.6vw, 20px);
-  font-weight: 600; letter-spacing: 6px;
-  color: var(--gray); margin-top: 20px;
-}
-.cover-tags {
-  display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap;
-}
-.cover-tags .ctag {
-  font-size: 9px; letter-spacing: 4px; color: var(--gray);
-  border: 1px solid rgba(255,255,255,.1); padding: 4px 12px;
-}
-
-/* Red circle accent — LO-FI style */
-.cover-red-dot {
-  position: absolute; bottom: 12%; left: 20%;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--red-bright); z-index: 3; opacity: .9;
-}
-
-/* Right: full-bleed portrait */
-.cover-photo {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-  background-color: var(--gray-dark);
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-
-/* ═══════════ SLIDE 2 — ABOUT (editorial spread) ═══════════ */
-.about {
-  display: grid; grid-template-columns: 1fr 1.4fr; grid-template-rows: 1fr; gap: 0; padding: 0;
-  align-items: stretch;
-}
-.about-photo {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-  background-color: var(--gray-dark);
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-.about-text {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 64px;
-}
-.about-text .sec-num {
-  font-size: 10px; letter-spacing: 8px; color: var(--red-bright);
-  margin-bottom: 16px; font-weight: 700;
-}
-.about-text .sec-title {
-  font-family: var(--serif);
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 900; letter-spacing: -1px;
-  line-height: 1.05; margin-bottom: 40px;
-}
-.about-text .pull-quote {
-  font-family: var(--serif);
-  font-size: clamp(16px, 1.8vw, 22px);
-  font-weight: 600; line-height: 1.7; letter-spacing: 2px;
-  color: var(--cream);
-  padding-left: 18px; border-left: 2px solid var(--red-bright);
-  margin-bottom: 28px;
-}
-.about-text .pull-quote .hl {
-  background: var(--red); color: var(--white); padding: 1px 8px;
-}
-.about-text .tag-row {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  font-size: 10px; letter-spacing: 4px; color: var(--gray);
-}
-.about-text .tag-row span { color: var(--red-bright); font-weight: 600; }
-
-/* ═══════════ SLIDE 3–6 — PROJECT (i-D style spread) ═══════════ */
-.proj {
-  display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr; gap: 0;
-  align-items: stretch;
-}
-.proj-photo {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-  background-color: var(--gray-dark);
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-
-.proj-info {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 56px; position: relative;
-}
-.proj-info .pj-num {
-  font-size: 10px; letter-spacing: 8px; color: var(--red-bright);
-  margin-bottom: 20px; font-weight: 700;
-}
-.proj-info .pj-title {
-  font-family: var(--serif);
-  font-size: clamp(32px, 5vw, 60px);
-  font-weight: 900; line-height: .95;
-  letter-spacing: -2px; margin-bottom: 8px;
-  color: var(--white);
-}
-.proj-info .pj-title .line { display: block; }
-.proj-info .pj-title .line.small {
-  font-size: .45em; letter-spacing: 4px;
-  color: var(--gray); font-family: var(--sans); margin-top: 4px;
-}
-.proj-info .pj-views {
-  font-size: 11px; letter-spacing: 3px; color: var(--cream);
-  margin-bottom: 24px; font-weight: 600;
-}
-.proj-info .pj-desc {
-  font-family: var(--serif);
-  font-size: 14px; line-height: 1.8; color: var(--gray);
-  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
-}
-.proj-info .pj-link {
-  display: inline-flex; align-items: center; gap: 10px;
-  margin-top: 24px; font-size: 10px; letter-spacing: 6px;
-  color: var(--red-bright); text-decoration: none;
-  font-weight: 700; transition: gap .3s;
-}
-.proj-info .pj-link::after { content: '↗'; font-size: 14px; }
-.proj-info .pj-link:hover { gap: 18px; }
-
-/* ═══════════ SLIDE 7 — EXPERIENCE ═══════════ */
-.experience {
-  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0; padding: 0;
-  align-items: stretch;
-}
-.exp-photo {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-  background-color: var(--gray-dark);
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-
-.exp-text {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 56px; overflow-y: auto; max-height: 100vh;
-}
-.exp-text .sec-num {
-  font-size: 10px; letter-spacing: 8px; color: var(--red-bright);
-  margin-bottom: 12px; font-weight: 700;
-}
-.exp-text .sec-title {
-  font-family: var(--serif);
-  font-size: clamp(32px, 4.5vw, 52px);
-  font-weight: 900; letter-spacing: -1px;
-  line-height: 1.05; margin-bottom: 36px;
-}
-.exp-list { display: flex; flex-direction: column; gap: 36px; }
-.exp-item { position: relative; padding-left: 18px; }
-.exp-item::before {
-  content: '';
-  position: absolute; left: 0; top: 4px; bottom: 0;
-  width: 1px; background: var(--red);
-}
-.exp-item .e-date {
-  font-size: 9px; letter-spacing: 4px; color: var(--gray); margin-bottom: 4px;
-}
-.exp-item .e-company {
-  font-family: var(--serif);
-  font-size: 16px; font-weight: 700; letter-spacing: 1px;
-  margin-bottom: 2px; color: var(--white);
-}
-.exp-item .e-role {
-  font-size: 12px; font-weight: 600; letter-spacing: 2px;
-  color: var(--red-bright); margin-bottom: 10px;
-}
-.exp-item .e-detail {
-  font-size: 12px; line-height: 1.8; color: var(--gray); list-style: none;
-}
-.exp-item .e-detail li { margin-bottom: 3px; padding-left: 12px; position: relative; }
-.exp-item .e-detail li::before { content: '→'; position: absolute; left: -4px; color: var(--red-bright); font-size: 10px; }
-.exp-item .e-highlight {
-  margin-top: 12px; padding: 6px 14px;
-  background: var(--red-dark); color: var(--white);
-  font-size: 11px; font-weight: 600; letter-spacing: 1px;
-  display: inline-block;
-}
-.exp-item .e-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-.e-tag {
-  font-size: 8px; letter-spacing: 2px;
-  padding: 4px 10px;
-  border: 1px solid rgba(255,255,255,.08);
-  color: var(--gray); transition: all .3s;
-  cursor: default;
-}
-.e-tag:hover { border-color: var(--red-bright); color: var(--red-bright); }
-
-/* ═══════════ SLIDE 8 — SKILLS + CONTACT ═══════════ */
-.final {
-  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; gap: 0; padding: 0;
-  align-items: stretch;
-}
-.final-photo {
-  width: 100%; height: 100%;
-  position: relative; overflow: hidden;
-  background-color: var(--gray-dark);
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-}
-
-.final-text {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 56px; gap: 24px;
-}
-.final-text .sec-num {
-  font-size: 10px; letter-spacing: 8px; color: var(--red-bright);
-  margin-bottom: 4px; font-weight: 700;
-}
-.final-text .sec-title {
-  font-family: var(--serif);
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 900; letter-spacing: -1px;
-  line-height: 1.05; margin-bottom: 8px;
-}
-
-.skill-groups { display: flex; flex-direction: column; gap: 18px; }
-.skill-group .skill-cat {
-  font-size: 8px; letter-spacing: 5px; color: var(--gray);
-  margin-bottom: 8px;
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.skill-tag {
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  padding: 7px 16px; color: var(--white);
-  border: 1px solid rgba(255,255,255,.12);
-  transition: all .3s ease; cursor: default;
-}
-.skill-tag:hover { border-color: var(--red-bright); background: var(--red); }
-
-.info-blocks { display: flex; flex-direction: column; gap: 14px; }
-.info-blocks .ib h3 {
-  font-family: var(--serif);
-  font-size: 10px; letter-spacing: 5px; color: var(--red-bright);
-  margin-bottom: 8px;
-}
-.info-blocks .ib p {
-  font-size: 12px; line-height: 1.9; color: var(--gray);
-}
-.info-blocks .ib p strong { color: var(--white); font-weight: 600; }
-
-.final-footer {
-  margin-top: 8px; padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,.04);
-  display: flex; justify-content: space-between; align-items: center; gap: 16px;
-}
-.final-footer .copy { font-size: 9px; letter-spacing: 4px; color: var(--gray); }
-.final-footer .folio-link {
-  font-size: 10px; letter-spacing: 3px; color: var(--white);
-  text-decoration: none; font-weight: 700;
-  padding: 7px 18px; border: 1px solid var(--red-bright);
-  transition: all .3s;
-}
-.final-footer .folio-link:hover { background: var(--red-bright); }
-
-/* ═══════════ ANIMATIONS ═══════════ */
-.fade-up {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity .7s ease .1s, transform .7s cubic-bezier(0.22, 0.61, 0.36, 1) .1s;
-}
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-/* ═══════════ MOBILE ═══════════ */
-@media (max-width: 768px) {
-  .cover { grid-template-columns: 1fr; }
-  .cover-text { padding: 80px 6vw 40px; }
-  .cover-photo { min-height: 40vh; }
-  .cover-red-dot { width: 36px; height: 36px; bottom: 8%; left: 12%; }
-
-  .about { grid-template-columns: 1fr; }
-  .about-photo { min-height: 30vh; }
-  .about-text { padding: 32px 6vw; }
-
-  .proj { grid-template-columns: 1fr; }
-  .proj-photo { min-height: 35vh; }
-  .proj-info { padding: 32px 6vw; }
-
-  .experience { grid-template-columns: 1fr; }
-  .exp-photo { min-height: 25vh; }
-  .exp-text { padding: 32px 6vw; max-height: none; }
-
-  .final { grid-template-columns: 1fr; }
-  .final-photo { min-height: 25vh; }
-  .final-text { padding: 32px 6vw; }
-
-  .masthead { padding: 10px 16px; }
-  .nav-dots { right: 8px; gap: 6px; }
-  .nav-dot { width: 3px; height: 16px; }
-  .nav-dot.active { height: 24px; }
-}
-</style>
+    /* Airy editorial rhythm: fewer containers, stronger hierarchy, more reading space. */
+    :root{--bg:#050505;--panel:#0d0d0f;--panel2:#111113;--text:#f5f5f7;--muted:#a1a1a6;--line:rgba(245,245,247,.10);--nav:176px;--max:1120px}
+    body{font-size:17px;line-height:1.72;letter-spacing:.01em}
+    body:before{background:radial-gradient(ellipse at 76% 8%,rgba(184,154,98,.09),transparent 34%)}
+    .side-nav{padding:34px 24px;background:rgba(5,5,5,.82)}
+    .section{padding:136px clamp(34px,7vw,112px)}
+    .eyebrow{margin-bottom:24px}
+    .section-title{margin-bottom:64px;letter-spacing:-3px}
+    .hero{padding-top:92px}
+    .hero-grid{gap:clamp(54px,8vw,112px)}
+    .hero h1{letter-spacing:-8px}
+    .role{margin:40px 0 22px}
+    .intro{max-width:620px;font-size:18px;line-height:1.82;color:#d1d1d6}
+    .proof-strip{gap:10px;margin-top:30px}.proof-strip span{padding:8px 12px}
+    .meta{margin-top:28px}.hero-actions{margin-top:42px}
+    .stats{border:0;background:transparent;gap:0}
+    .stat{padding:6px 30px 30px 0;border-right:0;border-bottom:1px solid var(--line)}
+    .stat strong{margin-bottom:14px}.stat span{font-size:14px}
+    .cap-grid{gap:24px;margin-top:60px}
+    .cap{padding:38px 36px;min-height:220px;border:0;border-top:1px solid var(--line)}
+    .cap h3{font-size:23px;margin:34px 0 14px}.cap p{font-size:16px;line-height:1.75}
+    .timeline{gap:0}.job{grid-template-columns:180px 1fr;gap:54px;padding:52px 0}
+    .job h3{font-size:27px}.job-role{margin-bottom:22px}.job ul{max-width:760px}.job li{margin:12px 0}
+    .case{margin-bottom:144px}.case-head{grid-template-columns:76px 1fr auto;padding-bottom:28px}
+    .case-index{font-size:48px}.case h3{font-size:clamp(30px,4vw,52px)}
+    .case-body{gap:72px;margin-top:46px}.case-body h4{margin-bottom:16px}
+    .case-body p,.case-body li{font-size:16px;line-height:1.78}
+    .solution{padding:0 0 0 32px;background:transparent}
+    .result-strip{gap:12px;margin-top:28px}.result-strip span{padding:8px 12px;font-size:13px}
+    .case-proof{gap:42px;margin-top:48px;padding:0;border:0;background:transparent}
+    .case-proof:before{display:none}.case-photo{min-height:400px}.proof-copy{padding:28px 0}
+    .proof-copy p{font-size:16px;line-height:1.8}.ai-proof{background:transparent}
+    .case-ai-image{min-height:500px}.motion-proof{padding:24px 0 24px 12px}
+    .workflow{gap:14px;background:transparent;border:0}.step{padding:26px;min-height:132px;border-top:1px solid var(--line)}
+    .step span{font-size:15px;line-height:1.65}
+    .works-grid{gap:22px;margin-top:38px}.work-card{min-height:330px}
+    .skills-grid{gap:32px 70px}.skill-group{padding:34px 0}.tags{gap:12px}.tag{padding:9px 13px;font-size:14px}
+    .education-grid{gap:70px}.edu-card{padding:42px;border:0;border-top:1px solid var(--line)}
+    .honor{padding:22px 0;background:transparent;border-left:0;border-top:1px solid var(--line)}
+    .contact{min-height:58vh}.contact-grid{gap:90px}.contact-item{padding:19px 0}
+    @media(max-width:900px){.section{padding:96px 24px}.hero{padding-top:76px}.job{gap:14px;padding:42px 0}.case{margin-bottom:104px}.case-body{gap:30px}.case-proof{gap:28px}.case-photo{min-height:320px}.case-ai-image{min-height:420px}}
+    @media(max-width:520px){body{font-size:16px}.section{padding:78px 20px}.section-title{margin-bottom:44px;letter-spacing:-2px}.hero h1{letter-spacing:-4px}.intro{font-size:16px}.stat{padding:22px 0}.case-head{grid-template-columns:52px 1fr}.case-body{margin-top:32px}.solution{padding:24px 0 0;border-left:0;border-top:1px solid var(--line)}.workflow{gap:10px}.step{min-height:auto}.work-card{min-height:260px}}
+  </style>
 </head>
 <body>
-
-<div class="masthead">
-  <div class="mag-title">RAO YIFAN</div>
-  <div class="issue">ISSUE NO.01 — 2026</div>
-</div>
-
-<nav class="nav-dots" id="navDots"></nav>
-
-<div class="preso" id="preso">
-
-<!-- ═══════════ SLIDE 1 — MAGAZINE COVER ═══════════ -->
-<section class="slide cover" id="slide1">
-  <div class="cover-text">
-    <div class="cover-kicker fade-up">FILM &amp; MEDIA / GUANGZHOU</div>
-    <div class="cover-title-en fade-up">RAO YIFAN</div>
-    <h1 class="cover-title-cn fade-up">
-      饶一<span class="hl">凡</span>
-    </h1>
-    <p class="cover-sub fade-up">用镜头写岭南故事</p>
-    <div class="cover-tags fade-up">
-      <span class="ctag">内容创作</span>
-      <span class="ctag">文旅策划</span>
-      <span class="ctag">视频拍摄</span>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <nav class="side-nav" aria-label="章节导航">
+    <a class="monogram" href="#profile">RY<span>VISUAL REEL</span></a>
+    <ul class="nav-list">
+      <li><a href="#profile"><span class="num">01</span><span>个人定位</span></a></li>
+      <li><a href="#ability"><span class="num">02</span><span>核心能力</span></a></li>
+      <li><a href="#experience"><span class="num">03</span><span>工作经历</span></a></li>
+      <li><a href="#projects"><span class="num">04</span><span>重点项目</span></a></li>
+      <li><a href="#skills"><span class="num">05</span><span>工具技能</span></a></li>
+      <li><a href="#education"><span class="num">06</span><span>教育证书</span></a></li>
+      <li><a href="#contact"><span class="num">07</span><span>联系方式</span></a></li>
+    </ul>
+    <div class="nav-foot">RAO YIFAN<br>GUANGZHOU · 2026</div>
+  </nav>
+  <nav class="mobile-nav" aria-label="移动端章节导航">
+    <a class="monogram" href="#profile">RY</a>
+    <div class="mobile-menu">
+      <a href="#ability">能力</a><a href="#experience">经历</a><a href="#projects">项目</a><a href="#skills">技能</a><a href="#contact">联系</a>
     </div>
-  </div>
-  <div class="cover-photo" style="background-image: url('images/portrait.jpg');"></div>
-  <div class="cover-red-dot"></div>
-</section>
+  </nav>
 
-<!-- ═══════════ SLIDE 2 — ABOUT ═══════════ -->
-<section class="slide about" id="slide2">
-  <div class="about-photo" style="background-image: url('images/about.jpg');"></div>
-  <div class="about-text">
-    <div class="sec-num fade-up">EDITOR'S NOTE</div>
-    <div class="sec-title fade-up">关于我</div>
-    <p class="pull-quote fade-up">
-      注重<span class="hl">内容创作</span>，有发散性思维，<br>
-      擅长<span class="hl">文旅类</span>策划拍摄。
-    </p>
-    <div class="tag-row fade-up">
-      <span>·</span> 行动力强
-      <span>·</span> 学习能力强
-      <span>·</span> 工作踏实
-      <span>·</span> 2026届应届生
-      <span>·</span> 广东文艺职业学院 · 电子商务
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ SLIDE 3 — PROJECT 1 ═══════════ -->
-<section class="slide proj" id="slide3">
-  <div class="proj-photo" style="background-image: url('images/project-01.jpg');"></div>
-  <div class="proj-info">
-    <div class="pj-num fade-up">SELECTED WORKS / 01</div>
-    <div class="pj-title fade-up">
-      <span class="line">岭南</span>
-      <span class="line">踏青</span>
-      <span class="line small">LINGNAN SPRING</span>
-    </div>
-    <div class="pj-views fade-up">3.5w 播放</div>
-    <div class="pj-desc fade-up">春风入岭南，闲庭花自开。"等闲识得东风面，万紫千红总是春。" 漫步岭南印象园，青石板映着新绿，镬耳屋藏着温柔，小桥流水，草木萌新。</div>
-    <a class="pj-link fade-up" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener">观看作品</a>
-  </div>
-</section>
-
-<!-- ═══════════ SLIDE 4 — PROJECT 2 ═══════════ -->
-<section class="slide proj" id="slide4">
-  <div class="proj-photo" style="background-image: url('images/project-02.jpg');"></div>
-  <div class="proj-info">
-    <div class="pj-num fade-up">SELECTED WORKS / 02</div>
-    <div class="pj-title fade-up">
-      <span class="line">大年初四</span>
-      <span class="line">迎财神</span>
-      <span class="line small">NEW YEAR FORTUNE</span>
-    </div>
-    <div class="pj-views fade-up">5.8w 播放</div>
-    <div class="pj-desc fade-up">大年初四，迎灶神。岭南印象园的年味，藏在清晨的盆桔香里，飘在午后的鱼灯影里。入夜，铁花落，欢声起。这人间烟火，便是最踏实的年。</div>
-    <a class="pj-link fade-up" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener">观看作品</a>
-  </div>
-</section>
-
-<!-- ═══════════ SLIDE 5 — PROJECT 3 ═══════════ -->
-<section class="slide proj" id="slide5">
-  <div class="proj-photo" style="background-image: url('images/project-03.jpg');"></div>
-  <div class="proj-info">
-    <div class="pj-num fade-up">SELECTED WORKS / 03</div>
-    <div class="pj-title fade-up">
-      <span class="line">鱼灯游岭南</span>
-      <span class="line">铁花耀新年</span>
-      <span class="line small">FIRE &amp; LIGHT</span>
-    </div>
-    <div class="pj-views fade-up">6.7w 播放</div>
-    <div class="pj-desc fade-up">华灯初上，岭南印象园的夜被鱼灯点亮，一尾尾鱼灯穿巷而过。当滚烫的铁花腾空而起，星子坠落人间，火树银花炸开了新年的祈愿。</div>
-    <a class="pj-link fade-up" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener">观看作品</a>
-  </div>
-</section>
-
-<!-- ═══════════ SLIDE 6 — PROJECT 4 ═══════════ -->
-<section class="slide proj" id="slide6">
-  <div class="proj-photo" style="background-image: url('images/project-04.jpg');"></div>
-  <div class="proj-info">
-    <div class="pj-num fade-up">SELECTED WORKS / 04</div>
-    <div class="pj-title fade-up">
-      <span class="line">岁启新元</span>
-      <span class="line">粤韵迎新</span>
-      <span class="line small">NEW YEAR'S ODE</span>
-    </div>
-    <div class="pj-views fade-up">7.5w 播放</div>
-    <div class="pj-desc fade-up">岁启新元，粤韵迎新。全运女子醒狮天团霸气登场、千灯夜游醉岭南、1600℃打铁花惊艳绽放、篝火与火壶绝技……感受最地道的岭南年味。</div>
-    <a class="pj-link fade-up" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener">观看作品</a>
-  </div>
-</section>
-
-<!-- ═══════════ SLIDE 7 — EXPERIENCE ═══════════ -->
-<section class="slide experience" id="slide7">
-  <div class="exp-photo" style="background-image: url('images/experience.jpg');"></div>
-  <div class="exp-text">
-    <div class="sec-num fade-up">EXPERIENCE</div>
-    <div class="sec-title fade-up">工作经历</div>
-    <div class="exp-list">
-      <div class="exp-item fade-up">
-        <div class="e-date">2025.06 — 至今</div>
-        <div class="e-company">广州印象文化旅游发展有限公司</div>
-        <div class="e-role">新媒体内容运营 · 市场营销部</div>
-        <ul class="e-detail">
-          <li>独立负责全年新媒体内容的策划、拍摄、剪辑与发布</li>
-          <li>确定宣传方向，有针对性产出文旅类视频内容</li>
-          <li>负责脚本撰写、现场拍摄、后期剪辑到全平台发布的全流程</li>
-        </ul>
-        <div class="e-highlight">马年新年系列宣发视频 — 全平台累计 100w+ 播放量</div>
-        <div class="e-tags">
-          <span class="e-tag">抖音运营</span><span class="e-tag">短视频运营</span><span class="e-tag">视频策划</span><span class="e-tag">视频拍摄</span><span class="e-tag">视频编辑</span><span class="e-tag">Premiere</span><span class="e-tag">脚本撰写</span>
+  <main id="main">
+    <section class="section hero" id="profile">
+      <div class="inner hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">01 / PROFILE</div>
+          <h1>RAO<span>饶一凡</span></h1>
+          <div class="role">短视频拍摄剪辑／AI视觉创作</div>
+          <p class="intro">1年以上文旅与传统文化内容制作经验。独立完成选题、脚本、拍摄、剪辑与多平台发布，并将AI视觉真正应用到项目交付。</p>
+          <div class="proof-strip" aria-label="核心业绩"><span>100万+ 系列播放</span><span>抖音／视频号／小红书</span><span>策划·拍摄·剪辑·AI视觉</span></div>
+          <div class="meta"><span><b>现居</b> 广州</span><span><b>毕业</b> 2026届</span><span><b>到岗</b> 2026年10月起</span></div>
+          <div class="hero-actions"><a class="btn primary" href="#projects">查看重点项目</a><a class="btn" href="resume-rao-yifan.pdf" download>下载纸质简历</a></div>
+        </div>
+        <div class="hero-visual reveal" aria-label="岭南文旅作品画面">
+          <figure class="frame frame-main"><img src="legacy-01.jpg" alt="岭南节庆夜间表演现场"><figcaption class="frame-label">CULTURAL VISUAL · 2026</figcaption></figure>
+          <figure class="frame frame-secondary"><img src="legacy-03.jpg" alt="岭南园林建筑"><figcaption class="frame-label">LINGNAN STORY</figcaption></figure>
+          <div class="film-mark" aria-hidden="true">01</div>
         </div>
       </div>
-      <div class="exp-item fade-up">
-        <div class="e-date">2023.01 — 2025.05</div>
-        <div class="e-company">广州六禾餐饮管理有限公司</div>
-        <div class="e-role">销售经理</div>
-        <ul class="e-detail"><li>分析制定餐饮计划，了解分析客户需求</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ═══════════ SLIDE 8 — SKILLS + CONTACT ═══════════ -->
-<section class="slide final" id="slide8">
-  <div class="final-photo" style="background-image: url('images/contact.jpg');"></div>
-  <div class="final-text">
-    <div class="sec-num fade-up">SKILLSET &amp; CONTACT</div>
-    <div class="sec-title fade-up">技能 & 联系</div>
-
-    <div class="skill-groups fade-up">
-      <div class="skill-group">
-        <div class="skill-cat">剪辑软件</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Premiere</span>
-          <span class="skill-tag">剪映</span>
-          <span class="skill-tag">DaVinci</span>
+    <section class="section" id="ability">
+      <div class="inner">
+        <div class="eyebrow">02 / CORE ABILITY</div>
+        <h2 class="section-title">从现场影像到AI视觉<small>CONTENT · CAMERA · GENERATIVE VISUAL</small></h2>
+        <div class="stats reveal">
+          <div class="stat"><strong>100万+</strong><span>马年系列全平台播放</span></div>
+          <div class="stat"><strong>23.5万</strong><span>4条代表作品累计播放</span></div>
+          <div class="stat"><strong>3平台</strong><span>抖音／视频号／小红书</span></div>
+          <div class="stat"><strong>全流程</strong><span>策划／拍摄／剪辑／发布</span></div>
+        </div>
+        <div class="cap-grid">
+          <article class="cap reveal"><span class="cap-num">A / 01</span><h3>短视频全流程制作</h3><p>从选题、脚本与机位规划，到现场拍摄、素材管理、调色、配乐字幕及多平台发布。</p></article>
+          <article class="cap reveal"><span class="cap-num">A / 02</span><h3>AI动态视觉创作</h3><p>参考图锁定、动作拆解、关键帧设计、时间轴提示词、分段生成与后期衔接。</p></article>
+          <article class="cap reveal"><span class="cap-num">A / 03</span><h3>内容运营与数据复盘</h3><p>跟踪完播率、互动率及播放表现，根据用户反馈调整选题、文案与剪辑节奏。</p></article>
+          <article class="cap reveal"><span class="cap-num">A / 04</span><h3>传统文化视觉表达</h3><p>查阅图像出处，提取真实壁画与地域文化元素，将文化信息转化为可传播的视觉内容。</p></article>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-cat">拍摄设备 + 其他</div>
-        <div class="skill-tags">
-          <span class="skill-tag">微单</span>
-          <span class="skill-tag">Photoshop</span>
-          <span class="skill-tag">Lightroom</span>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="inner">
+        <div class="eyebrow">03 / EXPERIENCE</div>
+        <h2 class="section-title">工作经历<small>PROFESSIONAL EXPERIENCE</small></h2>
+        <div class="timeline">
+          <article class="job reveal"><div class="job-date">2026.06.11<br>— 2026.09.30</div><div><h3>广州耕心圆文化有限公司</h3><div class="job-role">摄影师／内容运营／文案策划／剪辑</div><ul><li>负责敦煌研学活动摄影、视频拍摄、短视频剪辑及公众号内容。</li><li>核查壁画资料与图像出处，结合脚本分镜完成AI动态视觉与宣传素材。</li><li>将现场内容整理为公众号、短视频和线下展示素材，沉淀可复用模板。</li></ul></div></article>
+          <article class="job reveal"><div class="job-date">2025.06<br>— 2026.06.10</div><div><h3>广州塔旅游文化发展股份有限公司经营管理分公司</h3><div class="job-role">新媒体内容运营／市场营销部</div><ul><li>独立完成文旅内容选题、脚本、拍摄、剪辑及三平台发布。</li><li>提前制定活动拍摄清单与机位，针对夜景复杂灯光完成曝光控制与调色。</li><li>根据完播率、互动率和播放表现持续优化选题与剪辑节奏。</li></ul><div class="highlight">马年系列宣传视频 · 全平台累计播放100万+</div></div></article>
+          <article class="job reveal"><div class="job-date">2023.01<br>— 2025.05</div><div><h3>广州六禾餐饮管理有限公司</h3><div class="job-role">销售经理</div><ul><li>根据经营情况制定餐饮销售计划，分析客户需求，积累需求判断、客户沟通与执行推进经验。</li></ul></div></article>
         </div>
       </div>
-      <div class="skill-group">
-        <div class="skill-cat">平台运营</div>
-        <div class="skill-tags">
-          <span class="skill-tag">抖音运营</span>
-          <span class="skill-tag">短视频运营</span>
-          <span class="skill-tag">知识服务平台</span>
-        </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="inner">
+        <div class="eyebrow">04 / SELECTED PROJECTS</div>
+        <h2 class="section-title">重点项目<small>CHALLENGE · SOLUTION · RESULT</small></h2>
+
+        <article class="case reveal">
+          <header class="case-head"><div class="case-index">01</div><h3>敦煌研学活动策划与内容制作</h3><div class="case-type">Cultural Project</div></header>
+          <div class="case-proof"><figure class="case-photo"><img src="project-dunhuang-activity.png" alt="敦煌研学活动现场，参与者观看洞窟壁画内容"><figcaption class="proof-caption">DUNHUANG RESEARCH ACTIVITY · ON-SITE VISUAL RECORD</figcaption></figure><div class="proof-copy"><h4>从资料到现场交付</h4><p>核查壁画资料与图像出处，先做脚本分镜，再承担活动摄影、视频拍摄、剪辑与公众号内容制作。</p><div class="result-strip"><span>线下研学落地</span><span>公众号与短视频</span><span>可复用内容模板</span></div></div></div>
+        </article>
+
+        <article class="case reveal">
+          <header class="case-head"><div class="case-index">02</div><h3>九色鹿／翼马AI动态视觉</h3><div class="case-type">AI Motion Visual</div></header>
+          <div class="case-proof ai-proof"><figure class="case-ai-image"><img src="project-ai-deer.png" alt="九色鹿主题AI视觉成片画面"><figcaption class="proof-caption">AI VISUAL RESULT · CHARACTER MOTION PROJECT</figcaption></figure><div class="motion-proof"><h4>把“会生成”变成“可交付”的流程</h4><div class="workflow" aria-label="AI动画制作流程"><div class="step"><b>01 / REFERENCE</b><span>统一参考图，锁定角色造型与色彩语言</span></div><div class="step"><b>02 / KEYFRAME</b><span>拆解动作，设计关键帧与运动方向</span></div><div class="step"><b>03 / GENERATE</b><span>按时间轴细化提示词，分段生成、多轮筛选</span></div><div class="step"><b>04 / EDIT</b><span>后期修正节奏与结构，完成连续镜头衔接</span></div></div><div class="result-strip"><span>AI视觉成片</span><span>连续播放动画</span><span>可复用流程</span></div></div></div>
+        </article>
+
+        <article class="case reveal">
+          <header class="case-head"><div class="case-index">03</div><h3>岭南文旅短视频系列</h3><div class="case-type">Short-form Video</div></header>
+          <div class="case-body"><div><h4>项目难点</h4><p>大型活动现场不可重复，夜景灯光复杂，且需要在较短时间内完成策划、拍摄、剪辑和发布，同时让传统文化表达更年轻。</p></div><div class="solution"><h4>解决方案</h4><p>提前制定拍摄清单和机位计划，依据活动流程预判关键画面；现场控制曝光，后期统一调色，并建立快速剪辑和多平台发布流程。</p><div class="result-strip"><span>4条作品23.5万播放</span><span>系列内容100万+</span></div></div></div>
+          <p class="case-type" style="margin:26px 0 -12px">点击封面查看代表作品</p><div class="works-grid">
+            <a class="work-card" href="https://v.douyin.com/rjDbZpwbT4Q/" target="_blank" rel="noopener"><img src="legacy-07.jpg" alt="岭南踏青作品封面"><div class="work-info"><b>《岭南踏青》</b><span>3.5万</span></div></a>
+            <a class="work-card" href="https://v.douyin.com/ybh3AKDXY8s/" target="_blank" rel="noopener"><img src="legacy-08.jpg" alt="大年初四迎财神作品封面"><div class="work-info"><b>《大年初四·迎财神》</b><span>5.8万</span></div></a>
+            <a class="work-card" href="https://v.douyin.com/SQrwG1klORI/" target="_blank" rel="noopener"><img src="legacy-09.jpg" alt="鱼灯游岭南铁花耀新年作品封面"><div class="work-info"><b>《鱼灯游岭南·铁花耀新年》</b><span>6.7万</span></div></a>
+            <a class="work-card" href="https://v.douyin.com/WPEHpn8q538/" target="_blank" rel="noopener"><img src="legacy-10.jpg" alt="岁启新元粤韵迎新作品封面"><div class="work-info"><b>《岁启新元，粤韵迎新》</b><span>7.5万</span></div></a>
+          </div>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="info-blocks fade-up">
-      <div class="ib">
-        <h3>联系方式</h3>
-        <p><strong>手机</strong> 13450629010 &nbsp;|&nbsp; <strong>邮箱</strong> 1658047328@qq.com &nbsp;|&nbsp; <strong>微信</strong> Raoyifan007</p>
-      </div>
-      <div class="ib">
-        <h3>求职期望</h3>
-        <p><strong>职位</strong> 影视媒体 &nbsp;|&nbsp; <strong>城市</strong> 广州 &nbsp;|&nbsp; <strong>期望薪资</strong> 8K – 11K</p>
-      </div>
-      <div class="ib">
-        <h3>荣誉 &amp; 证书</h3>
-        <p><strong>广东省525心理宣传视频大赛</strong> 一等奖 &nbsp;|&nbsp; <strong>AOPA</strong> 无人机驾驶员执照 &nbsp;|&nbsp; <strong>驾驶证</strong> C1</p>
-      </div>
-    </div>
+    <section class="section" id="skills">
+      <div class="inner"><div class="eyebrow">05 / SKILLSET</div><h2 class="section-title">工具与技能<small>TOOLS & WORKFLOW</small></h2><div class="skills-grid reveal">
+        <div class="skill-group"><h3>AI视觉工具</h3><div class="tags"><span class="tag">ChatGPT图像生成</span><span class="tag">Midjourney</span><span class="tag">Seedance</span></div></div>
+        <div class="skill-group"><h3>剪辑与后期</h3><div class="tags"><span class="tag">Premiere Pro</span><span class="tag">剪映</span><span class="tag">DaVinci Resolve</span></div></div>
+        <div class="skill-group"><h3>图像与拍摄</h3><div class="tags"><span class="tag">Photoshop</span><span class="tag">Lightroom</span><span class="tag">微单摄影</span><span class="tag">夜景拍摄</span></div></div>
+        <div class="skill-group"><h3>内容平台</h3><div class="tags"><span class="tag">抖音</span><span class="tag">视频号</span><span class="tag">小红书</span><span class="tag">微信公众号</span></div></div>
+      </div></div>
+    </section>
 
-    <div class="final-footer">
-      <div class="copy">© RAO YIFAN · 2026</div>
-      <a class="folio-link" href="https://v.douyin.com/7aAqn9PjOW4/" target="_blank" rel="noopener">作品集 ↗</a>
-    </div>
-  </div>
-</section>
+    <section class="section" id="education">
+      <div class="inner"><div class="eyebrow">06 / EDUCATION</div><h2 class="section-title">教育与证书<small>EDUCATION & HONORS</small></h2><div class="education-grid reveal"><article class="edu-card"><h3>广东文艺职业学院</h3><div class="degree">电子商务 · 大专</div><p>2023—2026｜校内实践：宣传部骨干</p></article><div class="honors"><div class="honor">广东省“525”心理宣传视频大赛一等奖</div><div class="honor">AOPA无人机驾驶员执照</div><div class="honor">C1机动车驾驶证</div></div></div></div>
+    </section>
 
-</div>
-
-<script>
-const preso = document.getElementById('preso');
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
-let currentSlide = 0;
-let isScrolling = false;
-
-const navDots = document.getElementById('navDots');
-for (let i = 0; i < totalSlides; i++) {
-  const dot = document.createElement('button');
-  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
-  dot.dataset.index = i;
-  dot.addEventListener('click', () => goToSlide(i));
-  navDots.appendChild(dot);
-}
-
-function getCurrentSlideIndex() {
-  return Math.round(preso.scrollTop / window.innerHeight);
-}
-
-preso.addEventListener('scroll', () => {
-  const idx = getCurrentSlideIndex();
-  if (idx !== currentSlide && idx >= 0 && idx < totalSlides) {
-    currentSlide = idx;
-    updateDots();
-    animateSlide(slides[idx]);
-  }
-}, { passive: true });
-
-function updateDots() {
-  document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
-}
-
-function animateSlide(slide) {
-  slide.querySelectorAll('.fade-up').forEach(el => {
-    el.classList.remove('visible');
-    void el.offsetWidth;
-    el.classList.add('visible');
-  });
-}
-
-function goToSlide(idx) {
-  if (idx < 0 || idx >= totalSlides || isScrolling) return;
-  isScrolling = true;
-  currentSlide = idx;
-  preso.scrollTo({ top: idx * window.innerHeight, behavior: 'smooth' });
-  updateDots();
-  setTimeout(() => animateSlide(slides[idx]), 400);
-  setTimeout(() => { isScrolling = false; }, 600);
-}
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
-    e.preventDefault(); goToSlide(currentSlide + 1);
-  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
-    e.preventDefault(); goToSlide(currentSlide - 1);
-  } else if (e.key === 'Home') {
-    e.preventDefault(); goToSlide(0);
-  } else if (e.key === 'End') {
-    e.preventDefault(); goToSlide(totalSlides - 1);
-  }
-});
-
-window.addEventListener('load', () => animateSlide(slides[0]));
-
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    preso.scrollTo({ top: currentSlide * window.innerHeight, behavior: 'instant' });
-  }, 200);
-});
-</script>
-
+    <section class="section contact" id="contact">
+      <div class="inner contact-grid"><div class="reveal"><div class="eyebrow">07 / CONTACT</div><h2>一起把<br>画面做成。</h2><p class="contact-copy">短视频拍摄剪辑／AI视觉创作<br>广州 · 2026年10月起可到岗</p></div><div class="contact-list reveal"><div class="contact-item"><span>EMAIL</span><button class="copy-btn" data-copy="1658047328@qq.com">1658047328@qq.com</button></div><div class="contact-item"><span>WECHAT</span><button class="copy-btn" data-copy="Raoyifan007">Raoyifan007</button></div><a class="btn primary" href="resume-rao-yifan.pdf" download>下载两页A4简历</a></div></div>
+    </section>
+  </main>
+  <footer>© 2026 RAO YIFAN · SHORT VIDEO & AI VISUAL</footer>
+  <script>
+    const sections=[...document.querySelectorAll('main section[id]')];
+    const links=[...document.querySelectorAll('nav a[href^="#"]')];
+    const linkMap=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(a=>a.classList.remove('active'));document.querySelectorAll(`a[href="#${entry.target.id}"]`).forEach(a=>a.classList.add('active'));}})},{rootMargin:'-25% 0px -65% 0px'});
+    sections.forEach(s=>observer.observe(s));
+    const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}})},{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{const old=btn.textContent;try{await navigator.clipboard.writeText(btn.dataset.copy);btn.textContent='已复制';setTimeout(()=>btn.textContent=old,1400)}catch{btn.textContent=btn.dataset.copy}}));
+  </script>
 </body>
 </html>
