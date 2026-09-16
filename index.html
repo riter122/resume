@@ -85,6 +85,9 @@
     .contact{min-height:58vh}.contact-grid{gap:90px}.contact-item{padding:19px 0}
     @media(max-width:900px){.section{padding:96px 24px}.hero{padding-top:76px}.job{gap:14px;padding:42px 0}.case{margin-bottom:104px}.case-body{gap:30px}.case-proof{gap:28px}.case-photo{min-height:320px}.case-ai-image{min-height:420px}}
     @media(max-width:520px){body{font-size:16px}.section{padding:78px 20px}.section-title{margin-bottom:44px;letter-spacing:-2px}.hero h1{letter-spacing:-4px}.intro{font-size:16px}.stat{padding:22px 0}.case-head{grid-template-columns:52px 1fr}.case-body{margin-top:32px}.solution{padding:24px 0 0;border-left:0;border-top:1px solid var(--line)}.workflow{gap:10px}.step{min-height:auto}.work-card{min-height:260px}}
+    /* Mobile project proof: preserve the complete image rather than crop it. */
+    .case-photo{aspect-ratio:16/9}.case-ai-image{aspect-ratio:4/5}.case-photo img,.case-ai-image img{object-fit:contain}
+    @media(max-width:900px){.case-photo,.case-ai-image{min-height:0}}
   </style>
 </head>
 <body>
@@ -207,6 +210,10 @@
   </main>
   <footer>© 2026 RAO YIFAN · SHORT VIDEO & AI VISUAL</footer>
   <script>
+    // Serve compact WebP project proof on modern browsers before it reaches the viewport.
+    document.querySelectorAll('img[src="project-dunhuang-activity.png"],img[src="project-ai-deer.png"]').forEach(img=>{
+      img.loading='lazy'; img.decoding='async'; img.src=img.src.replace('.png','.webp');
+    });
     const sections=[...document.querySelectorAll('main section[id]')];
     const links=[...document.querySelectorAll('nav a[href^="#"]')];
     const linkMap=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
